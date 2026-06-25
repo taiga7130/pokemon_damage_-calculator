@@ -1,0 +1,139 @@
+// ============================================================
+// §5 ダメージ計算本体 / §7 乱数16通り
+// ============================================================
+import type { PokemonState, Move, Conditions, ModifierContext, Weather, PokemonType } from './types';
+import { pokeRound, MOD } from './pokeRound';
+import { calcEffectiveAttack, calcEffectiveDefense } from './effective';
+import { calcTypeEffectiveness } from './typeChart';
+
+/**
+ * §5.1 基礎ダメージ（Lv50固定 → (2*Level/5+2)=22 定数）。
+ *   base = floor(floor(22 * power * A / D) / 50) + 2
+ * floor は「÷D の後」と「÷50 の後」の2箇所。
+ */
+export function calcBaseDamage(power: number, attack: number, defense: number): number {
+  const inner = Math.floor(22 * power * attack / defense);
+  return Math.floor(inner / 50) + 2;
+}
+
+/** §5.3 タイプ相性の適用（2のべき乗整数演算。pokeRound不使用）。 */
+function applyTypeEff(dmg: number, eff: number): number {
+  if (eff === 0) return 0;
+  if (eff === 4) return dmg * 4;
+  if (eff === 2) return dmg * 2;
+  if (eff === 0.5) return Math.floor(dmg / 2);
+  if (eff === 0.25) return Math.floor(dmg / 4);
+  return dmg; // 等倍
+}
+
+/** §5.6 各ステップ後、1未満は1に繰り上げ（0倍の無効を除く）。 */
+const clamp1 = (d: number): number => (d < 1 ? 1 : d);
+
+/** §5.2-1 天候の威力補正（防御側補正ではない）。 */
+function weatherDamageMod(weather: Weather, moveType: PokemonType): number | null {
+  if (weather === 'sun') {
+    if (moveType === 'fire') return MOD.X1_5;
+    if (moveType === 'water') return MOD.X0_5;
+  }
+  if (weather === 'rain') {
+    if (moveType === 'water') return MOD.X1_5;
+    if (moveType === 'fire') return MOD.X0_5;
+  }
+  return null;
+}
+
+/**
+ * §5.2 補正適用（乱数1通り分）。
+ * 順序: 天候 → 急所 → 乱数(floor) → STAB → タイプ相性(べき乗) → やけど → 壁 → 持ち物。
+ * 乱数・タイプ相性以外は pokeRound。
+ *
+ * @param base         §5.1 基礎ダメージ
+ * @param randomFactor 85〜100 の整数
+ */
+export function applyModifiers(base: number, randomFactor: number, ctx: ModifierContext): number {
+  let d = base;
+
+  // 1) 天候
+  if (ctx.weatherMod !== null) d = clamp1(pokeRound(d, ctx.weatherMod));
+  // 2) 急所 ×1.5
+  if (ctx.isCrit) d = clamp1(pokeRound(d, MOD.X1_5));
+  // 3) 乱数（単純 floor）
+  d = clamp1(Math.floor(d * randomFactor / 100));
+  // 4) タイプ一致 STAB
+  if (ctx.stabMod !== null) d = clamp1(pokeRound(d, ctx.stabMod));
+  // 5) タイプ相性（2のべき乗）
+  d = applyTypeEff(d, ctx.typeEff);
+  if (d === 0) return 0; // 無効は即時確定
+  d = clamp1(d);
+  // 6) やけど（物理のみ ×0.5）
+  if (ctx.burned && ctx.isPhysical) d = clamp1(pokeRound(d, MOD.X0_5));
+  // 7) 壁 ×0.5
+  if (ctx.wallActive) d = clamp1(pokeRound(d, MOD.X0_5));
+  // 8) 持ち物
+  if (ctx.itemMod !== null) d = clamp1(pokeRound(d, ctx.itemMod));
+
+  return d;
+}
+
+/**
+ * ModifierContext を 1 度だけ構築。
+ * 乱数に依存しない要素（A_eff/D_eff/base/STAB/相性/各フラグ）をここで確定する。
+ */
+function buildContext(
+  attacker: PokemonState,
+  defender: PokemonState,
+  move: Move,
+  conditions: Conditions,
+): { base: number; ctx: ModifierContext; typeEff: number } {
+  const A = calcEffectiveAttack(attacker, move, conditions);
+  const D = calcEffectiveDefense(defender, move, conditions);
+  // 威力補正（はりきり等）は次フェーズ。現状は素の威力。
+  const base = calcBaseDamage(move.power, A, D);
+
+  const typeEff = calcTypeEffectiveness(move.type, defender.species.types);
+
+  // §5.2-4 STAB: 技タイプ = 使用者タイプ。適応力は ×2、それ以外 ×1.5。
+  const isStab = attacker.species.types.includes(move.type);
+  const stabMod = isStab ? (attacker.ability === 'adaptability' ? MOD.X2_0 : MOD.X1_5) : null;
+
+  const isPhysical = move.category === 'physical';
+
+  // §5.5 壁: 物理=リフレク / 特殊=ひかりのかべ。急所時は無視。
+  const wallActive =
+    !conditions.isCrit &&
+    ((isPhysical && !!conditions.reflect) || (!isPhysical && !!conditions.lightScreen));
+
+  // §5.4 持ち物（いのちのたま ×1.3）
+  const itemMod = attacker.item === 'lifeOrb' ? MOD.X1_3 : null;
+
+  const ctx: ModifierContext = {
+    weatherMod: weatherDamageMod(conditions.weather ?? 'none', move.type),
+    isCrit: !!conditions.isCrit,
+    stabMod,
+    typeEff,
+    isPhysical,
+    burned: !!conditions.attackerBurned,
+    wallActive,
+    itemMod,
+  };
+  return { base, ctx, typeEff };
+}
+
+/**
+ * §7 乱数16通りのダメージ（昇順）。
+ * 丸めが乱数factorに依存するため、補正チェーンを 85〜100 で 16回フル実行する。
+ */
+export function calcDamageRange(
+  attacker: PokemonState,
+  defender: PokemonState,
+  move: Move,
+  conditions: Conditions = {},
+): number[] {
+  const { base, ctx, typeEff } = buildContext(attacker, defender, move, conditions);
+  if (typeEff === 0) return new Array(16).fill(0); // 無効
+
+  const rolls: number[] = [];
+  for (let r = 85; r <= 100; r++) rolls.push(applyModifiers(base, r, ctx));
+  rolls.sort((a, b) => a - b);
+  return rolls;
+}
