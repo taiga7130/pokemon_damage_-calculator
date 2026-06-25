@@ -1,0 +1,702 @@
+[
+  {
+    "dexNo": 3,
+    "formName": "メガフシギバナ",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 6,
+    "formName": "メガリザードンY",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 6,
+    "formName": "メガリザードンX",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 9,
+    "formName": "メガカメックス",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 15,
+    "formName": "メガスピアー",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 18,
+    "formName": "メガピジョット",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 26,
+    "formName": "ライチュウ(アローラのすがた)",
+    "formType": "regional"
+  },
+  {
+    "dexNo": 26,
+    "formName": "メガライチュウY",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 26,
+    "formName": "メガライチュウX",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 36,
+    "formName": "メガピクシー",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 38,
+    "formName": "キュウコン(アローラのすがた)",
+    "formType": "regional"
+  },
+  {
+    "dexNo": 59,
+    "formName": "ウインディ(ヒスイのすがた)",
+    "formType": "regional"
+  },
+  {
+    "dexNo": 65,
+    "formName": "メガフーディン",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 71,
+    "formName": "メガウツボット",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 80,
+    "formName": "ヤドラン(ガラルのすがた)",
+    "formType": "regional"
+  },
+  {
+    "dexNo": 80,
+    "formName": "メガヤドラン",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 94,
+    "formName": "メガゲンガー",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 115,
+    "formName": "メガガルーラ",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 121,
+    "formName": "メガスターミー",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 127,
+    "formName": "メガカイロス",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 128,
+    "formName": "ケンタロス(パルデアのすがた・コンバットしゅ)",
+    "formType": "regional"
+  },
+  {
+    "dexNo": 128,
+    "formName": "ケンタロス(パルデアのすがた・ブレイズしゅ)",
+    "formType": "regional"
+  },
+  {
+    "dexNo": 128,
+    "formName": "ケンタロス(パルデアのすがた・ウォーターしゅ)",
+    "formType": "regional"
+  },
+  {
+    "dexNo": 130,
+    "formName": "メガギャラドス",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 142,
+    "formName": "メガプテラ",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 149,
+    "formName": "メガカイリュー",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 154,
+    "formName": "メガメガニウム",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 157,
+    "formName": "バクフーン(ヒスイのすがた)",
+    "formType": "regional"
+  },
+  {
+    "dexNo": 160,
+    "formName": "メガオーダイル",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 181,
+    "formName": "メガデンリュウ",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 199,
+    "formName": "ヤドキング(ガラルのすがた)",
+    "formType": "regional"
+  },
+  {
+    "dexNo": 208,
+    "formName": "メガハガネール",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 212,
+    "formName": "メガハッサム",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 214,
+    "formName": "メガヘラクロス",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 227,
+    "formName": "メガエアームド",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 229,
+    "formName": "メガヘルガー",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 248,
+    "formName": "メガバンギラス",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 282,
+    "formName": "メガサーナイト",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 302,
+    "formName": "メガヤミラミ",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 306,
+    "formName": "メガボスゴドラ",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 308,
+    "formName": "メガチャーレム",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 310,
+    "formName": "メガライボルト",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 319,
+    "formName": "メガサメハダー",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 323,
+    "formName": "メガバクーダ",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 334,
+    "formName": "メガチルタリス",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 351,
+    "formName": "ポワルン(たいようのすがた)",
+    "formType": "regional"
+  },
+  {
+    "dexNo": 351,
+    "formName": "ポワルン(あまみずのすがた)",
+    "formType": "regional"
+  },
+  {
+    "dexNo": 351,
+    "formName": "ポワルン(ゆきぐものすがた)",
+    "formType": "regional"
+  },
+  {
+    "dexNo": 354,
+    "formName": "メガジュペッタ",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 358,
+    "formName": "メガチリーン",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 359,
+    "formName": "メガアブソル",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 359,
+    "formName": "メガアブソルZ",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 362,
+    "formName": "メガオニゴーリ",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 428,
+    "formName": "メガミミロップ",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 445,
+    "formName": "メガガブリアス",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 445,
+    "formName": "メガガブリアスZ",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 448,
+    "formName": "メガルカリオ",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 448,
+    "formName": "メガルカリオZ",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 460,
+    "formName": "メガユキノオー",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 475,
+    "formName": "メガエルレイド",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 478,
+    "formName": "メガユキメノコ",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 479,
+    "formName": "ヒートロトム",
+    "formType": "other"
+  },
+  {
+    "dexNo": 479,
+    "formName": "ウォッシュロトム",
+    "formType": "other"
+  },
+  {
+    "dexNo": 479,
+    "formName": "フロストロトム",
+    "formType": "other"
+  },
+  {
+    "dexNo": 479,
+    "formName": "スピンロトム",
+    "formType": "other"
+  },
+  {
+    "dexNo": 479,
+    "formName": "カットロトム",
+    "formType": "other"
+  },
+  {
+    "dexNo": 500,
+    "formName": "メガエンブオー",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 503,
+    "formName": "ダイケンキ(ヒスイのすがた)",
+    "formType": "regional"
+  },
+  {
+    "dexNo": 530,
+    "formName": "メガドリュウズ",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 531,
+    "formName": "メガタブンネ",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 571,
+    "formName": "ゾロアーク(ヒスイのすがた)",
+    "formType": "regional"
+  },
+  {
+    "dexNo": 609,
+    "formName": "メガシャンデラ",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 618,
+    "formName": "マッギョ(ガラルのすがた)",
+    "formType": "regional"
+  },
+  {
+    "dexNo": 623,
+    "formName": "メガゴルーグ",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 652,
+    "formName": "メガブリガロン",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 655,
+    "formName": "メガマフォクシー",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 658,
+    "formName": "メガゲッコウガ",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 666,
+    "formName": "ビビヨン(ゆきぐにのもよう)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 666,
+    "formName": "ビビヨン(せつげんのもよう)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 666,
+    "formName": "ビビヨン(たいりくのもよう)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 666,
+    "formName": "ビビヨン(ていえんのもよう)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 666,
+    "formName": "ビビヨン(みやびなもよう)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 666,
+    "formName": "ビビヨン(はなぞののもよう)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 666,
+    "formName": "ビビヨン(モダンなもよう)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 666,
+    "formName": "ビビヨン(マリンのもよう)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 666,
+    "formName": "ビビヨン(ぐんとうのもよう)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 666,
+    "formName": "ビビヨン(こうやのもよう)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 666,
+    "formName": "ビビヨン(さじんのもよう)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 666,
+    "formName": "ビビヨン(たいがのもよう)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 666,
+    "formName": "ビビヨン(スコールのもよう)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 666,
+    "formName": "ビビヨン(サバンナのもよう)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 666,
+    "formName": "ビビヨン(たいようのもよう)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 666,
+    "formName": "ビビヨン(オーシャンのもよう)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 666,
+    "formName": "ビビヨン(ジャングルのもよう)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 666,
+    "formName": "ビビヨン(ファンシーなもよう)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 666,
+    "formName": "ビビヨン(ボールのもよう)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 671,
+    "formName": "フラージェス(きいろのはな)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 671,
+    "formName": "フラージェス(オレンジいろのはな)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 671,
+    "formName": "フラージェス(あおいはな)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 671,
+    "formName": "フラージェス(しろいはな)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 676,
+    "formName": "トリミアン(ハートカット)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 676,
+    "formName": "トリミアン(スターカット)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 676,
+    "formName": "トリミアン(ダイヤカット)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 676,
+    "formName": "トリミアン(レディカット)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 676,
+    "formName": "トリミアン(マダムカット)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 676,
+    "formName": "トリミアン(ジェントルカット)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 676,
+    "formName": "トリミアン(クイーンカット)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 676,
+    "formName": "トリミアン(カブキカット)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 676,
+    "formName": "トリミアン(キングダムカット)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 678,
+    "formName": "ニャオニクス(メスのすがた)",
+    "formType": "regional"
+  },
+  {
+    "dexNo": 678,
+    "formName": "メガニャオニクス",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 681,
+    "formName": "ギルガルド(ブレードフォルム)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 701,
+    "formName": "メガルチャブル",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 706,
+    "formName": "ヌメルゴン(ヒスイのすがた)",
+    "formType": "regional"
+  },
+  {
+    "dexNo": 711,
+    "formName": "パンプジン(こだましゅ)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 711,
+    "formName": "パンプジン(おおだましゅ)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 711,
+    "formName": "パンプジン(ギガだましゅ)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 713,
+    "formName": "クレベース(ヒスイのすがた)",
+    "formType": "regional"
+  },
+  {
+    "dexNo": 724,
+    "formName": "ジュナイパー(ヒスイのすがた)",
+    "formType": "regional"
+  },
+  {
+    "dexNo": 740,
+    "formName": "メガケケンカニ",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 745,
+    "formName": "ルガルガン(まよなかのすがた)",
+    "formType": "regional"
+  },
+  {
+    "dexNo": 745,
+    "formName": "ルガルガン(たそがれのすがた)",
+    "formType": "regional"
+  },
+  {
+    "dexNo": 778,
+    "formName": "ミミッキュ(ばれたすがた)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 780,
+    "formName": "メガジジーロン",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 855,
+    "formName": "ポットデス(しんさくフォルム)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 869,
+    "formName": "マホイップ(ミルキィルビー)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 869,
+    "formName": "マホイップ(ミルキィまっちゃ)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 869,
+    "formName": "マホイップ(ミルキィミント)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 869,
+    "formName": "マホイップ(ミルキィレモン)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 869,
+    "formName": "マホイップ(ミルキィソルト)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 869,
+    "formName": "マホイップ(ルビーミックス)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 869,
+    "formName": "マホイップ(キャラメルミックス)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 869,
+    "formName": "マホイップ(トリプルミックス)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 877,
+    "formName": "モルペコ(はらぺこもよう)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 902,
+    "formName": "イダイトウ(メスのすがた)",
+    "formType": "regional"
+  },
+  {
+    "dexNo": 925,
+    "formName": "イッカネズミ(４ひきかぞく)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 952,
+    "formName": "メガスコヴィラン",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 964,
+    "formName": "イルカマン(マイティフォルム)",
+    "formType": "other"
+  },
+  {
+    "dexNo": 970,
+    "formName": "メガキラフロル",
+    "formType": "mega"
+  },
+  {
+    "dexNo": 1013,
+    "formName": "ヤバソチャ(ケッサクのすがた)",
+    "formType": "regional"
+  }
+]
