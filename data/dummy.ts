@@ -50,6 +50,14 @@ export const BOULDUCK: Species = {
   baseStats: { hp: 80, atk: 90, def: 100, spa: 70, spd: 80, spe: 40 },
 };
 
+// Phantux: ゴースト単タイプ。きもったま/ふしぎなまもり 確認用。
+//   def・spd種族値80 → 実数値100、hp種族値45 → 実HP120（NORMUXと同条件）。
+export const PHANTUX: Species = {
+  name: 'Phantux',
+  types: ['ghost'],
+  baseStats: { hp: 45, atk: 70, def: 80, spa: 70, spd: 80, spe: 60 },
+};
+
 // ---- 技（ダミー）----
 export const FLAME_THROW: Move = { name: 'flameThrow', type: 'fire', category: 'special', power: 90, isContact: false };
 export const AQUA_SHOT: Move = { name: 'aquaShot', type: 'water', category: 'physical', power: 80, isContact: true };
@@ -57,6 +65,13 @@ export const ROCK_SLAM: Move = { name: 'rockSlam', type: 'rock', category: 'phys
 export const THUNDER: Move = { name: 'thunder', type: 'electric', category: 'special', power: 90, isContact: false };
 export const LEAF_CUT: Move = { name: 'leafCut', type: 'grass', category: 'special', power: 80, isContact: false };
 export const TACKLE: Move = { name: 'tackle', type: 'normal', category: 'physical', power: 50, isContact: true };
+// 特性条件テスト用の追加技
+export const ICE_BEAM: Move = { name: 'iceBeam', type: 'ice', category: 'special', power: 90, isContact: false };
+export const THUNDER_PUNCH: Move = { name: 'thunderPunch', type: 'electric', category: 'physical', power: 75, isContact: true, flags: { punch: true } };
+export const TAKE_DOWN: Move = { name: 'takeDown', type: 'normal', category: 'physical', power: 90, isContact: true, flags: { recoil: true } };
+export const SLUDGE_BOMB: Move = { name: 'sludgeBomb', type: 'poison', category: 'special', power: 90, isContact: false, flags: { hasSecondary: true } };
+export const QUAKE: Move = { name: 'quake', type: 'ground', category: 'physical', power: 100, isContact: false };
+export const KARATE_CHOP: Move = { name: 'karateChop', type: 'fighting', category: 'physical', power: 75, isContact: true };
 
 // ---- PokemonState を組み立てるヘルパー ----
 export function makeState(

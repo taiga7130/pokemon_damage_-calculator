@@ -4,7 +4,6 @@
 import type { PokemonState, Move, Conditions, DamageResult } from './types';
 import { getStatValue } from './stats';
 import { calcDamageRange } from './damage';
-import { calcTypeEffectiveness } from './typeChart';
 import { calcKOProbability } from './ko';
 
 /**
@@ -18,7 +17,8 @@ export function calcDamage(
   conditions: Conditions = {},
 ): DamageResult {
   const rolls = calcDamageRange(attacker, defender, move, conditions);
-  const typeEff = calcTypeEffectiveness(move.type, defender.species.types);
+  // 無効判定は特性(ふゆう等)も反映した実出力ベース（全ロール0 = 無効）
+  const isImmune = rolls.every((d) => d === 0);
 
   const maxHP = getStatValue(defender, 'hp');
   const targetHP = defender.currentHP ?? maxHP;
@@ -32,7 +32,7 @@ export function calcDamage(
 
   const ko = calcKOProbability(rolls, targetHP);
 
-  return { rolls, minDamage, maxDamage, minPercent, maxPercent, ko, isImmune: typeEff === 0 };
+  return { rolls, minDamage, maxDamage, minPercent, maxPercent, ko, isImmune };
 }
 
 // re-export
@@ -40,6 +40,10 @@ export * from './types';
 export { pokeRound, MOD } from './pokeRound';
 export { calcHP, calcStat, getStatValue, applyRankBoost, natureMultiplier, validateSP } from './stats';
 export { calcEffectiveAttack, calcEffectiveDefense } from './effective';
-export { calcTypeEffectiveness, TYPE_CHART } from './typeChart';
+export { calcTypeEffectiveness, TYPE_CHART, ALL_TYPES } from './typeChart';
+export {
+  computeEffectivePower, computeTypeEffectiveness, computeCritMod,
+  computePostTypeMods, computeFinalMods,
+} from './abilityItem';
 export { calcBaseDamage, applyModifiers, calcDamageRange } from './damage';
 export { calcKOProbability } from './ko';

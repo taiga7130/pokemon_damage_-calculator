@@ -4,7 +4,10 @@
 import type { PokemonState, Move, Conditions, ModifierContext, Weather, PokemonType } from './types';
 import { pokeRound, MOD } from './pokeRound';
 import { calcEffectiveAttack, calcEffectiveDefense } from './effective';
-import { calcTypeEffectiveness } from './typeChart';
+import {
+  computeEffectivePower, computeTypeEffectiveness, computeCritMod,
+  computePostTypeMods, computeFinalMods,
+} from './abilityItem';
 
 /**
  * §5.1 基礎ダメージ（Lv50固定 → (2*Level/5+2)=22 定数）。
@@ -55,8 +58,8 @@ export function applyModifiers(base: number, randomFactor: number, ctx: Modifier
 
   // 1) 天候
   if (ctx.weatherMod !== null) d = clamp1(pokeRound(d, ctx.weatherMod));
-  // 2) 急所 ×1.5
-  if (ctx.isCrit) d = clamp1(pokeRound(d, MOD.X1_5));
+  // 2) 急所（×1.5 / スナイパー ×2.25）
+  if (ctx.critMod !== null) d = clamp1(pokeRound(d, ctx.critMod));
   // 3) 乱数（単純 floor）
   d = clamp1(Math.floor(d * randomFactor / 100));
   // 4) タイプ一致 STAB
@@ -65,12 +68,14 @@ export function applyModifiers(base: number, randomFactor: number, ctx: Modifier
   d = applyTypeEff(d, ctx.typeEff);
   if (d === 0) return 0; // 無効は即時確定
   d = clamp1(d);
+  // 5後) いろめがね 等
+  for (const m of ctx.postTypeMods) d = clamp1(pokeRound(d, m));
   // 6) やけど（物理のみ ×0.5）
   if (ctx.burned && ctx.isPhysical) d = clamp1(pokeRound(d, MOD.X0_5));
   // 7) 壁 ×0.5
   if (ctx.wallActive) d = clamp1(pokeRound(d, MOD.X0_5));
-  // 8) 持ち物
-  if (ctx.itemMod !== null) d = clamp1(pokeRound(d, ctx.itemMod));
+  // 8) 最終乗算群（持ち物＋防御側特性＋半減実）
+  for (const m of ctx.finalMods) d = clamp1(pokeRound(d, m));
 
   return d;
 }
@@ -87,10 +92,12 @@ function buildContext(
 ): { base: number; ctx: ModifierContext; typeEff: number } {
   const A = calcEffectiveAttack(attacker, move, conditions);
   const D = calcEffectiveDefense(defender, move, conditions);
-  // 威力補正（はりきり等）は次フェーズ。現状は素の威力。
-  const base = calcBaseDamage(move.power, A, D);
+  // §4.4 威力側 特性（はりきり/てつのこぶし/ピンチ強化 等）を反映した実効威力
+  const powerEff = computeEffectivePower(attacker, move, conditions);
+  const base = calcBaseDamage(powerEff, A, D);
 
-  const typeEff = calcTypeEffectiveness(move.type, defender.species.types);
+  // §5.3 タイプ相性（特性の無効化・貫通を反映）
+  const typeEff = computeTypeEffectiveness(attacker, defender, move);
 
   // §5.2-4 STAB: 技タイプ = 使用者タイプ。適応力は ×2、それ以外 ×1.5。
   const isStab = attacker.species.types.includes(move.type);
@@ -103,18 +110,16 @@ function buildContext(
     !conditions.isCrit &&
     ((isPhysical && !!conditions.reflect) || (!isPhysical && !!conditions.lightScreen));
 
-  // §5.4 持ち物（いのちのたま ×1.3）
-  const itemMod = attacker.item === 'lifeOrb' ? MOD.X1_3 : null;
-
   const ctx: ModifierContext = {
     weatherMod: weatherDamageMod(conditions.weather ?? 'none', move.type),
-    isCrit: !!conditions.isCrit,
+    critMod: computeCritMod(attacker, !!conditions.isCrit),
     stabMod,
     typeEff,
     isPhysical,
+    postTypeMods: computePostTypeMods(attacker, typeEff),
     burned: !!conditions.attackerBurned,
     wallActive,
-    itemMod,
+    finalMods: computeFinalMods(attacker, defender, move, conditions, typeEff),
   };
   return { base, ctx, typeEff };
 }

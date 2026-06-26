@@ -5,6 +5,7 @@
 import type { PokemonState, Move, Conditions } from './types';
 import { pokeRound, MOD } from './pokeRound';
 import { getStatValue, applyRankBoost } from './stats';
+import { applyAttackStatMods, applyDefenseStatMods } from './abilityItem';
 
 /**
  * §4 実効攻撃 A_eff。
@@ -19,8 +20,8 @@ export function calcEffectiveAttack(attacker: PokemonState, move: Move, conditio
   let stat = getStatValue(attacker, key);
   stat = applyRankBoost(stat, rank);
 
-  // §4.4 ちからもち / ヨガパワー: 攻撃 ×2（pokeRound(_,8192)=正確に2倍）
-  if (attacker.ability === 'hugePower') stat = pokeRound(stat, MOD.X2_0);
+  // §4.4 攻撃側 特性/持ち物（ちからもち×2・ごりむちゅう×1.5・こだわり×1.5 等）
+  stat = applyAttackStatMods(stat, attacker, move);
 
   return stat;
 }
@@ -46,6 +47,9 @@ export function calcEffectiveDefense(defender: PokemonState, move: Move, conditi
   if (conditions.weather === 'snow' && key === 'def' && types.includes('ice')) {
     stat = pokeRound(stat, MOD.X1_5); // 雪: こおりタイプの防御 ×1.5
   }
+
+  // §4.4 防御側 持ち物（とつげきチョッキ: 特殊技に対し特防 ×1.5）
+  stat = applyDefenseStatMods(stat, defender, move);
 
   return stat;
 }
