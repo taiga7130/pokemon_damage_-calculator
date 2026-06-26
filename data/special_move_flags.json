@@ -1,0 +1,242 @@
+[
+  {
+    "moveId": "beat-up",
+    "name": "ふくろだたき",
+    "category": "physical",
+    "effect": "手持ちのポケモンの数だけ相手を攻撃する。 ひんしや状態異常のポケモンは数えない。 技の威力は手持ちポケモンのこうげきで計算する。"
+  },
+  {
+    "moveId": "bone-rush",
+    "name": "ボーンラッシュ",
+    "category": "physical",
+    "effect": "２ー５回連続で攻撃する。"
+  },
+  {
+    "moveId": "bullet-seed",
+    "name": "タネマシンガン",
+    "category": "physical",
+    "effect": "２ー５回連続で攻撃する。"
+  },
+  {
+    "moveId": "counter",
+    "name": "カウンター",
+    "category": "physical",
+    "effect": "使ったターンに相手から受けた 物理技のダメージを２倍にして返す。"
+  },
+  {
+    "moveId": "double-hit",
+    "name": "ダブルアタック",
+    "category": "physical",
+    "effect": "２回連続で攻撃する。"
+  },
+  {
+    "moveId": "dragon-darts",
+    "name": "ドラゴンアロー",
+    "category": "physical",
+    "effect": "２回連続で攻撃する。 相手が２匹いる場合は それぞれに１回ずつ攻撃する。"
+  },
+  {
+    "moveId": "dual-wingbeat",
+    "name": "ダブルウイング",
+    "category": "physical",
+    "effect": "２回連続で攻撃する。"
+  },
+  {
+    "moveId": "electro-ball",
+    "name": "エレキボール",
+    "category": "special",
+    "effect": "自分の素早さが相手より高いほど 威力が上がる。威力４０ー１５０。"
+  },
+  {
+    "moveId": "endeavor",
+    "name": "がむしゃら",
+    "category": "physical",
+    "effect": "相手の残りＨＰから自分の残りＨＰを 引いた数値のダメージを与える。 相手のＨＰが自分のＨＰ以下なら失敗する。"
+  },
+  {
+    "moveId": "eruption",
+    "name": "ふんか",
+    "category": "special",
+    "effect": "自分の残りＨＰが少ないほど威力が下がる。 威力１ー１５０。"
+  },
+  {
+    "moveId": "final-gambit",
+    "name": "いのちがけ",
+    "category": "special",
+    "effect": "自分はひんしになり その時に残っていたＨＰ分の ダメージを与える。"
+  },
+  {
+    "moveId": "fissure",
+    "name": "じわれ",
+    "category": "physical",
+    "effect": "相手をひんしにする。 命中率３０％固定。"
+  },
+  {
+    "moveId": "flail",
+    "name": "じたばた",
+    "category": "physical",
+    "effect": "自分の残りＨＰが少ないほど威力が上がる。 威力２０ー２００。"
+  },
+  {
+    "moveId": "fling",
+    "name": "なげつける",
+    "category": "physical",
+    "effect": "持っている道具によって 威力と効果が変わる。 使うと道具はなくなる。"
+  },
+  {
+    "moveId": "grass-knot",
+    "name": "くさむすび",
+    "category": "special",
+    "effect": "相手が重いほど威力が上がる。 威力２０ー１２０。"
+  },
+  {
+    "moveId": "guillotine",
+    "name": "ハサミギロチン",
+    "category": "physical",
+    "effect": "相手をひんしにする。 命中率３０％固定。"
+  },
+  {
+    "moveId": "gyro-ball",
+    "name": "ジャイロボール",
+    "category": "physical",
+    "effect": "自分の素早さが相手より低いほど 威力が大きくなる。 威力１ー１５０。"
+  },
+  {
+    "moveId": "hard-press",
+    "name": "ハードプレス",
+    "category": "physical",
+    "effect": "相手の残りＨＰが多いほど威力が高くなる。 威力１ー１００。"
+  },
+  {
+    "moveId": "heat-crash",
+    "name": "ヒートスタンプ",
+    "category": "physical",
+    "effect": "自分が相手より重いほど威力が上がる。 威力４０ー１２０。 ちいさくなる状態の相手には 威力が２倍になり必ず命中する。"
+  },
+  {
+    "moveId": "heavy-slam",
+    "name": "ヘビーボンバー",
+    "category": "physical",
+    "effect": "自分が相手より重いほど威力が上がる。 威力４０ー１２０。 ちいさくなる状態の相手には 威力が２倍になり必ず命中する。"
+  },
+  {
+    "moveId": "horn-drill",
+    "name": "つのドリル",
+    "category": "physical",
+    "effect": "相手をひんしにする。 命中率３０％固定。"
+  },
+  {
+    "moveId": "icicle-spear",
+    "name": "つららばり",
+    "category": "physical",
+    "effect": "２ー５回連続で攻撃する。"
+  },
+  {
+    "moveId": "low-kick",
+    "name": "けたぐり",
+    "category": "physical",
+    "effect": "相手が重いほど威力が上がる。 威力２０ー１２０。"
+  },
+  {
+    "moveId": "metal-burst",
+    "name": "メタルバースト",
+    "category": "physical",
+    "effect": "使ったターンに相手から受けた 技のダメージを１．５倍にして返す。"
+  },
+  {
+    "moveId": "mirror-coat",
+    "name": "ミラーコート",
+    "category": "special",
+    "effect": "使ったターンに相手から受けた 特殊技のダメージを２倍にして返す。"
+  },
+  {
+    "moveId": "night-shade",
+    "name": "ナイトヘッド",
+    "category": "special",
+    "effect": "相手のHPに５０ダメージを与える。"
+  },
+  {
+    "moveId": "pin-missile",
+    "name": "ミサイルばり",
+    "category": "physical",
+    "effect": "２ー５回連続で攻撃する。"
+  },
+  {
+    "moveId": "population-bomb",
+    "name": "ネズミざん",
+    "category": "physical",
+    "effect": "１ー１０回連続で攻撃する。 途中で外れると攻撃は終わる。"
+  },
+  {
+    "moveId": "reversal",
+    "name": "きしかいせい",
+    "category": "physical",
+    "effect": "自分の残りＨＰが少ないほど威力が上がる。 威力２０ー２００。"
+  },
+  {
+    "moveId": "rock-blast",
+    "name": "ロックブラスト",
+    "category": "physical",
+    "effect": "２ー５回連続で攻撃する。"
+  },
+  {
+    "moveId": "scale-shot",
+    "name": "スケイルショット",
+    "category": "physical",
+    "effect": "２ー５回連続で攻撃する。 自分の防御を１段階下げ 素早さを１段階上げる。"
+  },
+  {
+    "moveId": "seismic-toss",
+    "name": "ちきゅうなげ",
+    "category": "physical",
+    "effect": "相手のHPに５０ダメージを与える。"
+  },
+  {
+    "moveId": "sheer-cold",
+    "name": "ぜったいれいど",
+    "category": "special",
+    "effect": "相手をひんしにする。命中率３０％固定。 こおりタイプの相手には当たらない。 こおりタイプ以外が使うと命中率が２０％になる。"
+  },
+  {
+    "moveId": "spit-up",
+    "name": "はきだす",
+    "category": "special",
+    "effect": "たくわえる状態の数値が多いほど 威力が上がる。威力１００ー３００。 たくわえる状態ではない場合この技は失敗する。"
+  },
+  {
+    "moveId": "super-fang",
+    "name": "いかりのまえば",
+    "category": "physical",
+    "effect": "相手の残りＨＰの １／２のダメージを与える。 残り１の場合は１ダメージを与える。"
+  },
+  {
+    "moveId": "tail-slap",
+    "name": "スイープビンタ",
+    "category": "physical",
+    "effect": "２ー５回連続で攻撃する。"
+  },
+  {
+    "moveId": "triple-axel",
+    "name": "トリプルアクセル",
+    "category": "physical",
+    "effect": "１回目は威力２０ ２回目は威力４０ ３回目は威力６０ の３回連続攻撃。 途中で外れると攻撃は終わる。"
+  },
+  {
+    "moveId": "twin-beam",
+    "name": "ツインビーム",
+    "category": "special",
+    "effect": "２回連続で攻撃する。"
+  },
+  {
+    "moveId": "water-shuriken",
+    "name": "みずしゅりけん",
+    "category": "special",
+    "effect": "２ー５回連続で攻撃する。"
+  },
+  {
+    "moveId": "water-spout",
+    "name": "しおふき",
+    "category": "special",
+    "effect": "自分の残りＨＰが少ないほど威力が下がる。 威力１ー１５０。"
+  }
+]
