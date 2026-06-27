@@ -67,4 +67,35 @@ body {
 .rolls-toggle { margin-top: 12px; background: rgba(255,255,255,0.1); color: var(--text); border: none; border-radius: 8px; padding: 8px 14px; font-size: 0.8rem; cursor: pointer; }
 .rolls { margin-top: 10px; font-size: 0.78rem; color: var(--muted); font-variant-numeric: tabular-nums; line-height: 1.7; word-break: break-word; }
 
+/* details / 入力詳細 */
+.det { margin-top: 10px; border-top: 1px solid #2b3a52; padding-top: 8px; }
+.det > summary { cursor: pointer; color: var(--accent); font-size: 0.8rem; font-weight: 700; list-style: none; padding: 4px 0; }
+.det > summary::-webkit-details-marker { display: none; }
+.det > summary::before { content: '⚙ '; }
+
+.spf { display: flex; align-items: center; gap: 8px; margin: 8px 0; }
+.spf-lbl { font-size: 0.8rem; color: var(--muted); min-width: 64px; }
+.spf input { width: 70px; background: #0b1220; color: var(--text); border: 1px solid #38465c; border-radius: 8px; padding: 8px; font-size: 1rem; text-align: center; }
+.spf-max { background: #334155; color: var(--text); border: none; border-radius: 8px; padding: 8px 12px; font-size: 0.8rem; cursor: pointer; }
+
+.seg { display: flex; gap: 4px; margin: 8px 0; }
+.seg button { flex: 1; background: var(--card2); color: var(--muted); border: 1px solid #38465c; border-radius: 8px; padding: 8px 4px; font-size: 0.82rem; cursor: pointer; }
+.seg button.on { background: var(--accent); color: #06283a; border-color: var(--accent); font-weight: 700; }
+
+.sel { width: 100%; background: #0b1220; color: var(--text); border: 1px solid #38465c; border-radius: 8px; padding: 10px; font-size: 0.95rem; margin: 6px 0; }
+.sel-sm { width: auto; min-width: 90px; margin: 0; }
+
+.rankrow { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 8px 0; font-size: 0.85rem; color: var(--muted); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.chip { background: var(--card2); color: var(--muted); border: 1px solid #38465c; border-radius: 999px; padding: 5px 12px; font-size: 0.78rem; cursor: pointer; }
+.chip.on { background: #7c3aed; color: #fff; border-color: #7c3aed; font-weight: 700; }
+
+.field { display: flex; flex-direction: column; gap: 6px; }
+.toggles { display: flex; gap: 6px; }
+.tg { flex: 1; background: var(--card2); color: var(--muted); border: 1px solid #38465c; border-radius: 8px; padding: 9px 4px; font-size: 0.8rem; cursor: pointer; }
+.tg.on { background: var(--ok); color: #04261a; border-color: var(--ok); font-weight: 700; }
+
+.eff { font-size: 0.9rem; font-weight: 700; color: #fcd34d; margin-bottom: 4px; }
+
 .ftr { text-align: center; color: #64748b; font-size: 0.68rem; margin-top: 18px; }
