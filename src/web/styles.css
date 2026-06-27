@@ -96,6 +96,10 @@ body {
 .tg { flex: 1; background: var(--card2); color: var(--muted); border: 1px solid #38465c; border-radius: 8px; padding: 9px 4px; font-size: 0.8rem; cursor: pointer; }
 .tg.on { background: var(--ok); color: #04261a; border-color: var(--ok); font-weight: 700; }
 
+.swapbar { display: flex; justify-content: center; margin: -2px 0 8px; }
+.swap { background: #7c3aed; color: #fff; border: none; border-radius: 999px; padding: 9px 22px; font-size: 0.9rem; font-weight: 700; cursor: pointer; box-shadow: 0 2px 8px rgba(124,58,237,0.4); }
+.swap:active { transform: scale(0.96); }
+
 .eff { font-size: 0.9rem; font-weight: 700; color: #fcd34d; margin-bottom: 4px; }
 
 .ftr { text-align: center; color: #64748b; font-size: 0.68rem; margin-top: 18px; }
