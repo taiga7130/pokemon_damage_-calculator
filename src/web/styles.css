@@ -96,6 +96,14 @@ body {
 .tg { flex: 1; background: var(--card2); color: var(--muted); border: 1px solid #38465c; border-radius: 8px; padding: 9px 4px; font-size: 0.8rem; cursor: pointer; }
 .tg.on { background: var(--ok); color: #04261a; border-color: var(--ok); font-weight: 700; }
 
+.hdr { position: relative; }
+.copy { position: absolute; right: 4px; top: 6px; background: #334155; color: var(--text); border: none; border-radius: 8px; padding: 7px 12px; font-size: 0.75rem; font-weight: 700; cursor: pointer; }
+
+.filter { display: flex; gap: 6px; margin-bottom: 8px; align-items: center; }
+.seg-sm button { padding: 6px 8px; font-size: 0.78rem; }
+
+.sub { margin-top: 8px; font-size: 0.82rem; color: rgba(226,232,240,0.75); border-top: 1px dashed rgba(255,255,255,0.18); padding-top: 8px; }
+
 .swapbar { display: flex; justify-content: center; margin: -2px 0 8px; }
 .swap { background: #7c3aed; color: #fff; border: none; border-radius: 999px; padding: 9px 22px; font-size: 0.9rem; font-weight: 700; cursor: pointer; box-shadow: 0 2px 8px rgba(124,58,237,0.4); }
 .swap:active { transform: scale(0.96); }

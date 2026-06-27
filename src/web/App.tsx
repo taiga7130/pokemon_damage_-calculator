@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { calcDamage, computeTypeEffectiveness } from '../index';
 import type { PokemonType, Weather, ItemId, StatBlock } from '../types';
 import {
@@ -7,11 +7,10 @@ import {
 } from './adapter';
 import { SearchSelect, type Option } from './SearchSelect';
 import { ITEMS, IMPLEMENTED_ABILITY_JA, isEffectiveAbility } from './registry';
+import { encodeShare, decodeShare, type ShareBuild, type ShareState } from './share';
 
 // ============================================================
-// データモデル: 各ポケモンは役割に依存しない「育成データ(Build)」を保持。
-// 攻守入替は2つのBuildのどちらを攻撃側にするかを切り替えるだけ。
-// SP/性格/ランクは6ステ分（攻防両用）を内部保持し、役割に応じて表示を出し分ける。
+// データモデル: 役割に依存しない育成データ(Build)×2 + 攻撃側フラグ。
 // ============================================================
 type OffStat = 'atk' | 'spa';
 type DefStat = 'def' | 'spd';
@@ -19,41 +18,53 @@ type NatStat = OffStat | DefStat;
 
 interface Build {
   formKey: string | null;
-  moveId: string | null;            // 技は攻撃側に紐づく
-  sp: StatBlock;                    // 6ステ分
+  moveId: string | null;
+  sp: StatBlock;
   nature: Record<NatStat, NatureChoice>;
   rank: Record<NatStat, number>;
   abilityJa: string;
   item: ItemId;
 }
-
 function newBuild(): Build {
   return {
     formKey: null, moveId: null,
     sp: { hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0 },
-    nature: { atk: 'up', spa: 'up', def: 'neutral', spd: 'neutral' }, // 攻撃ステは↑が既定
+    nature: { atk: 'up', spa: 'up', def: 'neutral', spd: 'neutral' },
     rank: { atk: 0, spa: 0, def: 0, spd: 0 },
     abilityJa: '', item: 'none',
   };
 }
 
-function TypeBadges({ types }: { types: PokemonType[] }) {
-  return (
-    <span className="badges">
-      {types.map((t) => (
-        <span key={t} className="badge" style={{ background: TYPE_COLOR[t] }}>{TYPE_JA[t]}</span>
-      ))}
-    </span>
-  );
+// ---- 共有URL 変換 ----
+const NAT_ENC: Record<NatureChoice, string> = { up: 'u', neutral: 'n', down: 'd' };
+const NAT_DEC: Record<string, NatureChoice> = { u: 'up', n: 'neutral', d: 'down' };
+function buildToShare(b: Build): ShareBuild {
+  return {
+    f: b.formKey ? FORMS.findIndex((f) => f.key === b.formKey) : -1,
+    m: b.moveId ? MOVES.findIndex((m) => m.moveId === b.moveId) : -1,
+    sp: [b.sp.hp, b.sp.atk, b.sp.def, b.sp.spa, b.sp.spd, b.sp.spe],
+    n: [NAT_ENC[b.nature.atk], NAT_ENC[b.nature.spa], NAT_ENC[b.nature.def], NAT_ENC[b.nature.spd]],
+    r: [b.rank.atk, b.rank.spa, b.rank.def, b.rank.spd],
+    a: b.abilityJa, i: b.item,
+  };
+}
+function shareToBuild(s: ShareBuild): Build {
+  const fOk = s.f >= 0 && s.f < FORMS.length;
+  const mOk = s.m >= 0 && s.m < MOVES.length;
+  return {
+    formKey: fOk ? FORMS[s.f].key : null,
+    moveId: mOk ? MOVES[s.m].moveId : null,
+    sp: { hp: s.sp[0], atk: s.sp[1], def: s.sp[2], spa: s.sp[3], spd: s.sp[4], spe: s.sp[5] },
+    nature: { atk: NAT_DEC[s.n[0]] ?? 'neutral', spa: NAT_DEC[s.n[1]] ?? 'neutral', def: NAT_DEC[s.n[2]] ?? 'neutral', spd: NAT_DEC[s.n[3]] ?? 'neutral' },
+    rank: { atk: s.r[0], spa: s.r[1], def: s.r[2], spd: s.r[3] },
+    abilityJa: s.a, item: s.i as ItemId,
+  };
 }
 
-const pokemonOptions: Option[] = FORMS.map((f) => ({
-  key: f.key, label: f.formName, sub: <TypeBadges types={f.types} />,
-}));
-const moveOptions: Option[] = MOVES.map((m) => ({
-  key: m.moveId, label: `${m.name}（威力${m.power}）`,
-  sub: <span className="badge" style={{ background: TYPE_COLOR[m.type] }}>{m.category === 'physical' ? '物理' : '特殊'}</span>,
-}));
+function TypeBadges({ types }: { types: PokemonType[] }) {
+  return <span className="badges">{types.map((t) => <span key={t} className="badge" style={{ background: TYPE_COLOR[t] }}>{TYPE_JA[t]}</span>)}</span>;
+}
+const pokemonOptions: Option[] = FORMS.map((f) => ({ key: f.key, label: f.formName, sub: <TypeBadges types={f.types} /> }));
 
 function NatureToggle({ value, onChange, label }: { value: NatureChoice; onChange: (v: NatureChoice) => void; label: string }) {
   return (
@@ -80,9 +91,7 @@ function AbilitySelect({ form, value, onChange }: { form: FormEntry; value: stri
     <select className="sel" value={value} onChange={(e) => onChange(e.target.value)}>
       <option value="">特性なし</option>
       {form.abilities.map((j) => <option key={`c-${j}`} value={j}>{isEffectiveAbility(j) ? j : `${j}（影響なし）`}</option>)}
-      <optgroup label="実装済み特性から選ぶ">
-        {extra.map((j) => <option key={`e-${j}`} value={j}>{j}</option>)}
-      </optgroup>
+      <optgroup label="実装済み特性から選ぶ">{extra.map((j) => <option key={`e-${j}`} value={j}>{j}</option>)}</optgroup>
     </select>
   );
 }
@@ -113,22 +122,36 @@ function MegaChips({ form, onPick }: { form: FormEntry; onPick: (key: string) =>
 }
 
 const RANKS = [-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6];
+const TYPE_LIST = Object.keys(TYPE_JA) as PokemonType[];
 const formOf = (key: string | null) => (key ? FORMS.find((f) => f.key === key) ?? null : null);
 
+// 共有ハッシュからの初期復元
+function initialFromHash(): ShareState | null {
+  if (typeof window === 'undefined') return null;
+  const h = window.location.hash.replace(/^#/, '');
+  return h ? decodeShare(h) : null;
+}
+
 export default function App() {
-  const [builds, setBuilds] = useState<[Build, Build]>([newBuild(), newBuild()]);
-  const [swapped, setSwapped] = useState(false);
+  const init = initialFromHash();
+  const [builds, setBuilds] = useState<[Build, Build]>(
+    init ? [shareToBuild(init.p[0]), shareToBuild(init.p[1])] : [newBuild(), newBuild()],
+  );
+  const [swapped, setSwapped] = useState(init ? !!init.s : false);
+  const [weather, setWeather] = useState<Weather>(init ? (init.w as Weather) : 'none');
+  const [wall, setWall] = useState(init ? !!init.l : false);
+  const [crit, setCrit] = useState(init ? !!init.c : false);
+  const [burn, setBurn] = useState(init ? !!init.b : false);
   const [showRolls, setShowRolls] = useState(false);
-  const [weather, setWeather] = useState<Weather>('none');
-  const [wall, setWall] = useState(false);
-  const [crit, setCrit] = useState(false);
-  const [burn, setBurn] = useState(false);
+  const [copied, setCopied] = useState(false);
+  // 技フィルタ
+  const [mType, setMType] = useState<PokemonType | 'all'>('all');
+  const [mCat, setMCat] = useState<'all' | 'physical' | 'special'>('all');
 
   const atkIdx = swapped ? 1 : 0;
   const defIdx = swapped ? 0 : 1;
   const atkBuild = builds[atkIdx];
   const defBuild = builds[defIdx];
-
   const updateBuild = (idx: number, fn: (b: Build) => Build) =>
     setBuilds((prev) => prev.map((b, i) => (i === idx ? fn(b) : b)) as [Build, Build]);
 
@@ -137,21 +160,53 @@ export default function App() {
   const move = atkBuild.moveId ? MOVES.find((m) => m.moveId === atkBuild.moveId) ?? null : null;
 
   const isPhysical = move ? move.category === 'physical' : true;
-  const offKey: OffStat = isPhysical ? 'atk' : 'spa';   // 攻撃側が使うステ
-  const defKey: DefStat = isPhysical ? 'def' : 'spd';   // 防御側が受けるステ（技分類に追従）
+  const offKey: OffStat = isPhysical ? 'atk' : 'spa';
+  const defKey: DefStat = isPhysical ? 'def' : 'spd';
   const offLabel = isPhysical ? '攻撃' : '特攻';
   const defLabel = isPhysical ? '防御' : '特防';
 
+  // 共有URLを現在状態に同期
+  const shareState = (): ShareState => ({ v: 1, s: swapped ? 1 : 0, w: weather, l: wall ? 1 : 0, c: crit ? 1 : 0, b: burn ? 1 : 0, p: [buildToShare(builds[0]), buildToShare(builds[1])] });
+  useEffect(() => {
+    window.history.replaceState(null, '', '#' + encodeShare(shareState()));
+  }, [builds, swapped, weather, wall, crit, burn]);
+
+  const copyUrl = async () => {
+    const url = window.location.origin + window.location.pathname + '#' + encodeShare(shareState());
+    try { await navigator.clipboard.writeText(url); setCopied(true); setTimeout(() => setCopied(false), 1500); } catch { /* noop */ }
+  };
+
+  // 技選択肢: タイプ/分類フィルタ＋タイプ一致(STAB)を上位＆★
+  const moveOptions = useMemo<Option[]>(() => {
+    const atkTypes = atk?.types ?? [];
+    const list = MOVES.filter((m) => (mCat === 'all' || m.category === mCat) && (mType === 'all' || m.type === mType));
+    const sorted = [...list].sort((a, b) => (atkTypes.includes(a.type) ? 0 : 1) - (atkTypes.includes(b.type) ? 0 : 1));
+    return sorted.map((m) => ({
+      key: m.moveId,
+      label: `${atkTypes.includes(m.type) ? '★' : ''}${m.name}（威力${m.power}）`,
+      sub: <span className="badge" style={{ background: TYPE_COLOR[m.type] }}>{m.category === 'physical' ? '物理' : '特殊'}</span>,
+    }));
+  }, [atk, mType, mCat]);
+
+  // 通常時・急所時 両方を計算
   const result = useMemo(() => {
     if (!atk || !def || !move) return null;
     const phys = move.category === 'physical';
     const a = buildAttacker({ form: atk, isPhysical: phys, sp: atkBuild.sp[offKey], nature: atkBuild.nature[offKey], abilityJa: atkBuild.abilityJa, item: atkBuild.item, rank: atkBuild.rank[offKey] });
     const d = buildDefender({ form: def, isPhysical: phys, hpSp: defBuild.sp.hp, defSp: defBuild.sp[defKey], nature: defBuild.nature[defKey], abilityJa: defBuild.abilityJa, item: defBuild.item, rank: defBuild.rank[defKey] });
-    const cond = { weather, isCrit: crit, attackerBurned: burn, reflect: wall && phys, lightScreen: wall && !phys };
-    return { r: calcDamage(a, d, toMove(move), cond), eff: computeTypeEffectiveness(a, d, toMove(move)) };
+    const mv = toMove(move);
+    const baseCond = { weather, attackerBurned: burn, reflect: wall && phys, lightScreen: wall && !phys };
+    return {
+      normal: calcDamage(a, d, mv, { ...baseCond, isCrit: false }),
+      crit: calcDamage(a, d, mv, { ...baseCond, isCrit: true }),
+      eff: computeTypeEffectiveness(a, d, mv),
+    };
   }, [atk, def, move, atkBuild, defBuild, offKey, defKey, weather, wall, crit, burn]);
 
-  // ---- 攻撃側カード ----
+  const primary = result ? (crit ? result.crit : result.normal) : null;
+  const secondary = result ? (crit ? result.normal : result.crit) : null;
+  const secondaryLabel = crit ? '通常時' : '急所時';
+
   const renderAttacker = () => (
     <section className="card">
       <label className="lbl">攻撃側</label>
@@ -160,9 +215,7 @@ export default function App() {
       {atk && (
         <>
           <MegaChips form={atk} onPick={(k) => updateBuild(atkIdx, (b) => ({ ...b, formKey: k }))} />
-          <div className="meta"><TypeBadges types={atk.types} />
-            <span className="stats">H{atk.baseStats.hp} A{atk.baseStats.atk} B{atk.baseStats.def} C{atk.baseStats.spa} D{atk.baseStats.spd} S{atk.baseStats.spe}</span>
-          </div>
+          <div className="meta"><TypeBadges types={atk.types} /><span className="stats">H{atk.baseStats.hp} A{atk.baseStats.atk} B{atk.baseStats.def} C{atk.baseStats.spa} D{atk.baseStats.spd} S{atk.baseStats.spe}</span></div>
           <details className="det" open>
             <summary>SP・性格・特性・持ち物・ランク</summary>
             <SpField label={`${offLabel} SP`} value={atkBuild.sp[offKey]} onChange={(v) => updateBuild(atkIdx, (b) => ({ ...b, sp: { ...b.sp, [offKey]: v } }))} />
@@ -180,7 +233,6 @@ export default function App() {
     </section>
   );
 
-  // ---- 防御側カード ----
   const renderDefender = () => (
     <section className="card">
       <label className="lbl">防御側</label>
@@ -189,9 +241,7 @@ export default function App() {
       {def && (
         <>
           <MegaChips form={def} onPick={(k) => updateBuild(defIdx, (b) => ({ ...b, formKey: k }))} />
-          <div className="meta"><TypeBadges types={def.types} />
-            <span className="stats">H{def.baseStats.hp} A{def.baseStats.atk} B{def.baseStats.def} C{def.baseStats.spa} D{def.baseStats.spd} S{def.baseStats.spe}</span>
-          </div>
+          <div className="meta"><TypeBadges types={def.types} /><span className="stats">H{def.baseStats.hp} A{def.baseStats.atk} B{def.baseStats.def} C{def.baseStats.spa} D{def.baseStats.spd} S{def.baseStats.spe}</span></div>
           <details className="det" open>
             <summary>SP・性格・特性・持ち物・ランク</summary>
             <SpField label="HP SP" value={defBuild.sp.hp} onChange={(v) => updateBuild(defIdx, (b) => ({ ...b, sp: { ...b.sp, hp: v } }))} />
@@ -215,25 +265,33 @@ export default function App() {
       <header className="hdr">
         <h1>ダメージ計算機</h1>
         <span className="hdr-sub">Lv50 / 6V 固定</span>
+        <button className="copy" onClick={copyUrl}>{copied ? 'コピー済' : '共有URL'}</button>
       </header>
 
       {renderAttacker()}
 
       <section className="card">
         <label className="lbl">技（攻撃側）</label>
-        <SearchSelect placeholder="技を選択" options={moveOptions} value={atkBuild.moveId}
+        <div className="filter">
+          <div className="seg seg-sm">
+            <button className={mCat === 'all' ? 'on' : ''} onClick={() => setMCat('all')}>全</button>
+            <button className={mCat === 'physical' ? 'on' : ''} onClick={() => setMCat('physical')}>物理</button>
+            <button className={mCat === 'special' ? 'on' : ''} onClick={() => setMCat('special')}>特殊</button>
+          </div>
+          <select className="sel sel-sm" value={mType} onChange={(e) => setMType(e.target.value as PokemonType | 'all')}>
+            <option value="all">全タイプ</option>
+            {TYPE_LIST.map((t) => <option key={t} value={t}>{TYPE_JA[t]}</option>)}
+          </select>
+        </div>
+        <SearchSelect placeholder="技を選択（★=タイプ一致）" options={moveOptions} value={atkBuild.moveId}
           onChange={(k) => updateBuild(atkIdx, (b) => ({ ...b, moveId: k }))} />
         {move && (
-          <div className="meta">
-            <span className="badge" style={{ background: TYPE_COLOR[move.type] }}>{TYPE_JA[move.type]}</span>
-            <span>{move.category === 'physical' ? '物理' : '特殊'} / 威力{move.power}{move.isContact ? ' / 接触' : ''}</span>
-          </div>
+          <div className="meta"><span className="badge" style={{ background: TYPE_COLOR[move.type] }}>{TYPE_JA[move.type]}</span>
+            <span>{move.category === 'physical' ? '物理' : '特殊'} / 威力{move.power}{move.isContact ? ' / 接触' : ''}</span></div>
         )}
       </section>
 
-      <div className="swapbar">
-        <button className="swap" onClick={() => setSwapped((s) => !s)}>⇅ 攻守入替</button>
-      </div>
+      <div className="swapbar"><button className="swap" onClick={() => setSwapped((s) => !s)}>⇅ 攻守入替</button></div>
 
       {renderDefender()}
 
@@ -242,8 +300,7 @@ export default function App() {
         <div className="field">
           <div className="rankrow"><span>天候</span>
             <select className="sel sel-sm" value={weather} onChange={(e) => setWeather(e.target.value as Weather)}>
-              <option value="none">なし</option><option value="sun">晴</option><option value="rain">雨</option>
-              <option value="sand">砂</option><option value="snow">雪</option>
+              <option value="none">なし</option><option value="sun">晴</option><option value="rain">雨</option><option value="sand">砂</option><option value="snow">雪</option>
             </select>
           </div>
           <div className="toggles">
@@ -256,16 +313,17 @@ export default function App() {
 
       <section className={`result ${result ? '' : 'is-empty'}`}>
         {!result && <div className="result-hint">攻撃側・技・防御側を選ぶと確定数が出ます</div>}
-        {result && (
+        {result && primary && secondary && (
           <>
-            <div className="eff">{effectivenessLabel(result.eff)}</div>
-            <div className={`ko ${result.r.isImmune ? 'ko-immune' : ''}`}>{result.r.isImmune ? 'ダメージなし' : result.r.ko.label}</div>
-            {!result.r.isImmune && (
+            <div className="eff">{effectivenessLabel(result.eff)}{crit ? '・急所' : ''}</div>
+            <div className={`ko ${primary.isImmune ? 'ko-immune' : ''}`}>{primary.isImmune ? 'ダメージなし' : primary.ko.label}</div>
+            {!primary.isImmune && (
               <>
-                <div className="dmg"><span className="dmg-num">{result.r.minDamage}〜{result.r.maxDamage}</span><span className="dmg-unit">ダメージ</span></div>
-                <div className="pct">{result.r.minPercent}% 〜 {result.r.maxPercent}%</div>
+                <div className="dmg"><span className="dmg-num">{primary.minDamage}〜{primary.maxDamage}</span><span className="dmg-unit">ダメージ</span></div>
+                <div className="pct">{primary.minPercent}% 〜 {primary.maxPercent}%</div>
+                <div className="sub">{secondaryLabel}: {secondary.isImmune ? 'ダメージなし' : `${secondary.ko.label} / ${secondary.minDamage}〜${secondary.maxDamage}`}</div>
                 <button className="rolls-toggle" onClick={() => setShowRolls((v) => !v)}>{showRolls ? '16通りを隠す' : '16通りの内訳'}</button>
-                {showRolls && <div className="rolls">{result.r.rolls.join(', ')}</div>}
+                {showRolls && <div className="rolls">{primary.rolls.join(', ')}</div>}
               </>
             )}
           </>
