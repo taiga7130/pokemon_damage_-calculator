@@ -91,12 +91,13 @@ function SpField({ label, value, onChange, real }: { label: string; value: numbe
 }
 function AbilitySelect({ form, value, onChange }: { form: FormEntry; value: string; onChange: (v: string) => void }) {
   // 特性はそのポケモン（フォルム）の候補に紐づける。
-  // メガシンカ等でデータに特性がない形態のみ、実装済みリストからの手動選択にフォールバック。
+  //   [] = 特性なしが正式仕様（Z系メガ）→「特性なし」のみ
+  //   null = データ未収録 → 実装済みリストからの手動選択にフォールバック
   const bound = form.abilities;
   return (
     <select className="sel" value={value} onChange={(e) => onChange(e.target.value)}>
       <option value="">特性なし</option>
-      {bound.length > 0
+      {bound !== null
         ? bound.map((j) => <option key={`c-${j}`} value={j}>{isEffectiveAbility(j) ? j : `${j}（ダメージ影響なし）`}</option>)
         : (
           <optgroup label="この形態の特性データ未収録（実装済みから選択）">
@@ -276,7 +277,7 @@ export default function App() {
         onLoad={(b: StoredBuild) => updateBuild(atkIdx, () => ({ ...b, item: b.item as ItemId }))} />
       {atk && (
         <>
-          <MegaChips form={atk} onPick={(k) => updateBuild(atkIdx, (b) => ({ ...b, formKey: k }))} />
+          <MegaChips form={atk} onPick={(k) => updateBuild(atkIdx, (b) => ({ ...b, formKey: k, abilityJa: '' }))} />
           <div className="meta"><TypeBadges types={atk.types} /><span className="stats">H{atk.baseStats.hp} A{atk.baseStats.atk} B{atk.baseStats.def} C{atk.baseStats.spa} D{atk.baseStats.spd} S{atk.baseStats.spe}</span></div>
           <details className="det" open>
             <summary>SP・性格・特性・持ち物・ランク</summary>
@@ -306,7 +307,7 @@ export default function App() {
         onLoad={(b: StoredBuild) => updateBuild(defIdx, () => ({ ...b, item: b.item as ItemId }))} />
       {def && (
         <>
-          <MegaChips form={def} onPick={(k) => updateBuild(defIdx, (b) => ({ ...b, formKey: k }))} />
+          <MegaChips form={def} onPick={(k) => updateBuild(defIdx, (b) => ({ ...b, formKey: k, abilityJa: '' }))} />
           <div className="meta"><TypeBadges types={def.types} /><span className="stats">H{def.baseStats.hp} A{def.baseStats.atk} B{def.baseStats.def} C{def.baseStats.spa} D{def.baseStats.spd} S{def.baseStats.spe}</span></div>
           <details className="det" open>
             <summary>SP・性格・特性・持ち物・ランク</summary>

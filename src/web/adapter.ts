@@ -33,7 +33,8 @@ export interface FormEntry {
   formName: string;       // 表示名（フォルム込み）
   formType: string;       // base / mega / regional / other
   types: PokemonType[];
-  abilities: string[];    // 日本語特性候補（フェーズ1では表示のみ）
+  /** 日本語特性候補（通常→隠れ）。[] = 特性なしが正式仕様 / null = データ未収録 */
+  abilities: string[] | null;
   baseStats: StatBlock;
   bst: number;
 }
@@ -46,7 +47,7 @@ export const FORMS: FormEntry[] = (pokemonData as RawPokemon[]).flatMap((p) =>
     formName: f.formName,
     formType: f.formType,
     types: f.types as PokemonType[],
-    abilities: f.abilities ?? [],
+    abilities: f.abilities,
     baseStats: f.baseStats,
     bst: f.bst,
   })),
