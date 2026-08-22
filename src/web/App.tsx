@@ -90,12 +90,19 @@ function SpField({ label, value, onChange, real }: { label: string; value: numbe
   );
 }
 function AbilitySelect({ form, value, onChange }: { form: FormEntry; value: string; onChange: (v: string) => void }) {
-  const extra = IMPLEMENTED_ABILITY_JA.filter((j) => !form.abilities.includes(j));
+  // 特性はそのポケモン（フォルム）の候補に紐づける。
+  // メガシンカ等でデータに特性がない形態のみ、実装済みリストからの手動選択にフォールバック。
+  const bound = form.abilities;
   return (
     <select className="sel" value={value} onChange={(e) => onChange(e.target.value)}>
       <option value="">特性なし</option>
-      {form.abilities.map((j) => <option key={`c-${j}`} value={j}>{isEffectiveAbility(j) ? j : `${j}（影響なし）`}</option>)}
-      <optgroup label="実装済み特性から選ぶ">{extra.map((j) => <option key={`e-${j}`} value={j}>{j}</option>)}</optgroup>
+      {bound.length > 0
+        ? bound.map((j) => <option key={`c-${j}`} value={j}>{isEffectiveAbility(j) ? j : `${j}（ダメージ影響なし）`}</option>)
+        : (
+          <optgroup label="この形態の特性データ未収録（実装済みから選択）">
+            {IMPLEMENTED_ABILITY_JA.map((j) => <option key={`e-${j}`} value={j}>{j}</option>)}
+          </optgroup>
+        )}
     </select>
   );
 }
