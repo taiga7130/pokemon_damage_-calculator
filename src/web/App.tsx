@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { calcDamage, computeTypeEffectiveness } from '../index';
+import { calcDamage, computeTypeEffectiveness, calcHP, calcStat } from '../index';
 import type { PokemonType, Weather, ItemId, StatBlock } from '../types';
 import {
   FORMS, MOVES, toMove, buildAttacker, buildDefender, effectivenessLabel, siblingForms,
@@ -8,6 +8,9 @@ import {
 import { SearchSelect, type Option } from './SearchSelect';
 import { ITEMS, IMPLEMENTED_ABILITY_JA, isEffectiveAbility } from './registry';
 import { encodeShare, decodeShare, type ShareBuild, type ShareState } from './share';
+import { PresetBar } from './PresetBar';
+import type { StoredBuild } from './presets';
+import { findSurvivalSP } from './survival';
 
 // ============================================================
 // データモデル: 役割に依存しない育成データ(Build)×2 + 攻撃側フラグ。
@@ -75,13 +78,14 @@ function NatureToggle({ value, onChange, label }: { value: NatureChoice; onChang
     </div>
   );
 }
-function SpField({ label, value, onChange }: { label: string; value: number; onChange: (n: number) => void }) {
+function SpField({ label, value, onChange, real }: { label: string; value: number; onChange: (n: number) => void; real?: number }) {
   return (
     <div className="spf">
       <span className="spf-lbl">{label}</span>
       <input type="number" min={0} max={32} value={value}
         onChange={(e) => onChange(Math.max(0, Math.min(32, Math.floor(Number(e.target.value) || 0))))} />
       <button className="spf-max" onClick={() => onChange(32)}>最大</button>
+      {real != null && <span className="spf-real">実数値 {real}</span>}
     </div>
   );
 }
@@ -125,6 +129,17 @@ const RANKS = [-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6];
 const TYPE_LIST = Object.keys(TYPE_JA) as PokemonType[];
 const formOf = (key: string | null) => (key ? FORMS.find((f) => f.key === key) ?? null : null);
 
+// ---- 実数値・SP合計の表示ヘルパー ----
+const NATURE_MOD: Record<NatureChoice, 1.1 | 1.0 | 0.9> = { up: 1.1, neutral: 1.0, down: 0.9 };
+const realOf = (form: FormEntry, key: NatStat, b: Build) =>
+  calcStat(form.baseStats[key], b.sp[key], NATURE_MOD[b.nature[key]]);
+const spTotal = (b: Build) => b.sp.hp + b.sp.atk + b.sp.def + b.sp.spa + b.sp.spd + b.sp.spe;
+
+function SpTotal({ build }: { build: Build }) {
+  const t = spTotal(build);
+  return <div className={`sptotal ${t > 66 ? 'over' : ''}`}>SP合計 {t}/66{t > 66 ? '（上限超過）' : ''}</div>;
+}
+
 // 共有ハッシュからの初期復元
 function initialFromHash(): ShareState | null {
   if (typeof window === 'undefined') return null;
@@ -147,6 +162,9 @@ export default function App() {
   // 技フィルタ
   const [mType, setMType] = useState<PokemonType | 'all'>('all');
   const [mCat, setMCat] = useState<'all' | 'physical' | 'special'>('all');
+  // 全技一括計算 / 耐久逆算 パネル
+  const [bulkOpen, setBulkOpen] = useState(false);
+  const [survOpen, setSurvOpen] = useState(false);
 
   const atkIdx = swapped ? 1 : 0;
   const defIdx = swapped ? 0 : 1;
@@ -176,17 +194,22 @@ export default function App() {
     try { await navigator.clipboard.writeText(url); setCopied(true); setTimeout(() => setCopied(false), 1500); } catch { /* noop */ }
   };
 
+  // 技フィルタの適用結果（選択肢と一括計算で共用）
+  const filteredMoves = useMemo(
+    () => MOVES.filter((m) => (mCat === 'all' || m.category === mCat) && (mType === 'all' || m.type === mType)),
+    [mCat, mType],
+  );
+
   // 技選択肢: タイプ/分類フィルタ＋タイプ一致(STAB)を上位＆★
   const moveOptions = useMemo<Option[]>(() => {
     const atkTypes = atk?.types ?? [];
-    const list = MOVES.filter((m) => (mCat === 'all' || m.category === mCat) && (mType === 'all' || m.type === mType));
-    const sorted = [...list].sort((a, b) => (atkTypes.includes(a.type) ? 0 : 1) - (atkTypes.includes(b.type) ? 0 : 1));
+    const sorted = [...filteredMoves].sort((a, b) => (atkTypes.includes(a.type) ? 0 : 1) - (atkTypes.includes(b.type) ? 0 : 1));
     return sorted.map((m) => ({
       key: m.moveId,
       label: `${atkTypes.includes(m.type) ? '★' : ''}${m.name}（威力${m.power}）`,
       sub: <span className="badge" style={{ background: TYPE_COLOR[m.type] }}>{m.category === 'physical' ? '物理' : '特殊'}</span>,
     }));
-  }, [atk, mType, mCat]);
+  }, [atk, filteredMoves]);
 
   // 通常時・急所時 両方を計算
   const result = useMemo(() => {
@@ -207,18 +230,51 @@ export default function App() {
   const secondary = result ? (crit ? result.normal : result.crit) : null;
   const secondaryLabel = crit ? '通常時' : '急所時';
 
+  // 全技一括計算: フィルタ中の技すべてを現在の攻守設定で計算し、最大ダメージ順に並べる
+  const bulk = useMemo(() => {
+    if (!bulkOpen || !atk || !def) return null;
+    const rows = filteredMoves.map((m) => {
+      const phys = m.category === 'physical';
+      const oKey: OffStat = phys ? 'atk' : 'spa';
+      const dKey: DefStat = phys ? 'def' : 'spd';
+      const a = buildAttacker({ form: atk, isPhysical: phys, sp: atkBuild.sp[oKey], nature: atkBuild.nature[oKey], abilityJa: atkBuild.abilityJa, item: atkBuild.item, rank: atkBuild.rank[oKey] });
+      const d = buildDefender({ form: def, isPhysical: phys, hpSp: defBuild.sp.hp, defSp: defBuild.sp[dKey], nature: defBuild.nature[dKey], abilityJa: defBuild.abilityJa, item: defBuild.item, rank: defBuild.rank[dKey] });
+      const r = calcDamage(a, d, toMove(m), { weather, attackerBurned: burn, reflect: wall && phys, lightScreen: wall && !phys, isCrit: crit });
+      return { m, r };
+    });
+    rows.sort((x, y) => y.r.maxPercent - x.r.maxPercent);
+    return rows.slice(0, 60);
+  }, [bulkOpen, atk, def, atkBuild, defBuild, filteredMoves, weather, wall, crit, burn]);
+
+  // 耐久逆算: 現在の攻撃を確定耐えする最小SP配分（防御側の性格・持ち物・ランクは現状のまま）
+  const surv = useMemo(() => {
+    if (!survOpen || !atk || !def || !move) return null;
+    const phys = move.category === 'physical';
+    const a = buildAttacker({ form: atk, isPhysical: phys, sp: atkBuild.sp[offKey], nature: atkBuild.nature[offKey], abilityJa: atkBuild.abilityJa, item: atkBuild.item, rank: atkBuild.rank[offKey] });
+    const cond = { weather, attackerBurned: burn, reflect: wall && phys, lightScreen: wall && !phys, isCrit: crit };
+    return findSurvivalSP(
+      a, toMove(move), cond,
+      (hpSp, defSp) => buildDefender({ form: def, isPhysical: phys, hpSp, defSp, nature: defBuild.nature[defKey], abilityJa: defBuild.abilityJa, item: defBuild.item, rank: defBuild.rank[defKey] }),
+      { hpSp: defBuild.sp.hp, defSp: defBuild.sp[defKey] },
+      defKey,
+    );
+  }, [survOpen, atk, def, move, atkBuild, defBuild, offKey, defKey, weather, wall, crit, burn]);
+
   const renderAttacker = () => (
     <section className="card">
       <label className="lbl">攻撃側</label>
       <SearchSelect placeholder="ポケモンを選択" options={pokemonOptions} value={atkBuild.formKey}
         onChange={(k) => updateBuild(atkIdx, (b) => ({ ...b, formKey: k, abilityJa: '', item: 'none' }))} />
+      <PresetBar formName={atk?.formName ?? null} build={atkBuild}
+        onLoad={(b: StoredBuild) => updateBuild(atkIdx, () => ({ ...b, item: b.item as ItemId }))} />
       {atk && (
         <>
           <MegaChips form={atk} onPick={(k) => updateBuild(atkIdx, (b) => ({ ...b, formKey: k }))} />
           <div className="meta"><TypeBadges types={atk.types} /><span className="stats">H{atk.baseStats.hp} A{atk.baseStats.atk} B{atk.baseStats.def} C{atk.baseStats.spa} D{atk.baseStats.spd} S{atk.baseStats.spe}</span></div>
           <details className="det" open>
             <summary>SP・性格・特性・持ち物・ランク</summary>
-            <SpField label={`${offLabel} SP`} value={atkBuild.sp[offKey]} onChange={(v) => updateBuild(atkIdx, (b) => ({ ...b, sp: { ...b.sp, [offKey]: v } }))} />
+            <SpField label={`${offLabel} SP`} value={atkBuild.sp[offKey]} real={realOf(atk, offKey, atkBuild)}
+              onChange={(v) => updateBuild(atkIdx, (b) => ({ ...b, sp: { ...b.sp, [offKey]: v } }))} />
             <NatureToggle label={offLabel} value={atkBuild.nature[offKey]} onChange={(v) => updateBuild(atkIdx, (b) => ({ ...b, nature: { ...b.nature, [offKey]: v } }))} />
             <AbilitySelect form={atk} value={atkBuild.abilityJa} onChange={(v) => updateBuild(atkIdx, (b) => ({ ...b, abilityJa: v }))} />
             <ItemSelect value={atkBuild.item} onChange={(v) => updateBuild(atkIdx, (b) => ({ ...b, item: v }))} />
@@ -227,6 +283,7 @@ export default function App() {
                 {RANKS.map((r) => <option key={r} value={r}>{r > 0 ? `+${r}` : r}</option>)}
               </select>
             </div>
+            <SpTotal build={atkBuild} />
           </details>
         </>
       )}
@@ -238,14 +295,18 @@ export default function App() {
       <label className="lbl">防御側</label>
       <SearchSelect placeholder="ポケモンを選択" options={pokemonOptions} value={defBuild.formKey}
         onChange={(k) => updateBuild(defIdx, (b) => ({ ...b, formKey: k, abilityJa: '', item: 'none' }))} />
+      <PresetBar formName={def?.formName ?? null} build={defBuild}
+        onLoad={(b: StoredBuild) => updateBuild(defIdx, () => ({ ...b, item: b.item as ItemId }))} />
       {def && (
         <>
           <MegaChips form={def} onPick={(k) => updateBuild(defIdx, (b) => ({ ...b, formKey: k }))} />
           <div className="meta"><TypeBadges types={def.types} /><span className="stats">H{def.baseStats.hp} A{def.baseStats.atk} B{def.baseStats.def} C{def.baseStats.spa} D{def.baseStats.spd} S{def.baseStats.spe}</span></div>
           <details className="det" open>
             <summary>SP・性格・特性・持ち物・ランク</summary>
-            <SpField label="HP SP" value={defBuild.sp.hp} onChange={(v) => updateBuild(defIdx, (b) => ({ ...b, sp: { ...b.sp, hp: v } }))} />
-            <SpField label={`${defLabel} SP`} value={defBuild.sp[defKey]} onChange={(v) => updateBuild(defIdx, (b) => ({ ...b, sp: { ...b.sp, [defKey]: v } }))} />
+            <SpField label="HP SP" value={defBuild.sp.hp} real={calcHP(def.baseStats.hp, defBuild.sp.hp)}
+              onChange={(v) => updateBuild(defIdx, (b) => ({ ...b, sp: { ...b.sp, hp: v } }))} />
+            <SpField label={`${defLabel} SP`} value={defBuild.sp[defKey]} real={realOf(def, defKey, defBuild)}
+              onChange={(v) => updateBuild(defIdx, (b) => ({ ...b, sp: { ...b.sp, [defKey]: v } }))} />
             <NatureToggle label={defLabel} value={defBuild.nature[defKey]} onChange={(v) => updateBuild(defIdx, (b) => ({ ...b, nature: { ...b.nature, [defKey]: v } }))} />
             <AbilitySelect form={def} value={defBuild.abilityJa} onChange={(v) => updateBuild(defIdx, (b) => ({ ...b, abilityJa: v }))} />
             <ItemSelect value={defBuild.item} onChange={(v) => updateBuild(defIdx, (b) => ({ ...b, item: v }))} />
@@ -254,6 +315,7 @@ export default function App() {
                 {RANKS.map((r) => <option key={r} value={r}>{r > 0 ? `+${r}` : r}</option>)}
               </select>
             </div>
+            <SpTotal build={defBuild} />
           </details>
         </>
       )}
@@ -288,6 +350,22 @@ export default function App() {
         {move && (
           <div className="meta"><span className="badge" style={{ background: TYPE_COLOR[move.type] }}>{TYPE_JA[move.type]}</span>
             <span>{move.category === 'physical' ? '物理' : '特殊'} / 威力{move.power}{move.isContact ? ' / 接触' : ''}</span></div>
+        )}
+        <button className="bulkbtn" disabled={!atk || !def} onClick={() => setBulkOpen((v) => !v)}>
+          {bulkOpen ? '一覧を閉じる' : '⚡ 全技を一括計算'}
+        </button>
+        {bulkOpen && bulk && (
+          <div className="bulk">
+            {bulk.map(({ m, r }) => (
+              <button key={m.moveId} className={`bulk-row ${m.moveId === atkBuild.moveId ? 'on' : ''}`}
+                onClick={() => updateBuild(atkIdx, (b) => ({ ...b, moveId: m.moveId }))}>
+                <span className="bulk-name"><span className="dot" style={{ background: TYPE_COLOR[m.type] }} />{m.name}</span>
+                <span className="bulk-num">{r.isImmune ? '—' : `${r.maxPercent}%`}</span>
+                <span className="bulk-ko">{r.isImmune ? '無効' : r.ko.label}</span>
+              </button>
+            ))}
+            {filteredMoves.length > 60 && <div className="bulk-note">ダメージ上位60件のみ表示（フィルタで絞り込めます）</div>}
+          </div>
         )}
       </section>
 
@@ -329,6 +407,37 @@ export default function App() {
           </>
         )}
       </section>
+
+      {result && primary && !primary.isImmune && (
+        <section className="card">
+          <label className="lbl">耐久調整（逆算）</label>
+          <button className="bulkbtn" onClick={() => setSurvOpen((v) => !v)}>
+            {survOpen ? '閉じる' : `🛡 この攻撃を確定耐えするSPを逆算${crit ? '（急所込み）' : ''}`}
+          </button>
+          {survOpen && surv && (
+            <div className="surv">
+              {surv.already && <div className="surv-ok">✓ 現在の振りで既に確定耐えしています</div>}
+              {!surv.already && !surv.possible && (
+                <div className="surv-ng">HP32 / {defLabel}32 のフル投資でも確定耐えできません（最大被ダメ {surv.fullInvestMaxPercent}%）</div>
+              )}
+              {!surv.already && surv.possible && (
+                <>
+                  {surv.candidates.map((c) => (
+                    <div key={`${c.hpSp}-${c.defSp}`} className="surv-row">
+                      <span className="surv-spec">HP {c.hpSp} / {defLabel} {c.defSp}
+                        <span className="surv-real">実数値 {c.hp}-{c.defStat}</span></span>
+                      <span className="surv-pct">最大 {c.maxPercent}%</span>
+                      <button className="surv-apply"
+                        onClick={() => updateBuild(defIdx, (b) => ({ ...b, sp: { ...b.sp, hp: c.hpSp, [defKey]: c.defSp } }))}>適用</button>
+                    </div>
+                  ))}
+                  <div className="surv-note">合計SPが最小になる配分（同合計の候補は最大3件表示）</div>
+                </>
+              )}
+            </div>
+          )}
+        </section>
+      )}
 
       <footer className="ftr">計算: エンジン calcDamage / データ: PChamp DB</footer>
     </div>
