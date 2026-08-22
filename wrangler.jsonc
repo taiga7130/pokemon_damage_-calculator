@@ -1,0 +1,11 @@
+// Cloudflare Workers(静的アセット配信)の設定。
+// ダッシュボードのデプロイコマンド `npx wrangler deploy` がこのファイルを読む。
+// ビルド成果物 dist/ をそのまま配信し、未知のパスは index.html に返す（SPA用）。
+{
+  "name": "pokemon-damage-calculator",
+  "compatibility_date": "2026-08-22",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  }
+}
