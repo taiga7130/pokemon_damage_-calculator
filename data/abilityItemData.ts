@@ -52,6 +52,7 @@ export const HALF_BERRIES: Partial<Record<ItemId, PokemonType>> = {
 /** タイプ無効化特性（被ダメ0・相性表より優先）: abilityId → 無効化するタイプ。 */
 export const IMMUNITY_ABILITIES: Partial<Record<AbilityId, PokemonType>> = {
   levitate: 'ground',
+  risingEel: 'ground',   // うなぎのぼり: ふゆうと同じ地面無効（撃破時の能力上昇はダメージ計算外）
   waterAbsorb: 'water',
   stormDrain: 'water',
   voltAbsorb: 'electric',

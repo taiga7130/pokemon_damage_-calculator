@@ -71,6 +71,33 @@ describe('威力側補正', () => {
     expect(max(E({ ability: 'ironFist' }), N(), AQUA_SHOT)).toBe(max(E(), N(), AQUA_SHOT));
   });
 
+  it('かたいツメ: 接触技のみ威力×1.3', () => {
+    // AQUA_SHOT(水・物理80・接触): pokeRound(80, 5325) = floor(80*5325/4096 + 0.5) = 104
+    expect(computeEffectivePower(E({ ability: 'toughClaws' }), AQUA_SHOT, {})).toBe(104);
+    // 非接触技(ROCK_SLAM/QUAKE)には無効果
+    expect(computeEffectivePower(E({ ability: 'toughClaws' }), ROCK_SLAM, {})).toBe(ROCK_SLAM.power);
+    expect(computeEffectivePower(E({ ability: 'toughClaws' }), QUAKE, {})).toBe(QUAKE.power);
+    // 特殊でも接触なら乗る（判定は接触フラグのみ。エンジンは分類で分岐しない）
+    expect(max(E({ ability: 'toughClaws' }), N(), AQUA_SHOT)).toBeGreaterThan(max(E(), N(), AQUA_SHOT));
+  });
+
+  it('ほのおのたてがみ: ほのお技×1.5（ピンチ条件なし・他タイプは不変）', () => {
+    // FLAME_THROW(炎90): pokeRound(90, 6144) = 135。満タンHPでも発動する点が もうか との違い。
+    expect(computeEffectivePower(E({ ability: 'flameMane' }), FLAME_THROW, {})).toBe(135);
+    expect(computeEffectivePower(E({ ability: 'blaze' }), FLAME_THROW, {})).toBe(90); // もうかは満タンでは不発
+    // 炎以外には無効果
+    expect(computeEffectivePower(E({ ability: 'flameMane' }), AQUA_SHOT, {})).toBe(AQUA_SHOT.power);
+  });
+
+  it('うなぎのぼり: ふゆうと同じくじめん技を無効化', () => {
+    // QUAKE(じめん) vs Normux。risingEel を持つと全ロール0（無効）。
+    expect(calcDamage(E(), N({ ability: 'risingEel' }), QUAKE).isImmune).toBe(true);
+    expect(calcDamage(E(), N({ ability: 'levitate' }), QUAKE).isImmune).toBe(true);
+    expect(calcDamage(E(), N(), QUAKE).isImmune).toBe(false);
+    // じめん以外は通常通り通る
+    expect(calcDamage(E(), N({ ability: 'risingEel' }), AQUA_SHOT).isImmune).toBe(false);
+  });
+
   it('テクニシャン: 基礎威力60以下のみ×1.5', () => {
     // TACKLE(50): pow=pokeRound(50,6144)=75 → base=41（none=28）
     expect(max(E({ ability: 'technician' }), N(), TACKLE)).toBe(41);

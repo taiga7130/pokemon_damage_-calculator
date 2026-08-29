@@ -61,6 +61,8 @@ export type AbilityId =
   | 'adaptability'                // てきおうりょく（STAB×2）
   // 威力側
   | 'hustle' | 'sheerForce' | 'ironFist' | 'reckless' | 'technician'
+  | 'toughClaws'                  // かたいツメ（接触技×1.3）
+  | 'flameMane'                   // ほのおのたてがみ（炎技×1.5・無条件。チャンピオンズ新特性）
   | 'sandForce'                   // すなのちから
   | 'blaze' | 'overgrow' | 'torrent' | 'swarm'   // ピンチ強化
   | 'flashFire'                   // もらいび（炎無効＋発動後 自炎技×1.5）
@@ -74,7 +76,7 @@ export type AbilityId =
   | 'solidRock' | 'filter' | 'prismArmor'
   | 'fluffy' | 'drySkin'
   // タイプ無効化（防御側）
-  | 'levitate' | 'waterAbsorb' | 'stormDrain' | 'voltAbsorb' | 'lightningRod'
+  | 'levitate' | 'risingEel' | 'waterAbsorb' | 'stormDrain' | 'voltAbsorb' | 'lightningRod'
   | 'motorDrive' | 'sapSipper' | 'wellBakedBody' | 'earthEater'
   | 'wonderGuard'
   // タイプ無効化の貫通（攻撃側）

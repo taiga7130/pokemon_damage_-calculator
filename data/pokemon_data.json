@@ -494,6 +494,33 @@
   ]
  },
  {
+  "dexNo": 45,
+  "name": "ラフレシア",
+  "forms": [
+   {
+    "formName": "ラフレシア",
+    "formType": "base",
+    "types": [
+     "grass",
+     "poison"
+    ],
+    "abilities": [
+     "ようりょくそ",
+     "ほうし"
+    ],
+    "baseStats": {
+     "hp": 75,
+     "atk": 80,
+     "def": 85,
+     "spa": 110,
+     "spd": 90,
+     "spe": 50
+    },
+    "bst": 490
+   }
+  ]
+ },
+ {
   "dexNo": 59,
   "name": "ウインディ",
   "forms": [
@@ -1744,6 +1771,34 @@
   ]
  },
  {
+  "dexNo": 211,
+  "name": "ハリーセン",
+  "forms": [
+   {
+    "formName": "ハリーセン",
+    "formType": "base",
+    "types": [
+     "water",
+     "poison"
+    ],
+    "abilities": [
+     "どくのトゲ",
+     "すいすい",
+     "いかく"
+    ],
+    "baseStats": {
+     "hp": 65,
+     "atk": 95,
+     "def": 85,
+     "spa": 55,
+     "spd": 55,
+     "spe": 85
+    },
+    "bst": 440
+   }
+  ]
+ },
+ {
   "dexNo": 212,
   "name": "ハッサム",
   "forms": [
@@ -1988,6 +2043,149 @@
   ]
  },
  {
+  "dexNo": 254,
+  "name": "ジュカイン",
+  "forms": [
+   {
+    "formName": "ジュカイン",
+    "formType": "base",
+    "types": [
+     "grass"
+    ],
+    "abilities": [
+     "しんりょく",
+     "かるわざ"
+    ],
+    "baseStats": {
+     "hp": 70,
+     "atk": 85,
+     "def": 65,
+     "spa": 105,
+     "spd": 85,
+     "spe": 120
+    },
+    "bst": 530
+   },
+   {
+    "formName": "メガジュカイン",
+    "formType": "mega",
+    "types": [
+     "grass",
+     "dragon"
+    ],
+    "abilities": [
+     "ひらいしん"
+    ],
+    "baseStats": {
+     "hp": 70,
+     "atk": 110,
+     "def": 75,
+     "spa": 145,
+     "spd": 85,
+     "spe": 145
+    },
+    "bst": 630,
+    "megaStone": null
+   }
+  ]
+ },
+ {
+  "dexNo": 257,
+  "name": "バシャーモ",
+  "forms": [
+   {
+    "formName": "バシャーモ",
+    "formType": "base",
+    "types": [
+     "fire",
+     "fighting"
+    ],
+    "abilities": [
+     "もうか",
+     "かそく"
+    ],
+    "baseStats": {
+     "hp": 80,
+     "atk": 120,
+     "def": 70,
+     "spa": 110,
+     "spd": 70,
+     "spe": 80
+    },
+    "bst": 530
+   },
+   {
+    "formName": "メガバシャーモ",
+    "formType": "mega",
+    "types": [
+     "fire",
+     "fighting"
+    ],
+    "abilities": [
+     "かそく"
+    ],
+    "baseStats": {
+     "hp": 80,
+     "atk": 160,
+     "def": 80,
+     "spa": 130,
+     "spd": 80,
+     "spe": 100
+    },
+    "bst": 630,
+    "megaStone": null
+   }
+  ]
+ },
+ {
+  "dexNo": 260,
+  "name": "ラグラージ",
+  "forms": [
+   {
+    "formName": "ラグラージ",
+    "formType": "base",
+    "types": [
+     "water",
+     "ground"
+    ],
+    "abilities": [
+     "げきりゅう",
+     "しめりけ"
+    ],
+    "baseStats": {
+     "hp": 100,
+     "atk": 110,
+     "def": 90,
+     "spa": 85,
+     "spd": 90,
+     "spe": 60
+    },
+    "bst": 535
+   },
+   {
+    "formName": "メガラグラージ",
+    "formType": "mega",
+    "types": [
+     "water",
+     "ground"
+    ],
+    "abilities": [
+     "すいすい"
+    ],
+    "baseStats": {
+     "hp": 100,
+     "atk": 150,
+     "def": 110,
+     "spa": 95,
+     "spd": 110,
+     "spe": 70
+    },
+    "bst": 635,
+    "megaStone": null
+   }
+  ]
+ },
+ {
   "dexNo": 279,
   "name": "ペリッパー",
   "forms": [
@@ -2107,6 +2305,55 @@
      "spa": 85,
      "spd": 115,
      "spe": 20
+    },
+    "bst": 480,
+    "megaStone": null
+   }
+  ]
+ },
+ {
+  "dexNo": 303,
+  "name": "クチート",
+  "forms": [
+   {
+    "formName": "クチート",
+    "formType": "base",
+    "types": [
+     "steel",
+     "fairy"
+    ],
+    "abilities": [
+     "かいりきバサミ",
+     "いかく",
+     "ちからずく"
+    ],
+    "baseStats": {
+     "hp": 50,
+     "atk": 85,
+     "def": 85,
+     "spa": 55,
+     "spd": 55,
+     "spe": 50
+    },
+    "bst": 380
+   },
+   {
+    "formName": "メガクチート",
+    "formType": "mega",
+    "types": [
+     "steel",
+     "fairy"
+    ],
+    "abilities": [
+     "ちからもち"
+    ],
+    "baseStats": {
+     "hp": 50,
+     "atk": 105,
+     "def": 125,
+     "spa": 55,
+     "spd": 95,
+     "spe": 50
     },
     "bst": 480,
     "megaStone": null
@@ -2744,6 +2991,54 @@
   ]
  },
  {
+  "dexNo": 376,
+  "name": "メタグロス",
+  "forms": [
+   {
+    "formName": "メタグロス",
+    "formType": "base",
+    "types": [
+     "steel",
+     "psychic"
+    ],
+    "abilities": [
+     "クリアボディ",
+     "ライトメタル"
+    ],
+    "baseStats": {
+     "hp": 80,
+     "atk": 135,
+     "def": 130,
+     "spa": 95,
+     "spd": 90,
+     "spe": 70
+    },
+    "bst": 600
+   },
+   {
+    "formName": "メガメタグロス",
+    "formType": "mega",
+    "types": [
+     "steel",
+     "psychic"
+    ],
+    "abilities": [
+     "かたいツメ"
+    ],
+    "baseStats": {
+     "hp": 80,
+     "atk": 145,
+     "def": 150,
+     "spa": 105,
+     "spd": 110,
+     "spe": 110
+    },
+    "bst": 700,
+    "megaStone": null
+   }
+  ]
+ },
+ {
   "dexNo": 389,
   "name": "ドダイトス",
   "forms": [
@@ -2821,6 +3116,54 @@
      "spe": 60
     },
     "bst": 530
+   }
+  ]
+ },
+ {
+  "dexNo": 398,
+  "name": "ムクホーク",
+  "forms": [
+   {
+    "formName": "ムクホーク",
+    "formType": "base",
+    "types": [
+     "normal",
+     "flying"
+    ],
+    "abilities": [
+     "いかく",
+     "すてみ"
+    ],
+    "baseStats": {
+     "hp": 85,
+     "atk": 120,
+     "def": 70,
+     "spa": 50,
+     "spd": 60,
+     "spe": 100
+    },
+    "bst": 485
+   },
+   {
+    "formName": "メガムクホーク",
+    "formType": "mega",
+    "types": [
+     "fighting",
+     "flying"
+    ],
+    "abilities": [
+     "あまのじゃく"
+    ],
+    "baseStats": {
+     "hp": 85,
+     "atk": 140,
+     "def": 100,
+     "spa": 60,
+     "spd": 90,
+     "spe": 110
+    },
+    "bst": 585,
+    "megaStone": null
    }
   ]
  },
@@ -3883,6 +4226,33 @@
   ]
  },
  {
+  "dexNo": 518,
+  "name": "ムシャーナ",
+  "forms": [
+   {
+    "formName": "ムシャーナ",
+    "formType": "base",
+    "types": [
+     "psychic"
+    ],
+    "abilities": [
+     "よちむ",
+     "シンクロ",
+     "テレパシー"
+    ],
+    "baseStats": {
+     "hp": 116,
+     "atk": 55,
+     "def": 85,
+     "spa": 107,
+     "spd": 95,
+     "spe": 29
+    },
+    "bst": 487
+   }
+  ]
+ },
+ {
   "dexNo": 530,
   "name": "ドリュウズ",
   "forms": [
@@ -4007,6 +4377,55 @@
   ]
  },
  {
+  "dexNo": 545,
+  "name": "ペンドラー",
+  "forms": [
+   {
+    "formName": "ペンドラー",
+    "formType": "base",
+    "types": [
+     "bug",
+     "poison"
+    ],
+    "abilities": [
+     "どくのトゲ",
+     "むしのしらせ",
+     "かそく"
+    ],
+    "baseStats": {
+     "hp": 60,
+     "atk": 100,
+     "def": 89,
+     "spa": 55,
+     "spd": 69,
+     "spe": 112
+    },
+    "bst": 485
+   },
+   {
+    "formName": "メガペンドラー",
+    "formType": "mega",
+    "types": [
+     "bug",
+     "poison"
+    ],
+    "abilities": [
+     "シェルアーマー"
+    ],
+    "baseStats": {
+     "hp": 60,
+     "atk": 140,
+     "def": 149,
+     "spa": 75,
+     "spd": 99,
+     "spe": 62
+    },
+    "bst": 585,
+    "megaStone": null
+   }
+  ]
+ },
+ {
   "dexNo": 547,
   "name": "エルフーン",
   "forms": [
@@ -4059,6 +4478,55 @@
      "spe": 92
     },
     "bst": 519
+   }
+  ]
+ },
+ {
+  "dexNo": 560,
+  "name": "ズルズキン",
+  "forms": [
+   {
+    "formName": "ズルズキン",
+    "formType": "base",
+    "types": [
+     "dark",
+     "fighting"
+    ],
+    "abilities": [
+     "だっぴ",
+     "じしんかじょう",
+     "いかく"
+    ],
+    "baseStats": {
+     "hp": 65,
+     "atk": 90,
+     "def": 115,
+     "spa": 45,
+     "spd": 115,
+     "spe": 58
+    },
+    "bst": 488
+   },
+   {
+    "formName": "メガズルズキン",
+    "formType": "mega",
+    "types": [
+     "dark",
+     "fighting"
+    ],
+    "abilities": [
+     "いかく"
+    ],
+    "baseStats": {
+     "hp": 65,
+     "atk": 130,
+     "def": 135,
+     "spa": 55,
+     "spd": 135,
+     "spe": 68
+    },
+    "bst": 588,
+    "megaStone": null
    }
   ]
  },
@@ -4237,6 +4705,51 @@
      "spe": 103
     },
     "bst": 428
+   }
+  ]
+ },
+ {
+  "dexNo": 604,
+  "name": "シビルドン",
+  "forms": [
+   {
+    "formName": "シビルドン",
+    "formType": "base",
+    "types": [
+     "electric"
+    ],
+    "abilities": [
+     "ふゆう"
+    ],
+    "baseStats": {
+     "hp": 85,
+     "atk": 115,
+     "def": 80,
+     "spa": 105,
+     "spd": 80,
+     "spe": 50
+    },
+    "bst": 515
+   },
+   {
+    "formName": "メガシビルドン",
+    "formType": "mega",
+    "types": [
+     "electric"
+    ],
+    "abilities": [
+     "うなぎのぼり"
+    ],
+    "baseStats": {
+     "hp": 85,
+     "atk": 145,
+     "def": 80,
+     "spa": 135,
+     "spd": 90,
+     "spe": 80
+    },
+    "bst": 615,
+    "megaStone": null
    }
   ]
  },
@@ -5112,6 +5625,55 @@
   ]
  },
  {
+  "dexNo": 668,
+  "name": "カエンジシ",
+  "forms": [
+   {
+    "formName": "カエンジシ",
+    "formType": "base",
+    "types": [
+     "fire",
+     "normal"
+    ],
+    "abilities": [
+     "とうそうしん",
+     "きんちょうかん",
+     "じしんかじょう"
+    ],
+    "baseStats": {
+     "hp": 86,
+     "atk": 68,
+     "def": 72,
+     "spa": 109,
+     "spd": 66,
+     "spe": 106
+    },
+    "bst": 507
+   },
+   {
+    "formName": "メガカエンジシ",
+    "formType": "mega",
+    "types": [
+     "fire",
+     "normal"
+    ],
+    "abilities": [
+     "ほのおのたてがみ"
+    ],
+    "baseStats": {
+     "hp": 86,
+     "atk": 88,
+     "def": 92,
+     "spa": 129,
+     "spd": 86,
+     "spe": 126
+    },
+    "bst": 607,
+    "megaStone": null
+   }
+  ]
+ },
+ {
   "dexNo": 671,
   "name": "フラージェス",
   "forms": [
@@ -5604,6 +6166,153 @@
      "spe": 72
     },
     "bst": 480
+   }
+  ]
+ },
+ {
+  "dexNo": 687,
+  "name": "カラマネロ",
+  "forms": [
+   {
+    "formName": "カラマネロ",
+    "formType": "base",
+    "types": [
+     "dark",
+     "psychic"
+    ],
+    "abilities": [
+     "あまのじゃく",
+     "きゅうばん",
+     "すりぬけ"
+    ],
+    "baseStats": {
+     "hp": 86,
+     "atk": 92,
+     "def": 88,
+     "spa": 68,
+     "spd": 75,
+     "spe": 73
+    },
+    "bst": 482
+   },
+   {
+    "formName": "メガカラマネロ",
+    "formType": "mega",
+    "types": [
+     "dark",
+     "psychic"
+    ],
+    "abilities": [
+     "あまのじゃく"
+    ],
+    "baseStats": {
+     "hp": 86,
+     "atk": 102,
+     "def": 88,
+     "spa": 98,
+     "spd": 120,
+     "spe": 88
+    },
+    "bst": 582,
+    "megaStone": null
+   }
+  ]
+ },
+ {
+  "dexNo": 689,
+  "name": "ガメノデス",
+  "forms": [
+   {
+    "formName": "ガメノデス",
+    "formType": "base",
+    "types": [
+     "rock",
+     "water"
+    ],
+    "abilities": [
+     "かたいツメ",
+     "スナイパー",
+     "わるいてぐせ"
+    ],
+    "baseStats": {
+     "hp": 72,
+     "atk": 105,
+     "def": 115,
+     "spa": 54,
+     "spd": 86,
+     "spe": 68
+    },
+    "bst": 500
+   },
+   {
+    "formName": "メガガメノデス",
+    "formType": "mega",
+    "types": [
+     "rock",
+     "fighting"
+    ],
+    "abilities": [
+     "かたいツメ"
+    ],
+    "baseStats": {
+     "hp": 72,
+     "atk": 140,
+     "def": 130,
+     "spa": 64,
+     "spd": 106,
+     "spe": 88
+    },
+    "bst": 600,
+    "megaStone": null
+   }
+  ]
+ },
+ {
+  "dexNo": 691,
+  "name": "ドラミドロ",
+  "forms": [
+   {
+    "formName": "ドラミドロ",
+    "formType": "base",
+    "types": [
+     "poison",
+     "dragon"
+    ],
+    "abilities": [
+     "どくのトゲ",
+     "どくしゅ",
+     "てきおうりょく"
+    ],
+    "baseStats": {
+     "hp": 65,
+     "atk": 75,
+     "def": 90,
+     "spa": 97,
+     "spd": 123,
+     "spe": 44
+    },
+    "bst": 494
+   },
+   {
+    "formName": "メガドラミドロ",
+    "formType": "mega",
+    "types": [
+     "poison",
+     "dragon"
+    ],
+    "abilities": [
+     "さいせいりょく"
+    ],
+    "baseStats": {
+     "hp": 65,
+     "atk": 85,
+     "def": 105,
+     "spa": 132,
+     "spd": 163,
+     "spe": 44
+    },
+    "bst": 594,
+    "megaStone": null
    }
   ]
  },
@@ -6837,6 +7546,34 @@
   ]
  },
  {
+  "dexNo": 861,
+  "name": "オーロンゲ",
+  "forms": [
+   {
+    "formName": "オーロンゲ",
+    "formType": "base",
+    "types": [
+     "dark",
+     "fairy"
+    ],
+    "abilities": [
+     "いたずらごころ",
+     "おみとおし",
+     "わるいてぐせ"
+    ],
+    "baseStats": {
+     "hp": 95,
+     "atk": 120,
+     "def": 65,
+     "spa": 95,
+     "spd": 75,
+     "spe": 60
+    },
+    "bst": 510
+   }
+  ]
+ },
+ {
   "dexNo": 866,
   "name": "バリコオル",
   "forms": [
@@ -7077,6 +7814,52 @@
   ]
  },
  {
+  "dexNo": 870,
+  "name": "タイレーツ",
+  "forms": [
+   {
+    "formName": "タイレーツ",
+    "formType": "base",
+    "types": [
+     "fighting"
+    ],
+    "abilities": [
+     "カブトアーマー",
+     "まけんき"
+    ],
+    "baseStats": {
+     "hp": 65,
+     "atk": 100,
+     "def": 100,
+     "spa": 70,
+     "spd": 60,
+     "spe": 75
+    },
+    "bst": 470
+   },
+   {
+    "formName": "メガタイレーツ",
+    "formType": "mega",
+    "types": [
+     "fighting"
+    ],
+    "abilities": [
+     "まけんき"
+    ],
+    "baseStats": {
+     "hp": 65,
+     "atk": 135,
+     "def": 135,
+     "spa": 70,
+     "spd": 65,
+     "spe": 100
+    },
+    "bst": 570,
+    "megaStone": null
+   }
+  ]
+ },
+ {
   "dexNo": 877,
   "name": "モルペコ",
   "forms": [
@@ -7278,6 +8061,34 @@
      "spa": 40,
      "spd": 80,
      "spe": 120
+    },
+    "bst": 510
+   }
+  ]
+ },
+ {
+  "dexNo": 904,
+  "name": "ハリーマン",
+  "forms": [
+   {
+    "formName": "ハリーマン",
+    "formType": "base",
+    "types": [
+     "dark",
+     "poison"
+    ],
+    "abilities": [
+     "どくのトゲ",
+     "すいすい",
+     "いかく"
+    ],
+    "baseStats": {
+     "hp": 85,
+     "atk": 115,
+     "def": 95,
+     "spa": 65,
+     "spd": 65,
+     "spe": 85
     },
     "bst": 510
    }
@@ -7743,6 +8554,60 @@
   ]
  },
  {
+  "dexNo": 972,
+  "name": "ハカドッグ",
+  "forms": [
+   {
+    "formName": "ハカドッグ",
+    "formType": "base",
+    "types": [
+     "ghost"
+    ],
+    "abilities": [
+     "すなかき",
+     "もふもふ"
+    ],
+    "baseStats": {
+     "hp": 72,
+     "atk": 101,
+     "def": 100,
+     "spa": 50,
+     "spd": 97,
+     "spe": 68
+    },
+    "bst": 488
+   }
+  ]
+ },
+ {
+  "dexNo": 979,
+  "name": "コノヨザル",
+  "forms": [
+   {
+    "formName": "コノヨザル",
+    "formType": "base",
+    "types": [
+     "fighting",
+     "ghost"
+    ],
+    "abilities": [
+     "やるき",
+     "せいしんりょく",
+     "まけんき"
+    ],
+    "baseStats": {
+     "hp": 110,
+     "atk": 115,
+     "def": 80,
+     "spa": 50,
+     "spd": 90,
+     "spe": 90
+    },
+    "bst": 535
+   }
+  ]
+ },
+ {
   "dexNo": 981,
   "name": "リキキリン",
   "forms": [
@@ -7793,6 +8658,32 @@
      "spa": 60,
      "spd": 85,
      "spe": 50
+    },
+    "bst": 550
+   }
+  ]
+ },
+ {
+  "dexNo": 1000,
+  "name": "サーフゴー",
+  "forms": [
+   {
+    "formName": "サーフゴー",
+    "formType": "base",
+    "types": [
+     "steel",
+     "ghost"
+    ],
+    "abilities": [
+     "おうごんのからだ"
+    ],
+    "baseStats": {
+     "hp": 87,
+     "atk": 60,
+     "def": 95,
+     "spa": 133,
+     "spd": 91,
+     "spe": 84
     },
     "bst": 550
    }

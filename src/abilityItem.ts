@@ -75,6 +75,8 @@ export function computeEffectivePower(attacker: PokemonState, move: Move, condit
 
   if (ab === 'hustle' && phys) p = pokeRound(p, MOD.X1_5);          // はりきり
   if (ab === 'ironFist' && f.punch) p = pokeRound(p, MOD.X1_2);     // てつのこぶし
+  if (ab === 'toughClaws' && move.isContact) p = pokeRound(p, MOD.X1_3); // かたいツメ
+  if (ab === 'flameMane' && move.type === 'fire') p = pokeRound(p, MOD.X1_5); // ほのおのたてがみ（ピンチ条件なし）
   if (ab === 'reckless' && f.recoil) p = pokeRound(p, MOD.X1_2);    // すてみ
   if (ab === 'sheerForce' && f.hasSecondary) p = pokeRound(p, MOD.X1_3); // ちからずく
   if (ab === 'technician' && move.power <= 60) p = pokeRound(p, MOD.X1_5); // テクニシャン（基礎威力60以下）
