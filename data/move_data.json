@@ -6,7 +6,8 @@
     "category": "physical",
     "power": 40,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "acid-armor",
@@ -15,7 +16,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "acid-spray",
@@ -24,7 +26,10 @@
     "category": "special",
     "power": 40,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "acrobatics",
@@ -33,7 +38,8 @@
     "category": "physical",
     "power": 55,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "acupressure",
@@ -42,7 +48,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "aerial-ace",
@@ -51,7 +58,10 @@
     "category": "physical",
     "power": 60,
     "accuracy": null,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "slicing": true
+    }
   },
   {
     "moveId": "after-you",
@@ -60,7 +70,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "agility",
@@ -69,7 +80,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "air-cutter",
@@ -78,7 +90,10 @@
     "category": "special",
     "power": 60,
     "accuracy": 95,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "slicing": true
+    }
   },
   {
     "moveId": "air-slash",
@@ -87,7 +102,11 @@
     "category": "special",
     "power": 75,
     "accuracy": 95,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "slicing": true,
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "alluring-voice",
@@ -96,7 +115,11 @@
     "category": "special",
     "power": 80,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "sound": true,
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "ally-switch",
@@ -105,7 +128,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "amnesia",
@@ -114,7 +138,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "ancient-power",
@@ -123,7 +148,10 @@
     "category": "special",
     "power": 60,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "apple-acid",
@@ -132,7 +160,10 @@
     "category": "special",
     "power": 80,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "aqua-cutter",
@@ -141,7 +172,10 @@
     "category": "physical",
     "power": 70,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "slicing": true
+    }
   },
   {
     "moveId": "aqua-jet",
@@ -150,7 +184,8 @@
     "category": "physical",
     "power": 40,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "aqua-ring",
@@ -159,7 +194,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "aqua-step",
@@ -168,7 +204,10 @@
     "category": "physical",
     "power": 80,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "aqua-tail",
@@ -177,7 +216,8 @@
     "category": "physical",
     "power": 90,
     "accuracy": 90,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "armor-cannon",
@@ -186,7 +226,8 @@
     "category": "special",
     "power": 120,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "aromatic-mist",
@@ -195,7 +236,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "assurance",
@@ -204,7 +246,8 @@
     "category": "physical",
     "power": 60,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "attract",
@@ -213,7 +256,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "aura-sphere",
@@ -222,7 +266,8 @@
     "category": "special",
     "power": 80,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "aura-wheel",
@@ -231,7 +276,10 @@
     "category": "physical",
     "power": 110,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "aurora-veil",
@@ -240,7 +288,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "avalanche",
@@ -249,7 +298,8 @@
     "category": "physical",
     "power": 60,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "axe-kick",
@@ -258,7 +308,11 @@
     "category": "physical",
     "power": 120,
     "accuracy": 90,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "recoil": true,
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "baby-doll-eyes",
@@ -267,7 +321,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "baneful-bunker",
@@ -276,7 +331,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "baton-pass",
@@ -285,7 +341,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "beak-blast",
@@ -294,7 +351,8 @@
     "category": "physical",
     "power": 100,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "beat-up",
@@ -303,7 +361,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "belch",
@@ -312,7 +371,8 @@
     "category": "special",
     "power": 120,
     "accuracy": 90,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "belly-drum",
@@ -321,7 +381,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "bind",
@@ -330,7 +391,8 @@
     "category": "physical",
     "power": 15,
     "accuracy": 85,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "bite",
@@ -339,7 +401,10 @@
     "category": "physical",
     "power": 60,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "bitter-blade",
@@ -348,7 +413,10 @@
     "category": "physical",
     "power": 90,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "slicing": true
+    }
   },
   {
     "moveId": "bitter-malice",
@@ -357,7 +425,10 @@
     "category": "special",
     "power": 75,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "blast-burn",
@@ -366,7 +437,8 @@
     "category": "special",
     "power": 150,
     "accuracy": 90,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "blaze-kick",
@@ -375,7 +447,10 @@
     "category": "physical",
     "power": 85,
     "accuracy": 90,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "blizzard",
@@ -384,7 +459,10 @@
     "category": "special",
     "power": 110,
     "accuracy": 70,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "block",
@@ -393,7 +471,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "body-press",
@@ -402,7 +481,8 @@
     "category": "physical",
     "power": 80,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "body-slam",
@@ -411,7 +491,10 @@
     "category": "physical",
     "power": 85,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "bone-rush",
@@ -420,7 +503,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 90,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "boomburst",
@@ -429,7 +513,10 @@
     "category": "special",
     "power": 140,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "sound": true
+    }
   },
   {
     "moveId": "bounce",
@@ -438,7 +525,10 @@
     "category": "physical",
     "power": 85,
     "accuracy": 85,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "brave-bird",
@@ -447,7 +537,10 @@
     "category": "physical",
     "power": 120,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "recoil": true
+    }
   },
   {
     "moveId": "breaking-swipe",
@@ -456,7 +549,10 @@
     "category": "physical",
     "power": 60,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "brick-break",
@@ -465,7 +561,8 @@
     "category": "physical",
     "power": 75,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "brutal-swing",
@@ -474,7 +571,8 @@
     "category": "physical",
     "power": 60,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "bug-bite",
@@ -483,7 +581,8 @@
     "category": "physical",
     "power": 60,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "bug-buzz",
@@ -492,7 +591,11 @@
     "category": "special",
     "power": 90,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "sound": true,
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "bulk-up",
@@ -501,7 +604,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "bulldoze",
@@ -510,7 +614,10 @@
     "category": "physical",
     "power": 60,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "bullet-punch",
@@ -519,7 +626,10 @@
     "category": "physical",
     "power": 40,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "punch": true
+    }
   },
   {
     "moveId": "bullet-seed",
@@ -528,7 +638,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "burn-up",
@@ -537,7 +648,8 @@
     "category": "special",
     "power": 130,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "burning-jealousy",
@@ -546,7 +658,10 @@
     "category": "special",
     "power": 70,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "calm-mind",
@@ -555,7 +670,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "ceaseless-edge",
@@ -564,7 +680,10 @@
     "category": "physical",
     "power": 65,
     "accuracy": 90,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "slicing": true
+    }
   },
   {
     "moveId": "charge",
@@ -573,7 +692,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "charge-beam",
@@ -582,7 +702,10 @@
     "category": "special",
     "power": 50,
     "accuracy": 90,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "charm",
@@ -591,7 +714,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "chilling-water",
@@ -600,7 +724,10 @@
     "category": "special",
     "power": 50,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "chilly-reception",
@@ -609,7 +736,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "circle-throw",
@@ -618,7 +746,8 @@
     "category": "physical",
     "power": 60,
     "accuracy": 90,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "clanging-scales",
@@ -627,7 +756,10 @@
     "category": "special",
     "power": 110,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "sound": true
+    }
   },
   {
     "moveId": "clangorous-soul",
@@ -636,7 +768,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "clear-smog",
@@ -645,7 +778,8 @@
     "category": "special",
     "power": 50,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "close-combat",
@@ -654,7 +788,8 @@
     "category": "physical",
     "power": 120,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "coaching",
@@ -663,7 +798,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "coil",
@@ -672,7 +808,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "comeuppance",
@@ -681,7 +818,8 @@
     "category": "physical",
     "power": 1,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "confuse-ray",
@@ -690,7 +828,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "copycat",
@@ -699,7 +838,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "corrosive-gas",
@@ -708,7 +848,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "cosmic-power",
@@ -717,7 +858,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "cotton-guard",
@@ -726,7 +868,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "cotton-spore",
@@ -735,7 +878,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "counter",
@@ -744,7 +888,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "covet",
@@ -753,7 +898,8 @@
     "category": "physical",
     "power": 60,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "crabhammer",
@@ -762,7 +908,8 @@
     "category": "physical",
     "power": 100,
     "accuracy": 90,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "cross-chop",
@@ -771,7 +918,8 @@
     "category": "physical",
     "power": 100,
     "accuracy": 80,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "cross-poison",
@@ -780,7 +928,11 @@
     "category": "physical",
     "power": 70,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "slicing": true,
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "crunch",
@@ -789,7 +941,10 @@
     "category": "physical",
     "power": 80,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "crush-claw",
@@ -798,7 +953,10 @@
     "category": "physical",
     "power": 75,
     "accuracy": 95,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "curse",
@@ -807,7 +965,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "dark-pulse",
@@ -816,7 +975,10 @@
     "category": "special",
     "power": 80,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "darkest-lariat",
@@ -825,7 +987,8 @@
     "category": "physical",
     "power": 85,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "dazzling-gleam",
@@ -834,7 +997,8 @@
     "category": "special",
     "power": 80,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "decorate",
@@ -843,7 +1007,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "defog",
@@ -852,7 +1017,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "destiny-bond",
@@ -861,7 +1027,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "detect",
@@ -870,7 +1037,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "dig",
@@ -879,7 +1047,8 @@
     "category": "physical",
     "power": 80,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "dire-claw",
@@ -888,7 +1057,10 @@
     "category": "physical",
     "power": 80,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "disable",
@@ -897,7 +1069,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "discharge",
@@ -906,7 +1079,10 @@
     "category": "special",
     "power": 80,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "dive",
@@ -915,7 +1091,8 @@
     "category": "physical",
     "power": 80,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "double-edge",
@@ -924,7 +1101,10 @@
     "category": "physical",
     "power": 120,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "recoil": true
+    }
   },
   {
     "moveId": "double-hit",
@@ -933,7 +1113,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 90,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "double-shock",
@@ -942,7 +1123,10 @@
     "category": "physical",
     "power": 120,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "punch": true
+    }
   },
   {
     "moveId": "double-team",
@@ -951,7 +1135,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "draco-meteor",
@@ -960,7 +1145,8 @@
     "category": "special",
     "power": 130,
     "accuracy": 90,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "dragon-cheer",
@@ -969,7 +1155,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "dragon-claw",
@@ -978,7 +1165,8 @@
     "category": "physical",
     "power": 80,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "dragon-dance",
@@ -987,7 +1175,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "dragon-darts",
@@ -996,7 +1185,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "dragon-pulse",
@@ -1005,7 +1195,8 @@
     "category": "special",
     "power": 85,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "dragon-rush",
@@ -1014,7 +1205,10 @@
     "category": "physical",
     "power": 100,
     "accuracy": 75,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "dragon-tail",
@@ -1023,7 +1217,8 @@
     "category": "physical",
     "power": 60,
     "accuracy": 90,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "drain-punch",
@@ -1032,7 +1227,10 @@
     "category": "physical",
     "power": 75,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "punch": true
+    }
   },
   {
     "moveId": "draining-kiss",
@@ -1041,7 +1239,8 @@
     "category": "special",
     "power": 50,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "drill-peck",
@@ -1050,7 +1249,8 @@
     "category": "physical",
     "power": 80,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "drill-run",
@@ -1059,7 +1259,8 @@
     "category": "physical",
     "power": 80,
     "accuracy": 95,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "dual-wingbeat",
@@ -1068,7 +1269,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 90,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "dynamic-punch",
@@ -1077,7 +1279,11 @@
     "category": "physical",
     "power": 100,
     "accuracy": 50,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "punch": true,
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "earth-power",
@@ -1086,7 +1292,10 @@
     "category": "special",
     "power": 90,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "earthquake",
@@ -1095,7 +1304,8 @@
     "category": "physical",
     "power": 100,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "eerie-impulse",
@@ -1104,7 +1314,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "eerie-spell",
@@ -1113,7 +1324,11 @@
     "category": "special",
     "power": 80,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "sound": true,
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "electric-terrain",
@@ -1122,7 +1337,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "electrify",
@@ -1131,7 +1347,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "electro-ball",
@@ -1140,7 +1357,8 @@
     "category": "special",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "electro-shot",
@@ -1149,7 +1367,8 @@
     "category": "special",
     "power": 130,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "electroweb",
@@ -1158,7 +1377,10 @@
     "category": "special",
     "power": 55,
     "accuracy": 95,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "encore",
@@ -1167,7 +1389,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "endeavor",
@@ -1176,7 +1399,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "endure",
@@ -1185,7 +1409,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "energy-ball",
@@ -1194,7 +1419,10 @@
     "category": "special",
     "power": 90,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "entrainment",
@@ -1203,7 +1431,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "eruption",
@@ -1212,7 +1441,8 @@
     "category": "special",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "expanding-force",
@@ -1221,7 +1451,8 @@
     "category": "special",
     "power": 80,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "explosion",
@@ -1230,7 +1461,8 @@
     "category": "physical",
     "power": 250,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "extrasensory",
@@ -1239,7 +1471,10 @@
     "category": "special",
     "power": 80,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "extreme-speed",
@@ -1248,7 +1483,8 @@
     "category": "physical",
     "power": 80,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "facade",
@@ -1257,7 +1493,8 @@
     "category": "physical",
     "power": 70,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "fairy-lock",
@@ -1266,7 +1503,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "fake-out",
@@ -1275,7 +1513,10 @@
     "category": "physical",
     "power": 40,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "fake-tears",
@@ -1284,7 +1525,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "feather-dance",
@@ -1293,7 +1535,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "feint",
@@ -1302,7 +1545,8 @@
     "category": "physical",
     "power": 30,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "fell-stinger",
@@ -1311,7 +1555,8 @@
     "category": "physical",
     "power": 50,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "fickle-beam",
@@ -1320,7 +1565,8 @@
     "category": "special",
     "power": 80,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "fiery-dance",
@@ -1329,7 +1575,10 @@
     "category": "special",
     "power": 80,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "final-gambit",
@@ -1338,7 +1587,8 @@
     "category": "special",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "fire-blast",
@@ -1347,7 +1597,10 @@
     "category": "special",
     "power": 110,
     "accuracy": 85,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "fire-fang",
@@ -1356,7 +1609,10 @@
     "category": "physical",
     "power": 65,
     "accuracy": 95,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "fire-lash",
@@ -1365,7 +1621,10 @@
     "category": "physical",
     "power": 80,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "fire-punch",
@@ -1374,7 +1633,11 @@
     "category": "physical",
     "power": 75,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "punch": true,
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "fire-spin",
@@ -1383,7 +1646,8 @@
     "category": "special",
     "power": 35,
     "accuracy": 85,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "first-impression",
@@ -1392,7 +1656,8 @@
     "category": "physical",
     "power": 90,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "fissure",
@@ -1401,7 +1666,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 30,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "flail",
@@ -1410,7 +1676,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "flame-charge",
@@ -1419,7 +1686,10 @@
     "category": "physical",
     "power": 50,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "flamethrower",
@@ -1428,7 +1698,10 @@
     "category": "special",
     "power": 90,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "flare-blitz",
@@ -1437,7 +1710,11 @@
     "category": "physical",
     "power": 120,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "recoil": true,
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "flash-cannon",
@@ -1446,7 +1723,10 @@
     "category": "special",
     "power": 80,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "flatter",
@@ -1455,7 +1735,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "fling",
@@ -1464,7 +1745,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "flip-turn",
@@ -1473,7 +1755,8 @@
     "category": "physical",
     "power": 60,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "flower-trick",
@@ -1482,7 +1765,8 @@
     "category": "physical",
     "power": 70,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "fly",
@@ -1491,7 +1775,8 @@
     "category": "physical",
     "power": 90,
     "accuracy": 95,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "flying-press",
@@ -1500,7 +1785,8 @@
     "category": "physical",
     "power": 100,
     "accuracy": 95,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "focus-blast",
@@ -1509,7 +1795,10 @@
     "category": "special",
     "power": 120,
     "accuracy": 70,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "focus-energy",
@@ -1518,7 +1807,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "focus-punch",
@@ -1527,7 +1817,10 @@
     "category": "physical",
     "power": 150,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "punch": true
+    }
   },
   {
     "moveId": "follow-me",
@@ -1536,7 +1829,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "forests-curse",
@@ -1545,7 +1839,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "foul-play",
@@ -1554,7 +1849,8 @@
     "category": "physical",
     "power": 95,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "freeze-dry",
@@ -1563,7 +1859,10 @@
     "category": "special",
     "power": 70,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "frenzy-plant",
@@ -1572,7 +1871,8 @@
     "category": "special",
     "power": 150,
     "accuracy": 90,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "frost-breath",
@@ -1581,7 +1881,8 @@
     "category": "special",
     "power": 60,
     "accuracy": 90,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "future-sight",
@@ -1590,7 +1891,8 @@
     "category": "special",
     "power": 120,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "gastro-acid",
@@ -1599,7 +1901,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "giga-drain",
@@ -1608,7 +1911,8 @@
     "category": "special",
     "power": 75,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "giga-impact",
@@ -1617,7 +1921,8 @@
     "category": "physical",
     "power": 150,
     "accuracy": 90,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "gigaton-hammer",
@@ -1626,7 +1931,8 @@
     "category": "physical",
     "power": 160,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "glare",
@@ -1635,7 +1941,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "grass-knot",
@@ -1644,7 +1951,8 @@
     "category": "special",
     "power": null,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "grassy-glide",
@@ -1653,7 +1961,8 @@
     "category": "physical",
     "power": 55,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "grassy-terrain",
@@ -1662,7 +1971,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "grav-apple",
@@ -1671,7 +1981,10 @@
     "category": "physical",
     "power": 80,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "gravity",
@@ -1680,7 +1993,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "growth",
@@ -1689,7 +2003,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "guard-split",
@@ -1698,7 +2013,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "guard-swap",
@@ -1707,7 +2023,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "guillotine",
@@ -1716,7 +2033,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 30,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "gunk-shot",
@@ -1725,7 +2043,10 @@
     "category": "physical",
     "power": 120,
     "accuracy": 80,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "gyro-ball",
@@ -1734,7 +2055,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "hammer-arm",
@@ -1743,7 +2065,10 @@
     "category": "physical",
     "power": 100,
     "accuracy": 90,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "punch": true
+    }
   },
   {
     "moveId": "hard-press",
@@ -1752,7 +2077,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "haze",
@@ -1761,7 +2087,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "head-smash",
@@ -1770,7 +2097,10 @@
     "category": "physical",
     "power": 150,
     "accuracy": 80,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "recoil": true
+    }
   },
   {
     "moveId": "headlong-rush",
@@ -1779,7 +2109,10 @@
     "category": "physical",
     "power": 120,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "punch": true
+    }
   },
   {
     "moveId": "heal-bell",
@@ -1788,7 +2121,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "heal-pulse",
@@ -1797,7 +2131,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "healing-wish",
@@ -1806,7 +2141,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "heat-crash",
@@ -1815,7 +2151,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "heat-wave",
@@ -1824,7 +2161,10 @@
     "category": "special",
     "power": 95,
     "accuracy": 90,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "heavy-slam",
@@ -1833,7 +2173,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "helping-hand",
@@ -1842,7 +2183,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "hex",
@@ -1851,7 +2193,8 @@
     "category": "special",
     "power": 65,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "high-horsepower",
@@ -1860,7 +2203,8 @@
     "category": "physical",
     "power": 95,
     "accuracy": 95,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "high-jump-kick",
@@ -1869,7 +2213,10 @@
     "category": "physical",
     "power": 130,
     "accuracy": 90,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "recoil": true
+    }
   },
   {
     "moveId": "horn-drill",
@@ -1878,7 +2225,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 30,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "horn-leech",
@@ -1887,7 +2235,8 @@
     "category": "physical",
     "power": 75,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "howl",
@@ -1896,7 +2245,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "hurricane",
@@ -1905,7 +2255,10 @@
     "category": "special",
     "power": 110,
     "accuracy": 70,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "hydro-cannon",
@@ -1914,7 +2267,8 @@
     "category": "special",
     "power": 150,
     "accuracy": 90,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "hydro-pump",
@@ -1923,7 +2277,8 @@
     "category": "special",
     "power": 110,
     "accuracy": 80,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "hyper-beam",
@@ -1932,7 +2287,8 @@
     "category": "special",
     "power": 150,
     "accuracy": 90,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "hyper-voice",
@@ -1941,7 +2297,10 @@
     "category": "special",
     "power": 90,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "sound": true
+    }
   },
   {
     "moveId": "hypnosis",
@@ -1950,7 +2309,8 @@
     "category": "status",
     "power": null,
     "accuracy": 60,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "ice-beam",
@@ -1959,7 +2319,10 @@
     "category": "special",
     "power": 90,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "ice-fang",
@@ -1968,7 +2331,10 @@
     "category": "physical",
     "power": 65,
     "accuracy": 95,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "ice-hammer",
@@ -1977,7 +2343,10 @@
     "category": "physical",
     "power": 100,
     "accuracy": 90,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "punch": true
+    }
   },
   {
     "moveId": "ice-punch",
@@ -1986,7 +2355,11 @@
     "category": "physical",
     "power": 75,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "punch": true,
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "ice-shard",
@@ -1995,7 +2368,8 @@
     "category": "physical",
     "power": 40,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "ice-spinner",
@@ -2004,7 +2378,8 @@
     "category": "physical",
     "power": 80,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "icicle-crash",
@@ -2013,7 +2388,10 @@
     "category": "physical",
     "power": 85,
     "accuracy": 90,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "icicle-spear",
@@ -2022,7 +2400,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "icy-wind",
@@ -2031,7 +2410,10 @@
     "category": "special",
     "power": 55,
     "accuracy": 95,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "imprison",
@@ -2040,7 +2422,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "infernal-parade",
@@ -2049,7 +2432,10 @@
     "category": "special",
     "power": 60,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "inferno",
@@ -2058,7 +2444,10 @@
     "category": "special",
     "power": 100,
     "accuracy": 50,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "infestation",
@@ -2067,7 +2456,8 @@
     "category": "special",
     "power": 20,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "ingrain",
@@ -2076,7 +2466,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "instruct",
@@ -2085,7 +2476,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "iron-defense",
@@ -2094,7 +2486,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "iron-head",
@@ -2103,7 +2496,10 @@
     "category": "physical",
     "power": 80,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "iron-tail",
@@ -2112,7 +2508,10 @@
     "category": "physical",
     "power": 100,
     "accuracy": 75,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "jet-punch",
@@ -2121,7 +2520,10 @@
     "category": "physical",
     "power": 60,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "punch": true
+    }
   },
   {
     "moveId": "kings-shield",
@@ -2130,7 +2532,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "knock-off",
@@ -2139,7 +2542,8 @@
     "category": "physical",
     "power": 65,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "kowtow-cleave",
@@ -2148,7 +2552,10 @@
     "category": "physical",
     "power": 85,
     "accuracy": null,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "slicing": true
+    }
   },
   {
     "moveId": "lash-out",
@@ -2157,7 +2564,8 @@
     "category": "physical",
     "power": 75,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "last-resort",
@@ -2166,7 +2574,8 @@
     "category": "physical",
     "power": 140,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "last-respects",
@@ -2175,7 +2584,8 @@
     "category": "physical",
     "power": 50,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "lava-plume",
@@ -2184,7 +2594,10 @@
     "category": "special",
     "power": 80,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "leaf-blade",
@@ -2193,7 +2606,10 @@
     "category": "physical",
     "power": 90,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "slicing": true
+    }
   },
   {
     "moveId": "leaf-storm",
@@ -2202,7 +2618,8 @@
     "category": "special",
     "power": 130,
     "accuracy": 90,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "leech-life",
@@ -2211,7 +2628,8 @@
     "category": "physical",
     "power": 80,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "leech-seed",
@@ -2220,7 +2638,8 @@
     "category": "status",
     "power": null,
     "accuracy": 90,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "life-dew",
@@ -2229,7 +2648,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "light-of-ruin",
@@ -2238,7 +2658,10 @@
     "category": "special",
     "power": 140,
     "accuracy": 90,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "recoil": true
+    }
   },
   {
     "moveId": "light-screen",
@@ -2247,7 +2670,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "liquidation",
@@ -2256,7 +2680,10 @@
     "category": "physical",
     "power": 85,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "lock-on",
@@ -2265,7 +2692,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "low-kick",
@@ -2274,7 +2702,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "low-sweep",
@@ -2283,7 +2712,10 @@
     "category": "physical",
     "power": 65,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "lumina-crash",
@@ -2292,7 +2724,10 @@
     "category": "special",
     "power": 80,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "lunge",
@@ -2301,7 +2736,10 @@
     "category": "physical",
     "power": 80,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "mach-punch",
@@ -2310,7 +2748,10 @@
     "category": "physical",
     "power": 40,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "punch": true
+    }
   },
   {
     "moveId": "magic-powder",
@@ -2319,7 +2760,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "magic-room",
@@ -2328,7 +2770,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "magnet-rise",
@@ -2337,7 +2780,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "magnetic-flux",
@@ -2346,7 +2790,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "matcha-gotcha",
@@ -2355,7 +2800,10 @@
     "category": "special",
     "power": 80,
     "accuracy": 90,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "mean-look",
@@ -2364,7 +2812,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "mega-kick",
@@ -2373,7 +2822,8 @@
     "category": "physical",
     "power": 120,
     "accuracy": 75,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "megahorn",
@@ -2382,7 +2832,8 @@
     "category": "physical",
     "power": 120,
     "accuracy": 85,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "memento",
@@ -2391,7 +2842,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "metal-burst",
@@ -2400,7 +2852,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "metal-sound",
@@ -2409,7 +2862,8 @@
     "category": "status",
     "power": null,
     "accuracy": 85,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "meteor-beam",
@@ -2418,7 +2872,8 @@
     "category": "special",
     "power": 120,
     "accuracy": 90,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "meteor-mash",
@@ -2427,7 +2882,11 @@
     "category": "physical",
     "power": 90,
     "accuracy": 90,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "punch": true,
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "milk-drink",
@@ -2436,7 +2895,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "minimize",
@@ -2445,7 +2905,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "mirror-coat",
@@ -2454,7 +2915,8 @@
     "category": "special",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "misty-explosion",
@@ -2463,7 +2925,8 @@
     "category": "special",
     "power": 100,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "misty-terrain",
@@ -2472,7 +2935,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "moonblast",
@@ -2481,7 +2945,10 @@
     "category": "special",
     "power": 95,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "moonlight",
@@ -2490,7 +2957,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "morning-sun",
@@ -2499,7 +2967,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "mortal-spin",
@@ -2508,7 +2977,10 @@
     "category": "physical",
     "power": 30,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "mountain-gale",
@@ -2517,7 +2989,10 @@
     "category": "physical",
     "power": 100,
     "accuracy": 85,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "mud-shot",
@@ -2526,7 +3001,10 @@
     "category": "special",
     "power": 55,
     "accuracy": 95,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "mud-slap",
@@ -2535,7 +3013,10 @@
     "category": "special",
     "power": 20,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "muddy-water",
@@ -2544,7 +3025,10 @@
     "category": "special",
     "power": 90,
     "accuracy": 85,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "mystical-fire",
@@ -2553,7 +3037,10 @@
     "category": "special",
     "power": 75,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "nasty-plot",
@@ -2562,7 +3049,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "night-daze",
@@ -2571,7 +3059,10 @@
     "category": "special",
     "power": 85,
     "accuracy": 95,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "night-shade",
@@ -2580,7 +3071,8 @@
     "category": "special",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "night-slash",
@@ -2589,7 +3081,10 @@
     "category": "physical",
     "power": 70,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "slicing": true
+    }
   },
   {
     "moveId": "noble-roar",
@@ -2598,7 +3093,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "nuzzle",
@@ -2607,7 +3103,10 @@
     "category": "physical",
     "power": 20,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "outrage",
@@ -2616,7 +3115,8 @@
     "category": "physical",
     "power": 120,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "overheat",
@@ -2625,7 +3125,8 @@
     "category": "special",
     "power": 130,
     "accuracy": 90,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "pain-split",
@@ -2634,7 +3135,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "parabolic-charge",
@@ -2643,7 +3145,8 @@
     "category": "special",
     "power": 65,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "parting-shot",
@@ -2652,7 +3155,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "payback",
@@ -2661,7 +3165,8 @@
     "category": "physical",
     "power": 50,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "perish-song",
@@ -2670,7 +3175,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "petal-blizzard",
@@ -2679,7 +3185,8 @@
     "category": "physical",
     "power": 90,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "petal-dance",
@@ -2688,7 +3195,8 @@
     "category": "special",
     "power": 120,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "phantom-force",
@@ -2697,7 +3205,8 @@
     "category": "physical",
     "power": 90,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "pin-missile",
@@ -2706,7 +3215,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 95,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "play-rough",
@@ -2715,7 +3225,10 @@
     "category": "physical",
     "power": 90,
     "accuracy": 90,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "pluck",
@@ -2724,7 +3237,8 @@
     "category": "physical",
     "power": 60,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "poison-fang",
@@ -2733,7 +3247,10 @@
     "category": "physical",
     "power": 50,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "poison-jab",
@@ -2742,7 +3259,10 @@
     "category": "physical",
     "power": 80,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "poison-powder",
@@ -2751,7 +3271,8 @@
     "category": "status",
     "power": null,
     "accuracy": 75,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "pollen-puff",
@@ -2760,7 +3281,8 @@
     "category": "special",
     "power": 90,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "poltergeist",
@@ -2769,7 +3291,8 @@
     "category": "physical",
     "power": 110,
     "accuracy": 90,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "population-bomb",
@@ -2778,7 +3301,10 @@
     "category": "physical",
     "power": null,
     "accuracy": 90,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "slicing": true
+    }
   },
   {
     "moveId": "pounce",
@@ -2787,7 +3313,10 @@
     "category": "physical",
     "power": 50,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "pound",
@@ -2796,7 +3325,8 @@
     "category": "physical",
     "power": 40,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "power-gem",
@@ -2805,7 +3335,8 @@
     "category": "special",
     "power": 80,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "power-shift",
@@ -2814,7 +3345,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "power-split",
@@ -2823,7 +3355,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "power-swap",
@@ -2832,7 +3365,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "power-trick",
@@ -2841,7 +3375,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "power-trip",
@@ -2850,7 +3385,8 @@
     "category": "physical",
     "power": 20,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "power-whip",
@@ -2859,7 +3395,8 @@
     "category": "physical",
     "power": 120,
     "accuracy": 85,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "protect",
@@ -2868,7 +3405,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "psych-up",
@@ -2877,7 +3415,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "psychic",
@@ -2886,7 +3425,10 @@
     "category": "special",
     "power": 90,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "psychic-fangs",
@@ -2895,7 +3437,8 @@
     "category": "physical",
     "power": 85,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "psychic-noise",
@@ -2904,7 +3447,11 @@
     "category": "special",
     "power": 75,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "sound": true,
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "psychic-terrain",
@@ -2913,7 +3460,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "psycho-cut",
@@ -2922,7 +3470,10 @@
     "category": "physical",
     "power": 70,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "slicing": true
+    }
   },
   {
     "moveId": "psyshield-bash",
@@ -2931,7 +3482,10 @@
     "category": "physical",
     "power": 70,
     "accuracy": 90,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "psyshock",
@@ -2940,7 +3494,8 @@
     "category": "special",
     "power": 80,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "quash",
@@ -2949,7 +3504,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "quick-attack",
@@ -2958,7 +3514,8 @@
     "category": "physical",
     "power": 40,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "quick-guard",
@@ -2967,7 +3524,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "quiver-dance",
@@ -2976,7 +3534,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "rage-powder",
@@ -2985,7 +3544,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "raging-bull",
@@ -2994,7 +3554,8 @@
     "category": "physical",
     "power": 90,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "raging-fury",
@@ -3003,7 +3564,8 @@
     "category": "physical",
     "power": 120,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "rain-dance",
@@ -3012,7 +3574,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "rapid-spin",
@@ -3021,7 +3584,10 @@
     "category": "physical",
     "power": 50,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "razor-shell",
@@ -3030,7 +3596,11 @@
     "category": "physical",
     "power": 75,
     "accuracy": 95,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "slicing": true,
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "recover",
@@ -3039,7 +3609,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "recycle",
@@ -3048,7 +3619,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "reflect",
@@ -3057,7 +3629,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "reflect-type",
@@ -3066,7 +3639,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "rest",
@@ -3075,7 +3649,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "reversal",
@@ -3084,7 +3659,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "revival-blessing",
@@ -3093,7 +3669,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "rising-voltage",
@@ -3102,7 +3679,8 @@
     "category": "special",
     "power": 70,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "roar",
@@ -3111,7 +3689,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "rock-blast",
@@ -3120,7 +3699,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 90,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "rock-polish",
@@ -3129,7 +3709,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "rock-slide",
@@ -3138,7 +3719,10 @@
     "category": "physical",
     "power": 75,
     "accuracy": 90,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "rock-tomb",
@@ -3147,7 +3731,10 @@
     "category": "physical",
     "power": 60,
     "accuracy": 95,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "rock-wrecker",
@@ -3156,7 +3743,8 @@
     "category": "physical",
     "power": 150,
     "accuracy": 90,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "role-play",
@@ -3165,7 +3753,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "roost",
@@ -3174,7 +3763,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "round",
@@ -3183,7 +3773,10 @@
     "category": "special",
     "power": 60,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "sound": true
+    }
   },
   {
     "moveId": "sacred-sword",
@@ -3192,7 +3785,10 @@
     "category": "physical",
     "power": 90,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "slicing": true
+    }
   },
   {
     "moveId": "safeguard",
@@ -3201,7 +3797,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "salt-cure",
@@ -3210,7 +3807,10 @@
     "category": "physical",
     "power": 40,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "sand-tomb",
@@ -3219,7 +3819,8 @@
     "category": "physical",
     "power": 35,
     "accuracy": 85,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "sandstorm",
@@ -3228,7 +3829,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "scald",
@@ -3237,7 +3839,10 @@
     "category": "special",
     "power": 80,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "scale-shot",
@@ -3246,7 +3851,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 90,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "scary-face",
@@ -3255,7 +3861,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "scorching-sands",
@@ -3264,7 +3871,10 @@
     "category": "special",
     "power": 70,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "screech",
@@ -3273,7 +3883,8 @@
     "category": "status",
     "power": null,
     "accuracy": 85,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "seed-bomb",
@@ -3282,7 +3893,8 @@
     "category": "physical",
     "power": 80,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "seismic-toss",
@@ -3291,7 +3903,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "self-destruct",
@@ -3300,7 +3913,8 @@
     "category": "physical",
     "power": 200,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "shadow-ball",
@@ -3309,7 +3923,10 @@
     "category": "special",
     "power": 80,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "shadow-claw",
@@ -3318,7 +3935,8 @@
     "category": "physical",
     "power": 70,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "shadow-punch",
@@ -3327,7 +3945,10 @@
     "category": "physical",
     "power": 60,
     "accuracy": null,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "punch": true
+    }
   },
   {
     "moveId": "shadow-sneak",
@@ -3336,7 +3957,8 @@
     "category": "physical",
     "power": 40,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "shed-tail",
@@ -3345,7 +3967,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "sheer-cold",
@@ -3354,7 +3977,8 @@
     "category": "special",
     "power": null,
     "accuracy": 30,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "shell-side-arm",
@@ -3363,7 +3987,10 @@
     "category": "special",
     "power": 90,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "shell-smash",
@@ -3372,7 +3999,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "shelter",
@@ -3381,7 +4009,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "simple-beam",
@@ -3390,7 +4019,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "sing",
@@ -3399,7 +4029,8 @@
     "category": "status",
     "power": null,
     "accuracy": 55,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "skill-swap",
@@ -3408,7 +4039,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "skitter-smack",
@@ -3417,7 +4049,10 @@
     "category": "physical",
     "power": 70,
     "accuracy": 90,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "sky-attack",
@@ -3426,7 +4061,10 @@
     "category": "physical",
     "power": 140,
     "accuracy": 90,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "slack-off",
@@ -3435,7 +4073,20 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
+  },
+  {
+    "moveId": "slash",
+    "name": "きりさく",
+    "type": "normal",
+    "category": "physical",
+    "power": 80,
+    "accuracy": 100,
+    "contact": true,
+    "flags": {
+      "slicing": true
+    }
   },
   {
     "moveId": "sleep-powder",
@@ -3444,7 +4095,8 @@
     "category": "status",
     "power": null,
     "accuracy": 75,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "sleep-talk",
@@ -3453,7 +4105,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "sludge-bomb",
@@ -3462,7 +4115,10 @@
     "category": "special",
     "power": 90,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "sludge-wave",
@@ -3471,7 +4127,10 @@
     "category": "special",
     "power": 95,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "smack-down",
@@ -3480,7 +4139,8 @@
     "category": "physical",
     "power": 50,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "smart-strike",
@@ -3489,7 +4149,8 @@
     "category": "physical",
     "power": 70,
     "accuracy": null,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "snap-trap",
@@ -3498,7 +4159,8 @@
     "category": "physical",
     "power": 35,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "snarl",
@@ -3507,7 +4169,21 @@
     "category": "special",
     "power": 55,
     "accuracy": 95,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "sound": true,
+      "hasSecondary": true
+    }
+  },
+  {
+    "moveId": "snipe-shot",
+    "name": "ねらいうち",
+    "type": "water",
+    "category": "special",
+    "power": 85,
+    "accuracy": 100,
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "snore",
@@ -3516,7 +4192,11 @@
     "category": "special",
     "power": 50,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "sound": true,
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "snowscape",
@@ -3525,7 +4205,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "soak",
@@ -3534,7 +4215,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "soft-boiled",
@@ -3543,7 +4225,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "solar-beam",
@@ -3552,7 +4235,8 @@
     "category": "special",
     "power": 120,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "solar-blade",
@@ -3561,7 +4245,10 @@
     "category": "physical",
     "power": 125,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "slicing": true
+    }
   },
   {
     "moveId": "sparkling-aria",
@@ -3570,7 +4257,11 @@
     "category": "special",
     "power": 90,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "sound": true,
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "speed-swap",
@@ -3579,7 +4270,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "spicy-extract",
@@ -3588,7 +4280,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "spikes",
@@ -3597,7 +4290,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "spiky-shield",
@@ -3606,7 +4300,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "spirit-shackle",
@@ -3615,7 +4310,10 @@
     "category": "physical",
     "power": 80,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "spit-up",
@@ -3624,7 +4322,8 @@
     "category": "special",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "spite",
@@ -3633,7 +4332,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "spore",
@@ -3642,7 +4342,18 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
+  },
+  {
+    "moveId": "star-assault",
+    "name": "スターアサルト",
+    "type": "fighting",
+    "category": "physical",
+    "power": 170,
+    "accuracy": 100,
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "stealth-rock",
@@ -3651,7 +4362,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "steel-beam",
@@ -3660,7 +4372,8 @@
     "category": "special",
     "power": 140,
     "accuracy": 95,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "steel-roller",
@@ -3669,7 +4382,8 @@
     "category": "physical",
     "power": 130,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "steel-wing",
@@ -3678,7 +4392,10 @@
     "category": "physical",
     "power": 70,
     "accuracy": 90,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "sticky-web",
@@ -3687,7 +4404,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "stockpile",
@@ -3696,7 +4414,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "stomping-tantrum",
@@ -3705,7 +4424,8 @@
     "category": "physical",
     "power": 75,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "stone-axe",
@@ -3714,7 +4434,10 @@
     "category": "physical",
     "power": 65,
     "accuracy": 90,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "slicing": true
+    }
   },
   {
     "moveId": "stone-edge",
@@ -3723,7 +4446,8 @@
     "category": "physical",
     "power": 100,
     "accuracy": 80,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "stored-power",
@@ -3732,7 +4456,8 @@
     "category": "special",
     "power": 20,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "storm-throw",
@@ -3741,7 +4466,8 @@
     "category": "physical",
     "power": 60,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "strength-sap",
@@ -3750,7 +4476,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "string-shot",
@@ -3759,7 +4486,8 @@
     "category": "status",
     "power": null,
     "accuracy": 95,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "struggle",
@@ -3768,7 +4496,8 @@
     "category": "physical",
     "power": 50,
     "accuracy": null,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "struggle-bug",
@@ -3777,7 +4506,10 @@
     "category": "special",
     "power": 50,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "stuff-cheeks",
@@ -3786,7 +4518,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "stun-spore",
@@ -3795,7 +4528,8 @@
     "category": "status",
     "power": null,
     "accuracy": 75,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "substitute",
@@ -3804,7 +4538,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "sucker-punch",
@@ -3813,7 +4548,8 @@
     "category": "physical",
     "power": 70,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "sunny-day",
@@ -3822,7 +4558,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "super-fang",
@@ -3831,7 +4568,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 90,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "supercell-slam",
@@ -3840,7 +4578,10 @@
     "category": "physical",
     "power": 100,
     "accuracy": 95,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "recoil": true
+    }
   },
   {
     "moveId": "superpower",
@@ -3849,7 +4590,8 @@
     "category": "physical",
     "power": 120,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "surf",
@@ -3858,7 +4600,8 @@
     "category": "special",
     "power": 90,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "swagger",
@@ -3867,7 +4610,8 @@
     "category": "status",
     "power": null,
     "accuracy": 85,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "swallow",
@@ -3876,7 +4620,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "sweet-kiss",
@@ -3885,7 +4630,8 @@
     "category": "status",
     "power": null,
     "accuracy": 75,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "sweet-scent",
@@ -3894,7 +4640,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "switcheroo",
@@ -3903,7 +4650,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "swords-dance",
@@ -3912,7 +4660,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "synthesis",
@@ -3921,7 +4670,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "syrup-bomb",
@@ -3930,7 +4680,10 @@
     "category": "special",
     "power": 60,
     "accuracy": 85,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "tail-slap",
@@ -3939,7 +4692,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 85,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "tailwind",
@@ -3948,7 +4702,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "taunt",
@@ -3957,7 +4712,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "tearful-look",
@@ -3966,7 +4722,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "teatime",
@@ -3975,7 +4732,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "teeter-dance",
@@ -3984,7 +4742,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "temper-flare",
@@ -3993,7 +4752,8 @@
     "category": "physical",
     "power": 75,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "terrain-pulse",
@@ -4002,7 +4762,8 @@
     "category": "special",
     "power": 50,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "thief",
@@ -4011,7 +4772,8 @@
     "category": "physical",
     "power": 60,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "thrash",
@@ -4020,7 +4782,8 @@
     "category": "physical",
     "power": 120,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "throat-chop",
@@ -4029,7 +4792,10 @@
     "category": "physical",
     "power": 80,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "thunder",
@@ -4038,7 +4804,10 @@
     "category": "special",
     "power": 110,
     "accuracy": 70,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "thunder-fang",
@@ -4047,7 +4816,10 @@
     "category": "physical",
     "power": 65,
     "accuracy": 95,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "thunder-punch",
@@ -4056,7 +4828,11 @@
     "category": "physical",
     "power": 75,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "punch": true,
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "thunder-wave",
@@ -4065,7 +4841,8 @@
     "category": "status",
     "power": null,
     "accuracy": 90,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "thunderbolt",
@@ -4074,7 +4851,10 @@
     "category": "special",
     "power": 90,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "tickle",
@@ -4083,7 +4863,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "tidy-up",
@@ -4092,7 +4873,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "torch-song",
@@ -4101,7 +4883,11 @@
     "category": "special",
     "power": 80,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "sound": true,
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "torment",
@@ -4110,7 +4896,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "toxic",
@@ -4119,7 +4906,8 @@
     "category": "status",
     "power": null,
     "accuracy": 90,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "toxic-spikes",
@@ -4128,7 +4916,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "toxic-thread",
@@ -4137,7 +4926,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "trailblaze",
@@ -4146,7 +4936,10 @@
     "category": "physical",
     "power": 50,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "transform",
@@ -4155,7 +4948,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "tri-attack",
@@ -4164,7 +4958,10 @@
     "category": "special",
     "power": 80,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "trick",
@@ -4173,7 +4970,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "trick-or-treat",
@@ -4182,7 +4980,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "trick-room",
@@ -4191,7 +4990,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "triple-arrows",
@@ -4200,7 +5000,10 @@
     "category": "physical",
     "power": 90,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "triple-axel",
@@ -4209,7 +5012,8 @@
     "category": "physical",
     "power": null,
     "accuracy": 90,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "trop-kick",
@@ -4218,7 +5022,10 @@
     "category": "physical",
     "power": 70,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "twin-beam",
@@ -4227,7 +5034,8 @@
     "category": "special",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "u-turn",
@@ -4236,7 +5044,8 @@
     "category": "physical",
     "power": 70,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "upper-hand",
@@ -4245,7 +5054,10 @@
     "category": "physical",
     "power": 65,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "uproar",
@@ -4254,7 +5066,10 @@
     "category": "special",
     "power": 90,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "sound": true
+    }
   },
   {
     "moveId": "vacuum-wave",
@@ -4263,7 +5078,8 @@
     "category": "special",
     "power": 40,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "venoshock",
@@ -4272,7 +5088,8 @@
     "category": "special",
     "power": 65,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "volt-switch",
@@ -4281,7 +5098,8 @@
     "category": "special",
     "power": 70,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "volt-tackle",
@@ -4290,7 +5108,11 @@
     "category": "physical",
     "power": 120,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "recoil": true,
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "water-pulse",
@@ -4299,7 +5121,10 @@
     "category": "special",
     "power": 60,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "water-shuriken",
@@ -4308,7 +5133,8 @@
     "category": "special",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "water-spout",
@@ -4317,7 +5143,8 @@
     "category": "special",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "waterfall",
@@ -4326,7 +5153,10 @@
     "category": "physical",
     "power": 80,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "wave-crash",
@@ -4335,7 +5165,10 @@
     "category": "physical",
     "power": 120,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "recoil": true
+    }
   },
   {
     "moveId": "weather-ball",
@@ -4344,7 +5177,8 @@
     "category": "special",
     "power": 50,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "whirlpool",
@@ -4353,7 +5187,8 @@
     "category": "special",
     "power": 35,
     "accuracy": 85,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "whirlwind",
@@ -4362,7 +5197,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "wide-guard",
@@ -4371,7 +5207,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "wild-charge",
@@ -4380,7 +5217,10 @@
     "category": "physical",
     "power": 90,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "recoil": true
+    }
   },
   {
     "moveId": "will-o-wisp",
@@ -4389,7 +5229,8 @@
     "category": "status",
     "power": null,
     "accuracy": 85,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "wish",
@@ -4398,7 +5239,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "wonder-room",
@@ -4407,7 +5249,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "wood-hammer",
@@ -4416,7 +5259,10 @@
     "category": "physical",
     "power": 120,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "recoil": true
+    }
   },
   {
     "moveId": "worry-seed",
@@ -4425,7 +5271,8 @@
     "category": "status",
     "power": null,
     "accuracy": 100,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "wrap",
@@ -4434,7 +5281,8 @@
     "category": "physical",
     "power": 15,
     "accuracy": 90,
-    "contact": true
+    "contact": true,
+    "flags": {}
   },
   {
     "moveId": "x-scissor",
@@ -4443,7 +5291,10 @@
     "category": "physical",
     "power": 80,
     "accuracy": 100,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "slicing": true
+    }
   },
   {
     "moveId": "yawn",
@@ -4452,7 +5303,8 @@
     "category": "status",
     "power": null,
     "accuracy": null,
-    "contact": false
+    "contact": false,
+    "flags": {}
   },
   {
     "moveId": "zap-cannon",
@@ -4461,7 +5313,10 @@
     "category": "special",
     "power": 120,
     "accuracy": 50,
-    "contact": false
+    "contact": false,
+    "flags": {
+      "hasSecondary": true
+    }
   },
   {
     "moveId": "zen-headbutt",
@@ -4470,6 +5325,9 @@
     "category": "physical",
     "power": 80,
     "accuracy": 90,
-    "contact": true
+    "contact": true,
+    "flags": {
+      "hasSecondary": true
+    }
   }
 ]

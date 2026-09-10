@@ -1,11 +1,19 @@
 #!/usr/bin/env python3
 """
 PChamp DB から全技の基本属性を取得し、data/move_data.json を生成する。
-接触(contact)のみ PChamp DB に存在しないため、Pokémon Showdown の moves データを
-「contact 1項目に限定」した補助ソースとして併用する（英語moveIdの完全一致で結合）。
+接触(contact)と技フラグ（パンチ/音/切る/反動/追加効果）は PChamp DB に存在しないため、
+Pokémon Showdown の moves データを補助ソースとして併用する（英語moveIdの完全一致で結合）。
+
+技フラグ（flags, true のもののみ出力）:
+  punch        : パンチ技（てつのこぶし ×1.2）
+  sound        : 音技（パンクロック ×1.3 / 被弾 ×0.5）
+  slicing      : 切る技（きれあじ ×1.5）
+  recoil       : 反動技（すてみ ×1.2。Showdown の recoil / hasCrashDamage）
+  hasSecondary : 追加効果あり（ちからずく ×1.3。Showdown の secondary / secondaries）
+チャンピオンズ独自の分類変更は CHAMPIONS_FLAG_OVERRIDES で上書きする。
 
 正準ソース（基本属性）: https://app.gamepedia.jp/pokemon-champions/moves?lang=ja
-補助ソース（contactのみ）: https://play.pokemonshowdown.com/data/moves.json
+補助ソース（contact・技フラグ）: https://play.pokemonshowdown.com/data/moves.json
 
 調査で確定した事実:
 - 技一覧ページは完全SSR。各技は <a class="move-card"> の data-* 属性で全項目を保持
@@ -27,6 +35,11 @@ PChamp DB から全技の基本属性を取得し、data/move_data.json を生�
 import re, json, os, sys, time, urllib.request
 
 PCHAMP = "https://app.gamepedia.jp/pokemon-champions/moves?lang=ja"
+# チャンピオンズ独自の技分類（本家と異なるもの）。moveId -> {flag: bool}
+#   でんこうそうげき: M-C(2026/09/09) でパンチ技に分類変更（攻略大百科 / Game8 の変更点まとめ）
+CHAMPIONS_FLAG_OVERRIDES = {
+    "double-shock": {"punch": True},
+}
 SHOWDOWN = "https://play.pokemonshowdown.com/data/moves.json"
 VALID_TYPES = {"normal","fire","water","electric","grass","ice","fighting","poison",
     "ground","flying","psychic","bug","rock","ghost","dragon","dark","steel","fairy"}
@@ -73,15 +86,28 @@ def build(cache, out):
         acc = None if a["data-accuracy"] in ("-1", "0") else int(a["data-accuracy"])
 
         psk = key.replace("-", "")          # Showdown は英語IDからハイフン除去
+        flags = {}
         if psk in ps:
             matched += 1
-            contact = bool((ps[psk].get("flags") or {}).get("contact"))
+            pm = ps[psk]
+            pf = pm.get("flags") or {}
+            contact = bool(pf.get("contact"))
+            if cls != "status":
+                if pf.get("punch"): flags["punch"] = True
+                if pf.get("sound"): flags["sound"] = True
+                if pf.get("slicing"): flags["slicing"] = True
+                if pm.get("recoil") or pm.get("hasCrashDamage"): flags["recoil"] = True
+                if pm.get("secondary") or pm.get("secondaries"): flags["hasSecondary"] = True
         else:
             contact = None
             join_fail.append({"moveId": key, "name": a["data-name"]})
+        for fk, fv in CHAMPIONS_FLAG_OVERRIDES.get(key, {}).items():
+            if fv: flags[fk] = True
+            else: flags.pop(fk, None)
 
         moves.append({"moveId": key, "name": a["data-name"], "type": a["data-type"],
-                      "category": cls, "power": power, "accuracy": acc, "contact": contact})
+                      "category": cls, "power": power, "accuracy": acc, "contact": contact,
+                      "flags": flags})
 
     moves.sort(key=lambda m: m["moveId"])
     special_flags.sort(key=lambda m: m["moveId"])

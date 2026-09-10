@@ -37,9 +37,11 @@ export interface Move {
    *   punch       : パンチ技（てつのこぶし）
    *   recoil      : 反動技（すてみ）
    *   hasSecondary: 追加効果を持つ技（ちからずく）
-   *   sound/slicing: Tier3 用（パンクロック/きれあじ）。今回未使用だが型は用意。
+   *   sound       : 音技（パンクロック）
+   *   slicing     : 切る技（きれあじ）
+   *   skinBoosted : 内部用。スキン系特性でタイプ変化済み（威力×1.2 の対象）。resolveMove が付与する
    */
-  flags?: { punch?: boolean; recoil?: boolean; hasSecondary?: boolean; sound?: boolean; slicing?: boolean };
+  flags?: { punch?: boolean; recoil?: boolean; hasSecondary?: boolean; sound?: boolean; slicing?: boolean; skinBoosted?: boolean };
 }
 
 // ---- 個体の状態（計算入力）----
@@ -63,6 +65,11 @@ export type AbilityId =
   | 'hustle' | 'sheerForce' | 'ironFist' | 'reckless' | 'technician'
   | 'toughClaws'                  // かたいツメ（接触技×1.3）
   | 'flameMane'                   // ほのおのたてがみ（炎技×1.5・無条件。チャンピオンズ新特性）
+  | 'sharpness'                   // きれあじ（切る技×1.5）
+  | 'steelySpirit'                // はがねのせいしん（はがね技×1.5）
+  | 'punkRock'                    // パンクロック（音技×1.3 / 被弾 音技×0.5）
+  // ノーマル技のタイプ変化＋×1.2（スキン系）。対応タイプは data/abilityItemData.ts
+  | 'aerilate' | 'pixilate' | 'refrigerate' | 'galvanize' | 'dragonSkin' 
   | 'sandForce'                   // すなのちから
   | 'blaze' | 'overgrow' | 'torrent' | 'swarm'   // ピンチ強化
   | 'flashFire'                   // もらいび（炎無効＋発動後 自炎技×1.5）
@@ -75,6 +82,9 @@ export type AbilityId =
   | 'multiscale' | 'shadowShield'
   | 'solidRock' | 'filter' | 'prismArmor'
   | 'fluffy' | 'drySkin'
+  | 'auraGuard'                   // はどうのぼうご（接触技の被ダメ×0.5。チャンピオンズ新特性）
+  // ステータス側（防御側）
+  | 'furCoat'                     // ファーコート（物理技に対し防御×2）
   // タイプ無効化（防御側）
   | 'levitate' | 'risingEel' | 'waterAbsorb' | 'stormDrain' | 'voltAbsorb' | 'lightningRod'
   | 'motorDrive' | 'sapSipper' | 'wellBakedBody' | 'earthEater'
@@ -88,6 +98,7 @@ export type ItemId =
   | 'none' | 'lifeOrb'
   | 'choiceBand' | 'choiceSpecs' | 'expertBelt' | 'assaultVest'
   | 'muscleBand' | 'wiseGlasses'
+  | 'normalGem'                   // ノーマルジュエル（ノーマル技の威力×1.3・1回。計算機では発動扱い）
   // タイプ強化アイテム（×1.2・攻撃側・最終乗算）
   | 'charcoal' | 'mysticWater' | 'magnet' | 'miracleSeed' | 'neverMeltIce'
   | 'blackBelt' | 'poisonBarb' | 'softSand' | 'sharpBeak' | 'twistedSpoon'

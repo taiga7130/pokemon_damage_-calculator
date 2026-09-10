@@ -26,7 +26,25 @@ src/
   sample.ts      §10 サンプル実行
 data/
   dummy.ts       テスト用ダミー（種族・技・性格・ヘルパー）
-tests/           各関数の手計算検証テスト（期待値の根拠コメント付き）
+  pokemon_data.json / move_data.json  実データ（PChamp DB 由来 + レギュレーション追加分）
+scripts/
+  build_pokemon_data.py  PChamp DB からポケモンデータを生成（M-A 時点の一覧）
+  build_move_data.py     PChamp DB から技データを生成（技フラグは Showdown から補完）
+  add_mb_pokemon.py      レギュレーション M-B 追加分（PChamp DB 未反映のため手動管理）
+  add_mc_pokemon.py      レギュレーション M-C 追加分（同上）
+  add_mc_moves.py        M-C で解禁・変更された技（きりさく/ねらいうち/スターアサルト）
+tests/           各関数の手計算検証テスト（期待値の根拠コメント付き）＋ 実データ整合性テスト
+```
+
+## データ更新の手順
+
+```bash
+python3 scripts/build_pokemon_data.py   # PChamp DB 一覧（M-A 分）
+python3 scripts/add_mb_pokemon.py       # M-B 追加分を上乗せ（冪等）
+python3 scripts/add_mc_pokemon.py       # M-C 追加分を上乗せ（冪等）
+python3 scripts/build_move_data.py      # PChamp DB 技一覧 + 技フラグ
+python3 scripts/add_mc_moves.py         # M-C 新技を上乗せ（冪等）
+npm test                                # data.test.ts が整合性を検証
 ```
 
 ## 主要関数

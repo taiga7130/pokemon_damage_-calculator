@@ -73,5 +73,18 @@ export const PINCH_ABILITIES: Partial<Record<AbilityId, PokemonType>> = {
   swarm: 'bug',
 };
 
+/**
+ * スキン系特性（ノーマル技を該当タイプに変えて威力×1.2）: abilityId → 変化後タイプ。
+ * タイプ変化は STAB・相性・タイプ強化アイテム・半減実の判定すべてに先立って適用する。
+ * ドラゴンスキンはチャンピオンズ新特性（メガオーダイル）。効果は本家スキン系と同一と仮定（要検証）。
+ */
+export const SKIN_ABILITIES: Partial<Record<AbilityId, PokemonType>> = {
+  aerilate: 'flying',      // スカイスキン
+  pixilate: 'fairy',       // フェアリースキン
+  refrigerate: 'ice',      // フリーズスキン
+  galvanize: 'electric',   // エレキスキン
+  dragonSkin: 'dragon',    // ドラゴンスキン
+};
+
 /** すなのちから の対象タイプ（砂嵐時 ×1.3）。 */
 export const SAND_FORCE_TYPES: ReadonlySet<PokemonType> = new Set(['rock', 'ground', 'steel']);

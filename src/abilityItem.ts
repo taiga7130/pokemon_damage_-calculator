@@ -11,9 +11,23 @@ import { getStatValue } from './stats';
 import { TYPE_CHART } from './typeChart';
 import {
   TYPE_BOOST_ITEMS, HALF_BERRIES, IMMUNITY_ABILITIES, PINCH_ABILITIES, SAND_FORCE_TYPES,
+  SKIN_ABILITIES,
 } from '../data/abilityItemData';
 
 const isPhysical = (m: Move) => m.category === 'physical';
+
+// ------------------------------------------------------------
+// [技タイプ変化] スキン系特性: ノーマル技 → 該当タイプ（威力×1.2 は computeEffectivePower 側）
+//   計算チェーンの入口で 1 度だけ解決し、以降は変化後の技として扱う（STAB・相性・持ち物すべて）。
+// ------------------------------------------------------------
+export function skinType(attacker: PokemonState, move: Move): PokemonType | null {
+  const t = SKIN_ABILITIES[attacker.ability as keyof typeof SKIN_ABILITIES];
+  return move.type === 'normal' && t ? t : null;
+}
+export function resolveMove(attacker: PokemonState, move: Move): Move {
+  const t = skinType(attacker, move);
+  return t ? { ...move, type: t, flags: { ...(move.flags ?? {}), skinBoosted: true } } : move;
+}
 
 /** 単体タイプ相性値（chart に無ければ 1）。 */
 function chartValue(moveType: PokemonType, defType: PokemonType): number {
@@ -57,6 +71,10 @@ export function applyAttackStatMods(stat: number, attacker: PokemonState, move: 
 // [ステータス側] D_eff の持ち物補正（ランク・天候補正の後に適用）
 // ------------------------------------------------------------
 export function applyDefenseStatMods(stat: number, defender: PokemonState, move: Move): number {
+  // ファーコート: 物理技被弾時に防御 ×2
+  if (isPhysical(move) && defender.ability === 'furCoat') {
+    stat = pokeRound(stat, MOD.X2_0);
+  }
   // とつげきチョッキ: 特殊技被弾時に特防 ×1.5
   if (!isPhysical(move) && defender.item === 'assaultVest') {
     stat = pokeRound(stat, MOD.X1_5);
@@ -80,6 +98,13 @@ export function computeEffectivePower(attacker: PokemonState, move: Move, condit
   if (ab === 'reckless' && f.recoil) p = pokeRound(p, MOD.X1_2);    // すてみ
   if (ab === 'sheerForce' && f.hasSecondary) p = pokeRound(p, MOD.X1_3); // ちからずく
   if (ab === 'technician' && move.power <= 60) p = pokeRound(p, MOD.X1_5); // テクニシャン（基礎威力60以下）
+  if (ab === 'sharpness' && f.slicing) p = pokeRound(p, MOD.X1_5);   // きれあじ（切る技）
+  if (ab === 'steelySpirit' && move.type === 'steel') p = pokeRound(p, MOD.X1_5); // はがねのせいしん
+  if (ab === 'punkRock' && f.sound) p = pokeRound(p, MOD.X1_3);      // パンクロック（音技）
+  // スキン系: ノーマル技のタイプ変化後 ×1.2（タイプ変化自体は resolveMove で解決済み）
+  if (f.skinBoosted) p = pokeRound(p, MOD.X1_2);
+  // ノーマルジュエル: ノーマル技 ×1.3（1回使い切り。計算機では発動扱い）
+  if (attacker.item === 'normalGem' && move.type === 'normal') p = pokeRound(p, MOD.X1_3);
   if (ab === 'sandForce' && conditions.weather === 'sand' && SAND_FORCE_TYPES.has(move.type)) {
     p = pokeRound(p, MOD.X1_3); // すなのちから
   }
@@ -101,6 +126,7 @@ export function computeEffectivePower(attacker: PokemonState, move: Move, condit
 export function computeTypeEffectiveness(
   attacker: PokemonState, defender: PokemonState, move: Move,
 ): number {
+  move = resolveMove(attacker, move); // スキン系のタイプ変化（未変化なら同一オブジェクト）
   // きもったま / しんがん: ノーマル・かくとう技がゴーストの無効を貫通
   const scrappy =
     (attacker.ability === 'scrappy' || attacker.ability === 'mindsEye') &&
@@ -175,6 +201,8 @@ export function computeFinalMods(
     if (move.isContact) mods.push(MOD.X0_5); // 接触 半減
     if (move.type === 'fire') mods.push(MOD.X2_0); // 炎 2倍（接触炎は相殺）
   }
+  if (dab === 'auraGuard' && move.isContact) mods.push(MOD.X0_5); // はどうのぼうご: 接触技 半減
+  if (dab === 'punkRock' && move.flags?.sound) mods.push(MOD.X0_5); // パンクロック: 音技 半減
 
   // --- 防御側 半減実（効果抜群時のみ・1回） ---
   const berryType = HALF_BERRIES[defender.item as keyof typeof HALF_BERRIES];

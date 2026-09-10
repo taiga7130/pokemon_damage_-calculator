@@ -23,6 +23,8 @@ interface RawPokemon { dexNo: number; name: string; forms: RawForm[] }
 interface RawMove {
   moveId: string; name: string; type: string;
   category: string; power: number | null; accuracy: number | null; contact: boolean | null;
+  /** 技フラグ（punch/sound/slicing/recoil/hasSecondary。true のもののみ） */
+  flags?: Record<string, boolean>;
 }
 
 // ---- フォルム一覧（ポケモン選択の単位）----
@@ -82,6 +84,7 @@ export interface MoveEntry {
   category: 'physical' | 'special';
   power: number;
   isContact: boolean;
+  flags: NonNullable<Move['flags']>;
 }
 
 export const MOVES: MoveEntry[] = (moveData as RawMove[])
@@ -93,10 +96,11 @@ export const MOVES: MoveEntry[] = (moveData as RawMove[])
     category: m.category as MoveCategory as 'physical' | 'special',
     power: m.power as number,
     isContact: !!m.contact,
+    flags: (m.flags ?? {}) as NonNullable<Move['flags']>,
   }));
 
 export function toMove(m: MoveEntry): Move {
-  return { name: m.name, type: m.type, category: m.category, power: m.power, isContact: m.isContact };
+  return { name: m.name, type: m.type, category: m.category, power: m.power, isContact: m.isContact, flags: m.flags };
 }
 
 // ---- フェーズ2: UI入力から PokemonState を組み立てる ----

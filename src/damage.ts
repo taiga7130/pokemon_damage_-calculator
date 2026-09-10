@@ -6,7 +6,7 @@ import { pokeRound, MOD } from './pokeRound';
 import { calcEffectiveAttack, calcEffectiveDefense } from './effective';
 import {
   computeEffectivePower, computeTypeEffectiveness, computeCritMod,
-  computePostTypeMods, computeFinalMods,
+  computePostTypeMods, computeFinalMods, resolveMove,
 } from './abilityItem';
 
 /**
@@ -134,6 +134,8 @@ export function calcDamageRange(
   move: Move,
   conditions: Conditions = {},
 ): number[] {
+  // スキン系特性のタイプ変化を入口で 1 度だけ解決（STAB・相性・持ち物すべてに反映）
+  move = resolveMove(attacker, move);
   const { base, ctx, typeEff } = buildContext(attacker, defender, move, conditions);
   if (typeEff === 0) return new Array(16).fill(0); // 無効
 
