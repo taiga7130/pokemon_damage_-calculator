@@ -134,6 +134,22 @@ function MegaChips({ form, onPick }: { form: FormEntry; onPick: (key: string) =>
 }
 
 const RANKS = [-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6];
+const STAT_LABEL: Record<NatStat, string> = { atk: '攻撃', spa: '特攻', def: '防御', spd: '特防' };
+
+/** 攻撃/特攻・防御/特防 の編集対象切替。計算に使われている側に「使用中」を付ける。 */
+function StatPicker<K extends NatStat>({ keys, value, used, onChange, hasMove }: {
+  keys: [K, K]; value: K; used: K; onChange: (k: K) => void; hasMove: boolean;
+}) {
+  return (
+    <div className="seg statseg">
+      {keys.map((k) => (
+        <button key={k} className={value === k ? 'on' : ''} onClick={() => onChange(k)}>
+          {STAT_LABEL[k]}{hasMove && used === k && <span className="used">使用中</span>}
+        </button>
+      ))}
+    </div>
+  );
+}
 const TYPE_LIST = Object.keys(TYPE_JA) as PokemonType[];
 const formOf = (key: string | null) => (key ? FORMS.find((f) => f.key === key) ?? null : null);
 
@@ -185,11 +201,20 @@ export default function App() {
   const def = formOf(defBuild.formKey);
   const move = atkBuild.moveId ? MOVES.find((m) => m.moveId === atkBuild.moveId) ?? null : null;
 
+  // 計算に使うステータスは技の分類で決まる（物理=攻撃/防御・特殊=特攻/特防）
   const isPhysical = move ? move.category === 'physical' : true;
   const offKey: OffStat = isPhysical ? 'atk' : 'spa';
   const defKey: DefStat = isPhysical ? 'def' : 'spd';
-  const offLabel = isPhysical ? '攻撃' : '特攻';
   const defLabel = isPhysical ? '防御' : '特防';
+
+  // 編集対象のステータスは手動で切替可能（null = 技の分類に追従）。技を変えると追従に戻す。
+  const [offPick, setOffPick] = useState<OffStat | null>(null);
+  const [defPick, setDefPick] = useState<DefStat | null>(null);
+  useEffect(() => { setOffPick(null); setDefPick(null); }, [move?.category]);
+  const offEdit: OffStat = offPick ?? offKey;
+  const defEdit: DefStat = defPick ?? defKey;
+  const offEditLabel = STAT_LABEL[offEdit];
+  const defEditLabel = STAT_LABEL[defEdit];
 
   // 共有URLを現在状態に同期
   const shareState = (): ShareState => ({ v: 1, s: swapped ? 1 : 0, w: weather, l: wall ? 1 : 0, c: crit ? 1 : 0, b: burn ? 1 : 0, p: [buildToShare(builds[0]), buildToShare(builds[1])] });
@@ -281,13 +306,19 @@ export default function App() {
           <div className="meta"><TypeBadges types={atk.types} /><span className="stats">H{atk.baseStats.hp} A{atk.baseStats.atk} B{atk.baseStats.def} C{atk.baseStats.spa} D{atk.baseStats.spd} S{atk.baseStats.spe}</span></div>
           <details className="det" open>
             <summary>SP・性格・特性・持ち物・ランク</summary>
-            <SpField label={`${offLabel} SP`} value={atkBuild.sp[offKey]} real={realOf(atk, offKey, atkBuild)}
-              onChange={(v) => updateBuild(atkIdx, (b) => ({ ...b, sp: { ...b.sp, [offKey]: v } }))} />
-            <NatureToggle label={offLabel} value={atkBuild.nature[offKey]} onChange={(v) => updateBuild(atkIdx, (b) => ({ ...b, nature: { ...b.nature, [offKey]: v } }))} />
+            <StatPicker keys={['atk', 'spa']} value={offEdit} used={offKey} hasMove={!!move} onChange={setOffPick} />
+            <div className="statsum">
+              <span className={offKey === 'atk' && move ? 'on' : ''}>攻撃 {realOf(atk, 'atk', atkBuild)}</span>
+              <span className={offKey === 'spa' && move ? 'on' : ''}>特攻 {realOf(atk, 'spa', atkBuild)}</span>
+              {move && offEdit !== offKey && <span className="hint">選択中の技は{isPhysical ? '物理' : '特殊'}技（{STAT_LABEL[offKey]}で計算）</span>}
+            </div>
+            <SpField label={`${offEditLabel} SP`} value={atkBuild.sp[offEdit]} real={realOf(atk, offEdit, atkBuild)}
+              onChange={(v) => updateBuild(atkIdx, (b) => ({ ...b, sp: { ...b.sp, [offEdit]: v } }))} />
+            <NatureToggle label={offEditLabel} value={atkBuild.nature[offEdit]} onChange={(v) => updateBuild(atkIdx, (b) => ({ ...b, nature: { ...b.nature, [offEdit]: v } }))} />
             <AbilitySelect form={atk} value={atkBuild.abilityJa} onChange={(v) => updateBuild(atkIdx, (b) => ({ ...b, abilityJa: v }))} />
             <ItemSelect value={atkBuild.item} onChange={(v) => updateBuild(atkIdx, (b) => ({ ...b, item: v }))} />
-            <div className="rankrow"><span>{offLabel}ランク</span>
-              <select className="sel sel-sm" value={atkBuild.rank[offKey]} onChange={(e) => updateBuild(atkIdx, (b) => ({ ...b, rank: { ...b.rank, [offKey]: Number(e.target.value) } }))}>
+            <div className="rankrow"><span>{offEditLabel}ランク</span>
+              <select className="sel sel-sm" value={atkBuild.rank[offEdit]} onChange={(e) => updateBuild(atkIdx, (b) => ({ ...b, rank: { ...b.rank, [offEdit]: Number(e.target.value) } }))}>
                 {RANKS.map((r) => <option key={r} value={r}>{r > 0 ? `+${r}` : r}</option>)}
               </select>
             </div>
@@ -311,15 +342,22 @@ export default function App() {
           <div className="meta"><TypeBadges types={def.types} /><span className="stats">H{def.baseStats.hp} A{def.baseStats.atk} B{def.baseStats.def} C{def.baseStats.spa} D{def.baseStats.spd} S{def.baseStats.spe}</span></div>
           <details className="det" open>
             <summary>SP・性格・特性・持ち物・ランク</summary>
+            <StatPicker keys={['def', 'spd']} value={defEdit} used={defKey} hasMove={!!move} onChange={setDefPick} />
+            <div className="statsum">
+              <span>HP {calcHP(def.baseStats.hp, defBuild.sp.hp)}</span>
+              <span className={defKey === 'def' && move ? 'on' : ''}>防御 {realOf(def, 'def', defBuild)}</span>
+              <span className={defKey === 'spd' && move ? 'on' : ''}>特防 {realOf(def, 'spd', defBuild)}</span>
+              {move && defEdit !== defKey && <span className="hint">選択中の技は{isPhysical ? '物理' : '特殊'}技（{STAT_LABEL[defKey]}で計算）</span>}
+            </div>
             <SpField label="HP SP" value={defBuild.sp.hp} real={calcHP(def.baseStats.hp, defBuild.sp.hp)}
               onChange={(v) => updateBuild(defIdx, (b) => ({ ...b, sp: { ...b.sp, hp: v } }))} />
-            <SpField label={`${defLabel} SP`} value={defBuild.sp[defKey]} real={realOf(def, defKey, defBuild)}
-              onChange={(v) => updateBuild(defIdx, (b) => ({ ...b, sp: { ...b.sp, [defKey]: v } }))} />
-            <NatureToggle label={defLabel} value={defBuild.nature[defKey]} onChange={(v) => updateBuild(defIdx, (b) => ({ ...b, nature: { ...b.nature, [defKey]: v } }))} />
+            <SpField label={`${defEditLabel} SP`} value={defBuild.sp[defEdit]} real={realOf(def, defEdit, defBuild)}
+              onChange={(v) => updateBuild(defIdx, (b) => ({ ...b, sp: { ...b.sp, [defEdit]: v } }))} />
+            <NatureToggle label={defEditLabel} value={defBuild.nature[defEdit]} onChange={(v) => updateBuild(defIdx, (b) => ({ ...b, nature: { ...b.nature, [defEdit]: v } }))} />
             <AbilitySelect form={def} value={defBuild.abilityJa} onChange={(v) => updateBuild(defIdx, (b) => ({ ...b, abilityJa: v }))} />
             <ItemSelect value={defBuild.item} onChange={(v) => updateBuild(defIdx, (b) => ({ ...b, item: v }))} />
-            <div className="rankrow"><span>{defLabel}ランク</span>
-              <select className="sel sel-sm" value={defBuild.rank[defKey]} onChange={(e) => updateBuild(defIdx, (b) => ({ ...b, rank: { ...b.rank, [defKey]: Number(e.target.value) } }))}>
+            <div className="rankrow"><span>{defEditLabel}ランク</span>
+              <select className="sel sel-sm" value={defBuild.rank[defEdit]} onChange={(e) => updateBuild(defIdx, (b) => ({ ...b, rank: { ...b.rank, [defEdit]: Number(e.target.value) } }))}>
                 {RANKS.map((r) => <option key={r} value={r}>{r > 0 ? `+${r}` : r}</option>)}
               </select>
             </div>
