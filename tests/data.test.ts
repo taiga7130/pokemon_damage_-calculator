@@ -16,7 +16,7 @@ interface RawMove { moveId: string; name: string; type: string; category: string
 
 const POKE = pokemonData as RawPokemon[];
 const MOVES = moveData as RawMove[];
-const VALID_FLAGS = new Set(['punch', 'sound', 'slicing', 'recoil', 'hasSecondary']);
+const VALID_FLAGS = new Set(['punch', 'sound', 'slicing', 'recoil', 'hasSecondary', 'grassyHalved']);
 const find = (dex: number, form: string) => POKE.find((p) => p.dexNo === dex)?.forms.find((f) => f.formName === form);
 
 describe('pokemon_data.json 整合性', () => {
@@ -69,7 +69,8 @@ describe('move_data.json 整合性', () => {
     expect(by['sludge-bomb'].flags?.hasSecondary).toBe(true);
     expect(by['hyper-voice'].flags?.sound).toBe(true);
     expect(by['leaf-blade'].flags?.slicing).toBe(true);
-    expect(by['earthquake'] ? by['earthquake'].flags ?? {} : {}).toEqual({}); // 追加効果なし
+    expect(by['earthquake'].flags).toEqual({ grassyHalved: true }); // 追加効果なし・グラスフィールドで半減
+    expect(by['bulldoze'].flags?.grassyHalved).toBe(true);
     expect(MOVES.some((m) => Object.keys(m.flags ?? {}).length === 0)).toBe(true);
   });
 });

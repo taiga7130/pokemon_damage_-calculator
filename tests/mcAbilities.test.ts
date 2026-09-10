@@ -8,6 +8,7 @@ import { describe, it, expect } from 'vitest';
 import { calcDamageRange } from '../src/damage';
 import { computeEffectivePower, computeTypeEffectiveness, resolveMove } from '../src/abilityItem';
 import { calcEffectiveDefense } from '../src/effective';
+import { isGrounded } from '../src/abilityItem';
 import { makeState, EMBERON, NORMUX, SKYLAVE } from '../data/dummy';
 import type { PokemonState, Move, Conditions, Species } from '../src/types';
 
@@ -123,5 +124,54 @@ describe('ノーマルジュエル（ノーマル技 ×1.3・威力側・発動�
     expect(computeEffectivePower(E({ item: 'normalGem' }), NORMAL80, {})).toBe(104);
     expect(max(E({ item: 'normalGem' }), N(), NORMAL80)).toBe(56);
     expect(computeEffectivePower(E({ item: 'normalGem' }), STEEL80, {})).toBe(80);
+  });
+});
+
+// ============================================================
+// フィールド（グラス / エレキ / サイコ / ミスト）
+// ============================================================
+const GRASS80: Move = { name: 'grass', type: 'grass', category: 'physical', power: 80, isContact: false };
+const ELEC80: Move = { name: 'elec', type: 'electric', category: 'physical', power: 80, isContact: false };
+const PSY80: Move = { name: 'psy', type: 'psychic', category: 'physical', power: 80, isContact: false };
+const DRAGON80: Move = { name: 'dragon', type: 'dragon', category: 'physical', power: 80, isContact: false };
+const QUAKE80: Move = { name: 'quake', type: 'ground', category: 'physical', power: 80, isContact: false, flags: { grassyHalved: true } };
+
+describe('接地判定', () => {
+  it('ひこうタイプ / ふゆう / うなぎのぼり は非接地', () => {
+    expect(isGrounded(E())).toBe(true);
+    expect(isGrounded(makeState(SKYLAVE))).toBe(false);
+    expect(isGrounded(E({ ability: 'levitate' }))).toBe(false);
+    expect(isGrounded(E({ ability: 'risingEel' }))).toBe(false);
+  });
+});
+
+describe('フィールド補正（威力側・接地している側にのみ作用）', () => {
+  it('グラス: 接地した攻撃側のくさ技 ×1.3 → 80 → 104', () => {
+    expect(computeEffectivePower(E(), GRASS80, { terrain: 'grassy' }, N())).toBe(104);
+    expect(computeEffectivePower(makeState(SKYLAVE), GRASS80, { terrain: 'grassy' }, N())).toBe(80); // 非接地
+    expect(computeEffectivePower(E(), ELEC80, { terrain: 'grassy' }, N())).toBe(80);
+  });
+  it('グラス: 接地した相手への じしん ×0.5 → 80 → 40（ひこう相手には等倍）', () => {
+    expect(computeEffectivePower(E(), QUAKE80, { terrain: 'grassy' }, N())).toBe(40);
+    expect(computeEffectivePower(E(), QUAKE80, { terrain: 'grassy' }, makeState(SKYLAVE))).toBe(80);
+    expect(computeEffectivePower(E(), QUAKE80, { terrain: 'grassy' })).toBe(80); // 防御側不明なら半減しない
+    // 威力40 → base = floor(floor(22*40*120/100)/50)+2 = floor(1056/50)+2 = 23（じめん vs ノーマル 等倍）
+    expect(max(E(), N(), QUAKE80, { terrain: 'grassy' })).toBe(23);
+  });
+  it('エレキ / サイコ: 該当タイプ ×1.3。ミスト: 接地した相手へのドラゴン技 ×0.5', () => {
+    expect(computeEffectivePower(E(), ELEC80, { terrain: 'electric' }, N())).toBe(104);
+    expect(computeEffectivePower(E(), PSY80, { terrain: 'psychic' }, N())).toBe(104);
+    expect(computeEffectivePower(E(), DRAGON80, { terrain: 'misty' }, N())).toBe(40);
+    expect(computeEffectivePower(E(), DRAGON80, { terrain: 'misty' }, makeState(SKYLAVE))).toBe(80);
+  });
+});
+
+describe('くさのけがわ（グラスフィールド時 防御 ×1.5・ステータス側）', () => {
+  it('D_eff = pokeRound(100, 6144) = 150。フィールド無しや特殊技には無効', () => {
+    expect(calcEffectiveDefense(N({ ability: 'grassPelt' }), NORMAL80, { terrain: 'grassy' })).toBe(150);
+    expect(calcEffectiveDefense(N({ ability: 'grassPelt' }), NORMAL80, {})).toBe(100);
+    expect(calcEffectiveDefense(N({ ability: 'grassPelt' }), NORMAL_SP80, { terrain: 'grassy' })).toBe(100);
+    // base = floor(floor(22*80*120/150)/50)+2 = floor(1408/50)+2 = 30
+    expect(max(E(), N({ ability: 'grassPelt' }), NORMAL80, { terrain: 'grassy' })).toBe(30);
   });
 });

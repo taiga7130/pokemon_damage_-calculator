@@ -48,8 +48,8 @@ export function calcEffectiveDefense(defender: PokemonState, move: Move, conditi
     stat = pokeRound(stat, MOD.X1_5); // 雪: こおりタイプの防御 ×1.5
   }
 
-  // §4.4 防御側 持ち物（とつげきチョッキ: 特殊技に対し特防 ×1.5）
-  stat = applyDefenseStatMods(stat, defender, move);
+  // §4.4 防御側 特性/持ち物（ファーコート・くさのけがわ・とつげきチョッキ）
+  stat = applyDefenseStatMods(stat, defender, move, conditions);
 
   return stat;
 }

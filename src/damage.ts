@@ -93,7 +93,7 @@ function buildContext(
   const A = calcEffectiveAttack(attacker, move, conditions);
   const D = calcEffectiveDefense(defender, move, conditions);
   // §4.4 威力側 特性（はりきり/てつのこぶし/ピンチ強化 等）を反映した実効威力
-  const powerEff = computeEffectivePower(attacker, move, conditions);
+  const powerEff = computeEffectivePower(attacker, move, conditions, defender);
   const base = calcBaseDamage(powerEff, A, D);
 
   // §5.3 タイプ相性（特性の無効化・貫通を反映）

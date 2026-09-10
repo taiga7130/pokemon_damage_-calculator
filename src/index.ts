@@ -43,7 +43,7 @@ export { calcEffectiveAttack, calcEffectiveDefense } from './effective';
 export { calcTypeEffectiveness, TYPE_CHART, ALL_TYPES } from './typeChart';
 export {
   computeEffectivePower, computeTypeEffectiveness, computeCritMod,
-  computePostTypeMods, computeFinalMods, resolveMove,
+  computePostTypeMods, computeFinalMods, resolveMove, isGrounded,
 } from './abilityItem';
 export { calcBaseDamage, applyModifiers, calcDamageRange } from './damage';
 export { calcKOProbability } from './ko';

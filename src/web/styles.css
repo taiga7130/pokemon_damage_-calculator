@@ -169,3 +169,4 @@ body {
 .statsum { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 0.78rem; color: var(--muted); margin: 2px 0 4px; font-variant-numeric: tabular-nums; }
 .statsum .on { color: var(--ok); font-weight: 700; }
 .statsum .hint { width: 100%; color: var(--accent-deep); font-size: 0.72rem; }
+.fieldnote { font-size: 0.72rem; color: var(--muted); line-height: 1.5; }

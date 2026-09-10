@@ -39,9 +39,13 @@ export interface Move {
    *   hasSecondary: 追加効果を持つ技（ちからずく）
    *   sound       : 音技（パンクロック）
    *   slicing     : 切る技（きれあじ）
+   *   grassyHalved: グラスフィールドで威力半減する技（じしん・じならし・マグニチュード）
    *   skinBoosted : 内部用。スキン系特性でタイプ変化済み（威力×1.2 の対象）。resolveMove が付与する
    */
-  flags?: { punch?: boolean; recoil?: boolean; hasSecondary?: boolean; sound?: boolean; slicing?: boolean; skinBoosted?: boolean };
+  flags?: {
+    punch?: boolean; recoil?: boolean; hasSecondary?: boolean; sound?: boolean; slicing?: boolean;
+    grassyHalved?: boolean; skinBoosted?: boolean;
+  };
 }
 
 // ---- 個体の状態（計算入力）----
@@ -85,6 +89,7 @@ export type AbilityId =
   | 'auraGuard'                   // はどうのぼうご（接触技の被ダメ×0.5。チャンピオンズ新特性）
   // ステータス側（防御側）
   | 'furCoat'                     // ファーコート（物理技に対し防御×2）
+  | 'grassPelt'                   // くさのけがわ（グラスフィールド時 防御×1.5）
   // タイプ無効化（防御側）
   | 'levitate' | 'risingEel' | 'waterAbsorb' | 'stormDrain' | 'voltAbsorb' | 'lightningRod'
   | 'motorDrive' | 'sapSipper' | 'wellBakedBody' | 'earthEater'
@@ -124,9 +129,19 @@ export interface PokemonState {
 
 // ---- 戦況条件 ----
 export type Weather = 'none' | 'sun' | 'rain' | 'sand' | 'snow';
+/**
+ * フィールド。ダメージへの影響（本家準拠・要検証）:
+ *   grassy  : 接地した攻撃側のくさ技 ×1.3 / 接地した防御側への じしん・じならし ×0.5
+ *   electric: 接地した攻撃側のでんき技 ×1.3
+ *   psychic : 接地した攻撃側のエスパー技 ×1.3
+ *   misty   : 接地した防御側へのドラゴン技 ×0.5
+ * 接地判定: ひこうタイプ・ふゆう・うなぎのぼり は非接地（ふうせん等の持ち物は未実装）
+ */
+export type Terrain = 'none' | 'grassy' | 'electric' | 'psychic' | 'misty';
 
 export interface Conditions {
   weather?: Weather;        // 既定 'none'
+  terrain?: Terrain;        // 既定 'none'
   isCrit?: boolean;         // 急所
   attackerBurned?: boolean; // やけど（物理のみ ×0.5）
   reflect?: boolean;        // リフレクター（物理を半減）

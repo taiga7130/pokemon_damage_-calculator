@@ -10,6 +10,7 @@ Pokémon Showdown の moves データを補助ソースとして併用する（�
   slicing      : 切る技（きれあじ ×1.5）
   recoil       : 反動技（すてみ ×1.2。Showdown の recoil / hasCrashDamage）
   hasSecondary : 追加効果あり（ちからずく ×1.3。Showdown の secondary / secondaries）
+  grassyHalved : グラスフィールドで威力半減（じしん・じならし・マグニチュード。固定リスト）
 チャンピオンズ独自の分類変更は CHAMPIONS_FLAG_OVERRIDES で上書きする。
 
 正準ソース（基本属性）: https://app.gamepedia.jp/pokemon-champions/moves?lang=ja
@@ -40,6 +41,8 @@ PCHAMP = "https://app.gamepedia.jp/pokemon-champions/moves?lang=ja"
 CHAMPIONS_FLAG_OVERRIDES = {
     "double-shock": {"punch": True},
 }
+# グラスフィールドで威力が半減する技（本家仕様。接地した相手に対してのみ）
+GRASSY_HALVED = {"earthquake", "bulldoze", "magnitude"}
 SHOWDOWN = "https://play.pokemonshowdown.com/data/moves.json"
 VALID_TYPES = {"normal","fire","water","electric","grass","ice","fighting","poison",
     "ground","flying","psychic","bug","rock","ghost","dragon","dark","steel","fairy"}
@@ -101,6 +104,8 @@ def build(cache, out):
         else:
             contact = None
             join_fail.append({"moveId": key, "name": a["data-name"]})
+        if key in GRASSY_HALVED and cls != "status":
+            flags["grassyHalved"] = True
         for fk, fv in CHAMPIONS_FLAG_OVERRIDES.get(key, {}).items():
             if fv: flags[fk] = True
             else: flags.pop(fk, None)

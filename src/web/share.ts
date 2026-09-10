@@ -16,6 +16,7 @@ export interface ShareState {
   v: 1;            // スキーマ版（将来の互換用）
   s: number;       // swapped
   w: string;       // weather
+  t?: string;      // terrain（省略時 'none'。旧URL互換）
   l: number; c: number; b: number; // wall / crit / burn
   p: [ShareBuild, ShareBuild];
 }

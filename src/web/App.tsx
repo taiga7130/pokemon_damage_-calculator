@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
 import { calcDamage, computeTypeEffectiveness, calcHP, calcStat } from '../index';
-import type { PokemonType, Weather, ItemId, StatBlock } from '../types';
+import type { PokemonType, Weather, Terrain, ItemId, StatBlock } from '../types';
 import {
   FORMS, MOVES, toMove, buildAttacker, buildDefender, effectivenessLabel, siblingForms,
   TYPE_JA, TYPE_COLOR, type FormEntry, type NatureChoice,
 } from './adapter';
 import { SearchSelect, type Option } from './SearchSelect';
-import { ITEMS, IMPLEMENTED_ABILITY_JA, isEffectiveAbility } from './registry';
+import { ITEMS, IMPLEMENTED_ABILITY_JA, isEffectiveAbility, TERRAIN_SETTER_JA } from './registry';
 import { encodeShare, decodeShare, type ShareBuild, type ShareState } from './share';
 import { PresetBar } from './PresetBar';
 import type { StoredBuild } from './presets';
@@ -98,7 +98,7 @@ function AbilitySelect({ form, value, onChange }: { form: FormEntry; value: stri
     <select className="sel" value={value} onChange={(e) => onChange(e.target.value)}>
       <option value="">特性なし</option>
       {bound !== null
-        ? bound.map((j) => <option key={`c-${j}`} value={j}>{isEffectiveAbility(j) ? j : `${j}（ダメージ影響なし）`}</option>)
+        ? bound.map((j) => <option key={`c-${j}`} value={j}>{isEffectiveAbility(j) ? j : TERRAIN_SETTER_JA[j] ? `${j}（フィールド展開）` : `${j}（ダメージ影響なし）`}</option>)
         : (
           <optgroup label="この形態の特性データ未収録（実装済みから選択）">
             {IMPLEMENTED_ABILITY_JA.map((j) => <option key={`e-${j}`} value={j}>{j}</option>)}
@@ -178,6 +178,7 @@ export default function App() {
   );
   const [swapped, setSwapped] = useState(init ? !!init.s : false);
   const [weather, setWeather] = useState<Weather>(init ? (init.w as Weather) : 'none');
+  const [terrain, setTerrain] = useState<Terrain>(init?.t ? (init.t as Terrain) : 'none');
   const [wall, setWall] = useState(init ? !!init.l : false);
   const [crit, setCrit] = useState(init ? !!init.c : false);
   const [burn, setBurn] = useState(init ? !!init.b : false);
@@ -217,10 +218,17 @@ export default function App() {
   const defEditLabel = STAT_LABEL[defEdit];
 
   // 共有URLを現在状態に同期
-  const shareState = (): ShareState => ({ v: 1, s: swapped ? 1 : 0, w: weather, l: wall ? 1 : 0, c: crit ? 1 : 0, b: burn ? 1 : 0, p: [buildToShare(builds[0]), buildToShare(builds[1])] });
+  const shareState = (): ShareState => ({ v: 1, s: swapped ? 1 : 0, w: weather, t: terrain, l: wall ? 1 : 0, c: crit ? 1 : 0, b: burn ? 1 : 0, p: [buildToShare(builds[0]), buildToShare(builds[1])] });
   useEffect(() => {
     window.history.replaceState(null, '', '#' + encodeShare(shareState()));
-  }, [builds, swapped, weather, wall, crit, burn]);
+  }, [builds, swapped, weather, terrain, wall, crit, burn]);
+
+  // メイカー系特性を選んだら場のフィールドを自動で合わせる（手動で変更可）
+  const pickAbility = (idx: number, ja: string) => {
+    updateBuild(idx, (b) => ({ ...b, abilityJa: ja }));
+    const t = TERRAIN_SETTER_JA[ja];
+    if (t) setTerrain(t);
+  };
 
   const copyUrl = async () => {
     const url = window.location.origin + window.location.pathname + '#' + encodeShare(shareState());
@@ -251,13 +259,13 @@ export default function App() {
     const a = buildAttacker({ form: atk, isPhysical: phys, sp: atkBuild.sp[offKey], nature: atkBuild.nature[offKey], abilityJa: atkBuild.abilityJa, item: atkBuild.item, rank: atkBuild.rank[offKey] });
     const d = buildDefender({ form: def, isPhysical: phys, hpSp: defBuild.sp.hp, defSp: defBuild.sp[defKey], nature: defBuild.nature[defKey], abilityJa: defBuild.abilityJa, item: defBuild.item, rank: defBuild.rank[defKey] });
     const mv = toMove(move);
-    const baseCond = { weather, attackerBurned: burn, reflect: wall && phys, lightScreen: wall && !phys };
+    const baseCond = { weather, terrain, attackerBurned: burn, reflect: wall && phys, lightScreen: wall && !phys };
     return {
       normal: calcDamage(a, d, mv, { ...baseCond, isCrit: false }),
       crit: calcDamage(a, d, mv, { ...baseCond, isCrit: true }),
       eff: computeTypeEffectiveness(a, d, mv),
     };
-  }, [atk, def, move, atkBuild, defBuild, offKey, defKey, weather, wall, crit, burn]);
+  }, [atk, def, move, atkBuild, defBuild, offKey, defKey, weather, terrain, wall, crit, burn]);
 
   const primary = result ? (crit ? result.crit : result.normal) : null;
   const secondary = result ? (crit ? result.normal : result.crit) : null;
@@ -272,26 +280,26 @@ export default function App() {
       const dKey: DefStat = phys ? 'def' : 'spd';
       const a = buildAttacker({ form: atk, isPhysical: phys, sp: atkBuild.sp[oKey], nature: atkBuild.nature[oKey], abilityJa: atkBuild.abilityJa, item: atkBuild.item, rank: atkBuild.rank[oKey] });
       const d = buildDefender({ form: def, isPhysical: phys, hpSp: defBuild.sp.hp, defSp: defBuild.sp[dKey], nature: defBuild.nature[dKey], abilityJa: defBuild.abilityJa, item: defBuild.item, rank: defBuild.rank[dKey] });
-      const r = calcDamage(a, d, toMove(m), { weather, attackerBurned: burn, reflect: wall && phys, lightScreen: wall && !phys, isCrit: crit });
+      const r = calcDamage(a, d, toMove(m), { weather, terrain, attackerBurned: burn, reflect: wall && phys, lightScreen: wall && !phys, isCrit: crit });
       return { m, r };
     });
     rows.sort((x, y) => y.r.maxPercent - x.r.maxPercent);
     return rows.slice(0, 60);
-  }, [bulkOpen, atk, def, atkBuild, defBuild, filteredMoves, weather, wall, crit, burn]);
+  }, [bulkOpen, atk, def, atkBuild, defBuild, filteredMoves, weather, terrain, wall, crit, burn]);
 
   // 耐久逆算: 現在の攻撃を確定耐えする最小SP配分（防御側の性格・持ち物・ランクは現状のまま）
   const surv = useMemo(() => {
     if (!survOpen || !atk || !def || !move) return null;
     const phys = move.category === 'physical';
     const a = buildAttacker({ form: atk, isPhysical: phys, sp: atkBuild.sp[offKey], nature: atkBuild.nature[offKey], abilityJa: atkBuild.abilityJa, item: atkBuild.item, rank: atkBuild.rank[offKey] });
-    const cond = { weather, attackerBurned: burn, reflect: wall && phys, lightScreen: wall && !phys, isCrit: crit };
+    const cond = { weather, terrain, attackerBurned: burn, reflect: wall && phys, lightScreen: wall && !phys, isCrit: crit };
     return findSurvivalSP(
       a, toMove(move), cond,
       (hpSp, defSp) => buildDefender({ form: def, isPhysical: phys, hpSp, defSp, nature: defBuild.nature[defKey], abilityJa: defBuild.abilityJa, item: defBuild.item, rank: defBuild.rank[defKey] }),
       { hpSp: defBuild.sp.hp, defSp: defBuild.sp[defKey] },
       defKey,
     );
-  }, [survOpen, atk, def, move, atkBuild, defBuild, offKey, defKey, weather, wall, crit, burn]);
+  }, [survOpen, atk, def, move, atkBuild, defBuild, offKey, defKey, weather, terrain, wall, crit, burn]);
 
   const renderAttacker = () => (
     <section className="card">
@@ -315,7 +323,7 @@ export default function App() {
             <SpField label={`${offEditLabel} SP`} value={atkBuild.sp[offEdit]} real={realOf(atk, offEdit, atkBuild)}
               onChange={(v) => updateBuild(atkIdx, (b) => ({ ...b, sp: { ...b.sp, [offEdit]: v } }))} />
             <NatureToggle label={offEditLabel} value={atkBuild.nature[offEdit]} onChange={(v) => updateBuild(atkIdx, (b) => ({ ...b, nature: { ...b.nature, [offEdit]: v } }))} />
-            <AbilitySelect form={atk} value={atkBuild.abilityJa} onChange={(v) => updateBuild(atkIdx, (b) => ({ ...b, abilityJa: v }))} />
+            <AbilitySelect form={atk} value={atkBuild.abilityJa} onChange={(v) => pickAbility(atkIdx, v)} />
             <ItemSelect value={atkBuild.item} onChange={(v) => updateBuild(atkIdx, (b) => ({ ...b, item: v }))} />
             <div className="rankrow"><span>{offEditLabel}ランク</span>
               <select className="sel sel-sm" value={atkBuild.rank[offEdit]} onChange={(e) => updateBuild(atkIdx, (b) => ({ ...b, rank: { ...b.rank, [offEdit]: Number(e.target.value) } }))}>
@@ -354,7 +362,7 @@ export default function App() {
             <SpField label={`${defEditLabel} SP`} value={defBuild.sp[defEdit]} real={realOf(def, defEdit, defBuild)}
               onChange={(v) => updateBuild(defIdx, (b) => ({ ...b, sp: { ...b.sp, [defEdit]: v } }))} />
             <NatureToggle label={defEditLabel} value={defBuild.nature[defEdit]} onChange={(v) => updateBuild(defIdx, (b) => ({ ...b, nature: { ...b.nature, [defEdit]: v } }))} />
-            <AbilitySelect form={def} value={defBuild.abilityJa} onChange={(v) => updateBuild(defIdx, (b) => ({ ...b, abilityJa: v }))} />
+            <AbilitySelect form={def} value={defBuild.abilityJa} onChange={(v) => pickAbility(defIdx, v)} />
             <ItemSelect value={defBuild.item} onChange={(v) => updateBuild(defIdx, (b) => ({ ...b, item: v }))} />
             <div className="rankrow"><span>{defEditLabel}ランク</span>
               <select className="sel sel-sm" value={defBuild.rank[defEdit]} onChange={(e) => updateBuild(defIdx, (b) => ({ ...b, rank: { ...b.rank, [defEdit]: Number(e.target.value) } }))}>
@@ -427,6 +435,19 @@ export default function App() {
               <option value="none">なし</option><option value="sun">晴</option><option value="rain">雨</option><option value="sand">砂</option><option value="snow">雪</option>
             </select>
           </div>
+          <div className="rankrow"><span>フィールド</span>
+            <select className="sel sel-sm" value={terrain} onChange={(e) => setTerrain(e.target.value as Terrain)}>
+              <option value="none">なし</option><option value="grassy">グラス</option><option value="electric">エレキ</option><option value="psychic">サイコ</option><option value="misty">ミスト</option>
+            </select>
+          </div>
+          {terrain !== 'none' && (
+            <div className="fieldnote">
+              {terrain === 'grassy' && 'グラス: 接地したくさ技 ×1.3 / 接地した相手への じしん・じならし ×0.5'}
+              {terrain === 'electric' && 'エレキ: 接地したでんき技 ×1.3'}
+              {terrain === 'psychic' && 'サイコ: 接地したエスパー技 ×1.3'}
+              {terrain === 'misty' && 'ミスト: 接地した相手へのドラゴン技 ×0.5'}
+            </div>
+          )}
           <div className="toggles">
             <button className={wall ? 'tg on' : 'tg'} onClick={() => setWall((v) => !v)}>壁（{isPhysical ? 'リフレク' : 'ひかりのかべ'}）</button>
             <button className={crit ? 'tg on' : 'tg'} onClick={() => setCrit((v) => !v)}>急所</button>

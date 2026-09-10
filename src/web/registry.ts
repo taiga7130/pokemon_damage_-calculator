@@ -2,7 +2,7 @@
 // UI表示用レジストリ: エンジンの AbilityId / ItemId ⇔ 日本語ラベル
 // 実装済み（Tier1+2）の特性・持ち物のみ計算に反映される。
 // ============================================================
-import type { AbilityId, ItemId } from '../types';
+import type { AbilityId, ItemId, Terrain } from '../types';
 
 /** 実装済み特性 → 日本語名。 */
 export const ABILITY_JA: Record<Exclude<AbilityId, 'none'>, string> = {
@@ -20,6 +20,7 @@ export const ABILITY_JA: Record<Exclude<AbilityId, 'none'>, string> = {
   multiscale: 'マルチスケイル', shadowShield: 'ファントムガード',
   solidRock: 'ハードロック', filter: 'フィルター', prismArmor: 'プリズムアーマー',
   fluffy: 'もふもふ', drySkin: 'かんそうはだ', auraGuard: 'はどうのぼうご', furCoat: 'ファーコート',
+  grassPelt: 'くさのけがわ',
   levitate: 'ふゆう', risingEel: 'うなぎのぼり', waterAbsorb: 'ちょすい', stormDrain: 'よびみず',
   voltAbsorb: 'ちくでん', lightningRod: 'ひらいしん', motorDrive: 'でんきエンジン',
   sapSipper: 'そうしょく', wellBakedBody: 'ねつぼうそう', earthEater: 'どしょく',
@@ -33,6 +34,11 @@ export const JA_TO_ABILITY: Record<string, AbilityId> = Object.fromEntries(
 
 /** 実装済み特性の日本語名リスト（手動選択用）。 */
 export const IMPLEMENTED_ABILITY_JA: string[] = Object.values(ABILITY_JA);
+
+/** フィールド展開特性 → 展開するフィールド（選択時に場の状態へ自動反映）。 */
+export const TERRAIN_SETTER_JA: Record<string, Terrain> = {
+  'グラスメイカー': 'grassy', 'エレキメイカー': 'electric', 'サイコメイカー': 'psychic', 'ミストメイカー': 'misty',
+};
 
 /** 計算に反映される特性か（日本語名で判定）。 */
 export function isEffectiveAbility(ja: string): boolean {

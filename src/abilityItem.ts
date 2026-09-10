@@ -42,6 +42,12 @@ function attackerInPinch(attacker: PokemonState): boolean {
   return cur * 3 <= maxHP; // cur ≤ maxHP/3
 }
 
+/** 接地しているか（フィールド効果の対象判定）。ひこう / ふゆう / うなぎのぼり は非接地。 */
+export function isGrounded(p: PokemonState): boolean {
+  if (p.species.types.includes('flying')) return false;
+  return p.ability !== 'levitate' && p.ability !== 'risingEel';
+}
+
 /** 防御側がHP満タンか（マルチスケイル等）。 */
 function defenderAtFull(defender: PokemonState): boolean {
   const maxHP = getStatValue(defender, 'hp');
@@ -70,10 +76,16 @@ export function applyAttackStatMods(stat: number, attacker: PokemonState, move: 
 // ------------------------------------------------------------
 // [ステータス側] D_eff の持ち物補正（ランク・天候補正の後に適用）
 // ------------------------------------------------------------
-export function applyDefenseStatMods(stat: number, defender: PokemonState, move: Move): number {
+export function applyDefenseStatMods(
+  stat: number, defender: PokemonState, move: Move, conditions: Conditions = {},
+): number {
   // ファーコート: 物理技被弾時に防御 ×2
   if (isPhysical(move) && defender.ability === 'furCoat') {
     stat = pokeRound(stat, MOD.X2_0);
+  }
+  // くさのけがわ: グラスフィールド時に防御 ×1.5（物理技のみ）
+  if (isPhysical(move) && defender.ability === 'grassPelt' && conditions.terrain === 'grassy') {
+    stat = pokeRound(stat, MOD.X1_5);
   }
   // とつげきチョッキ: 特殊技被弾時に特防 ×1.5
   if (!isPhysical(move) && defender.item === 'assaultVest') {
@@ -85,11 +97,27 @@ export function applyDefenseStatMods(stat: number, defender: PokemonState, move:
 // ------------------------------------------------------------
 // [威力側] power_eff（基礎ダメージ計算前）
 // ------------------------------------------------------------
-export function computeEffectivePower(attacker: PokemonState, move: Move, conditions: Conditions): number {
+export function computeEffectivePower(
+  attacker: PokemonState, move: Move, conditions: Conditions, defender?: PokemonState,
+): number {
   let p = move.power;
   const ab = attacker.ability;
   const phys = isPhysical(move);
   const f = move.flags ?? {};
+
+  // フィールド（接地している側にのみ作用）
+  const terrain = conditions.terrain ?? 'none';
+  if (terrain !== 'none') {
+    if (isGrounded(attacker)) {
+      if (terrain === 'grassy' && move.type === 'grass') p = pokeRound(p, MOD.X1_3);
+      if (terrain === 'electric' && move.type === 'electric') p = pokeRound(p, MOD.X1_3);
+      if (terrain === 'psychic' && move.type === 'psychic') p = pokeRound(p, MOD.X1_3);
+    }
+    if (defender && isGrounded(defender)) {
+      if (terrain === 'grassy' && f.grassyHalved) p = pokeRound(p, MOD.X0_5);   // じしん・じならし
+      if (terrain === 'misty' && move.type === 'dragon') p = pokeRound(p, MOD.X0_5);
+    }
+  }
 
   if (ab === 'hustle' && phys) p = pokeRound(p, MOD.X1_5);          // はりきり
   if (ab === 'ironFist' && f.punch) p = pokeRound(p, MOD.X1_2);     // てつのこぶし
