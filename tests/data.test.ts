@@ -111,4 +111,34 @@ describe('レギュレーション M-C の反映', () => {
     expect(by['star-assault']).toMatchObject({ name: 'スターアサルト', type: 'fighting', category: 'physical', power: 170 });
     expect(by['double-shock'].flags?.punch).toBe(true);
   });
+  it('PChamp DB 未収録の技（Game8/GameWith 照合）が入っている', () => {
+    const by = Object.fromEntries(MOVES.map((m) => [m.moveId, m]));
+    expect(by['drum-beating']).toMatchObject({ name: 'ドラムアタック', type: 'grass', category: 'physical', power: 80, accuracy: 100, contact: false });
+    expect(by['pyro-ball']).toMatchObject({ name: 'かえんボール', type: 'fire', category: 'physical', power: 120, accuracy: 90 });
+    expect(by['glaive-rush']).toMatchObject({ name: 'きょけんとつげき', type: 'dragon', category: 'physical', power: 120, contact: true });
+    expect(by['jaw-lock']).toMatchObject({ name: 'くらいつく', type: 'dark', power: 80 });
+    expect(by['zing-zap']).toMatchObject({ name: 'びりびりちくちく', type: 'electric', power: 80 });
+    expect(by['overdrive']).toMatchObject({ name: 'オーバードライブ', category: 'special', power: 80, flags: { sound: true } });
+    expect(by['make-it-rain']).toMatchObject({ name: 'ゴールドラッシュ', type: 'steel', category: 'special', power: 120, accuracy: 95 });
+    expect(by['spirit-break']).toMatchObject({ name: 'ソウルクラッシュ', type: 'fairy', power: 75 });
+    expect(by['barb-barrage']).toMatchObject({ name: 'どくばりセンボン', type: 'poison', power: 60 });
+    expect(by['rage-fist']).toMatchObject({ name: 'ふんどのこぶし', type: 'ghost', power: 50, flags: { punch: true } });
+    for (const id of ['shift-gear', 'court-change', 'octolock', 'no-retreat', 'topsy-turvy']) expect(by[id]?.category, id).toBe('status');
+  });
+  it('チャンピオンズ独自のバランス調整（Game8/GameWith 一致分）が反映されている', () => {
+    const by = Object.fromEntries(MOVES.map((m) => [m.moveId, m]));
+    expect(by['beak-blast'].power).toBe(120);
+    expect(by['first-impression'].power).toBe(100);
+    expect(by['mountain-gale'].power).toBe(120);
+    expect(by['trop-kick'].power).toBe(85);
+    expect(by['snap-trap'].type).toBe('steel');
+    expect(by['grav-apple'].power).toBe(90);
+    expect(by['spirit-shackle'].power).toBe(90);
+    expect(by['night-daze'].power).toBe(90);
+    expect(by['psyshield-bash'].power).toBe(90);
+    expect(by['infernal-parade'].power).toBe(65);
+    expect(by['fire-lash'].power).toBe(90);
+    expect(by['apple-acid'].power).toBe(90);
+    expect(by['crabhammer'].accuracy).toBe(95);
+  });
 });

@@ -32,7 +32,7 @@ scripts/
   build_move_data.py     PChamp DB から技データを生成（技フラグは Showdown から補完）
   add_mb_pokemon.py      レギュレーション M-B 追加分（PChamp DB 未反映のため手動管理）
   add_mc_pokemon.py      レギュレーション M-C 追加分（同上）
-  add_mc_moves.py        M-C で解禁・変更された技（きりさく/ねらいうち/スターアサルト）
+  add_missing_moves.py   PChamp DB 未収録の技とバランス調整（M-B/M-C 分。Game8+GameWith で照合）
 tests/           各関数の手計算検証テスト（期待値の根拠コメント付き）＋ 実データ整合性テスト
 ```
 
@@ -43,7 +43,7 @@ python3 scripts/build_pokemon_data.py   # PChamp DB 一覧（M-A 分）
 python3 scripts/add_mb_pokemon.py       # M-B 追加分を上乗せ（冪等）
 python3 scripts/add_mc_pokemon.py       # M-C 追加分を上乗せ（冪等）
 python3 scripts/build_move_data.py      # PChamp DB 技一覧 + 技フラグ
-python3 scripts/add_mc_moves.py         # M-C 新技を上乗せ（冪等）
+python3 scripts/add_missing_moves.py    # 未収録技・バランス調整を上乗せ（冪等）
 npm test                                # data.test.ts が整合性を検証
 ```
 
