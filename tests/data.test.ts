@@ -7,6 +7,7 @@
 import { describe, it, expect } from 'vitest';
 import pokemonData from '../data/pokemon_data.json';
 import moveData from '../data/move_data.json';
+import learnsetsData from '../data/learnsets.json';
 import { ALL_TYPES } from '../src/typeChart';
 import { JA_TO_ABILITY } from '../src/web/registry';
 
@@ -16,6 +17,7 @@ interface RawMove { moveId: string; name: string; type: string; category: string
 
 const POKE = pokemonData as RawPokemon[];
 const MOVES = moveData as RawMove[];
+const LEARNSETS = learnsetsData as Record<string, string[] | null>;
 const VALID_FLAGS = new Set(['punch', 'sound', 'slicing', 'recoil', 'hasSecondary', 'grassyHalved']);
 const find = (dex: number, form: string) => POKE.find((p) => p.dexNo === dex)?.forms.find((f) => f.formName === form);
 
@@ -140,5 +142,44 @@ describe('レギュレーション M-C の反映', () => {
     expect(by['fire-lash'].power).toBe(90);
     expect(by['apple-acid'].power).toBe(90);
     expect(by['crabhammer'].accuracy).toBe(95);
+  });
+});
+
+describe('learnsets.json 整合性', () => {
+  const FORM_KEYS = new Set(POKE.flatMap((p) => p.forms.map((f) => `${p.dexNo}:${f.formName}`)));
+  const MOVE_IDS = new Set(MOVES.map((m) => m.moveId));
+
+  it('全フォルム（393件）をキーに持ち、余計なキーが無い', () => {
+    const keys = Object.keys(LEARNSETS);
+    expect(keys.length).toBe(FORM_KEYS.size);
+    for (const k of keys) expect(FORM_KEYS.has(k), `未知のキー ${k}`).toBe(true);
+    for (const k of FORM_KEYS) expect(k in LEARNSETS, `キー欠落 ${k}`).toBe(true);
+  });
+  it('各フォルムの技リストは null か、move_data.json に存在する moveId の重複なし配列', () => {
+    for (const [key, ids] of Object.entries(LEARNSETS)) {
+      if (ids === null) continue;
+      expect(Array.isArray(ids), key).toBe(true);
+      expect(new Set(ids).size, `${key} 重複`).toBe(ids.length);
+      for (const id of ids) expect(MOVE_IDS.has(id), `${key} の未知moveId ${id}`).toBe(true);
+    }
+  });
+  it('データ未収録（null）のフォルムは無い（Game8+GameWithで全46 dexNoを補完済み）', () => {
+    const nulls = Object.entries(LEARNSETS).filter(([, v]) => v === null).map(([k]) => k);
+    expect(nulls).toEqual([]);
+  });
+  it('ガブリアスは じしん(earthquake) と ドラゴンクロー(dragon-claw) を覚える（PChamp DB 実データ確認）', () => {
+    const ids = LEARNSETS['445:ガブリアス'] ?? [];
+    expect(ids).toContain('earthquake');
+    expect(ids).toContain('dragon-claw');
+  });
+  it('ゴリランダーは ドラムアタック(drum-beating) と グラススライダー(grassy-glide) を覚える（Game8+GameWith一致確認）', () => {
+    const ids = LEARNSETS['812:ゴリランダー'] ?? [];
+    expect(ids).toContain('drum-beating');
+    expect(ids).toContain('grassy-glide');
+  });
+  it('メガシンカはベースフォルムと技構成が同一（本タイトルの仕様）', () => {
+    expect(LEARNSETS['254:メガジュカイン']).toEqual(LEARNSETS['254:ジュカイン']);
+    expect(LEARNSETS['373:メガボーマンダ']).toEqual(LEARNSETS['373:ボーマンダ']);
+    expect(LEARNSETS['998:メガセグレイブ']).toEqual(LEARNSETS['998:セグレイブ']);
   });
 });

@@ -27,12 +27,17 @@ src/
 data/
   dummy.ts       テスト用ダミー（種族・技・性格・ヘルパー）
   pokemon_data.json / move_data.json  実データ（PChamp DB 由来 + レギュレーション追加分）
+  learnsets.json         ポケモン（フォルム別）ごとの習得技一覧 "dexNo:formName" -> moveId[] | null
+  learnsets_meta.json    フォルムごとの取得元（pchamp / game8+gamewith / null）
+  learnsets_disputed.json  Game8/GameWithで技名が一致しなかったため不採用にしたもの
+  learnsets_unmapped.json  技名/moveIdを move_data.json に変換できなかったもの（採用せず記録のみ）
 scripts/
   build_pokemon_data.py  PChamp DB からポケモンデータを生成（M-A 時点の一覧）
   build_move_data.py     PChamp DB から技データを生成（技フラグは Showdown から補完）
   add_mb_pokemon.py      レギュレーション M-B 追加分（PChamp DB 未反映のため手動管理）
   add_mc_pokemon.py      レギュレーション M-C 追加分（同上）
   add_missing_moves.py   PChamp DB 未収録の技とバランス調整（M-B/M-C 分。Game8+GameWith で照合）
+  build_learnsets.py     ポケモンごとの習得技一覧を生成（PChamp DB 正典 + Game8/GameWith 突合の46dexNo）
 tests/           各関数の手計算検証テスト（期待値の根拠コメント付き）＋ 実データ整合性テスト
 ```
 
@@ -44,6 +49,7 @@ python3 scripts/add_mb_pokemon.py       # M-B 追加分を上乗せ（冪等）
 python3 scripts/add_mc_pokemon.py       # M-C 追加分を上乗せ（冪等）
 python3 scripts/build_move_data.py      # PChamp DB 技一覧 + 技フラグ
 python3 scripts/add_missing_moves.py    # 未収録技・バランス調整を上乗せ（冪等）
+python3 scripts/build_learnsets.py      # 習得技一覧を生成（.cache_pchamp/ にHTMLキャッシュ）
 npm test                                # data.test.ts が整合性を検証
 ```
 

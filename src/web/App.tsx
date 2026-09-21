@@ -3,7 +3,7 @@ import { calcDamage, computeTypeEffectiveness, calcHP, calcStat } from '../index
 import type { PokemonType, Weather, Terrain, ItemId, StatBlock } from '../types';
 import {
   FORMS, MOVES, toMove, buildAttacker, buildDefender, effectivenessLabel, siblingForms,
-  TYPE_JA, TYPE_COLOR, type FormEntry, type NatureChoice,
+  learnableMoveIds, TYPE_JA, TYPE_COLOR, type FormEntry, type NatureChoice,
 } from './adapter';
 import { SearchSelect, type Option } from './SearchSelect';
 import { ITEMS, IMPLEMENTED_ABILITY_JA, isEffectiveAbility, TERRAIN_SETTER_JA } from './registry';
@@ -187,6 +187,7 @@ export default function App() {
   // 技フィルタ
   const [mType, setMType] = useState<PokemonType | 'all'>('all');
   const [mCat, setMCat] = useState<'all' | 'physical' | 'special'>('all');
+  const [showAllMoves, setShowAllMoves] = useState(false); // false = 覚える技のみ（既定）
   // 全技一括計算 / 耐久逆算 パネル
   const [bulkOpen, setBulkOpen] = useState(false);
   const [survOpen, setSurvOpen] = useState(false);
@@ -235,22 +236,33 @@ export default function App() {
     try { await navigator.clipboard.writeText(url); setCopied(true); setTimeout(() => setCopied(false), 1500); } catch { /* noop */ }
   };
 
+  // 攻撃側の習得技（null = データ未収録 → 自動で全技表示にフォールバック）
+  const learnable = atkBuild.formKey ? learnableMoveIds(atkBuild.formKey) : null;
+  const effectiveShowAll = showAllMoves || learnable === null;
+
   // 技フィルタの適用結果（選択肢と一括計算で共用）
-  const filteredMoves = useMemo(
-    () => MOVES.filter((m) => (mCat === 'all' || m.category === mCat) && (mType === 'all' || m.type === mType)),
-    [mCat, mType],
-  );
+  const filteredMoves = useMemo(() => {
+    let list = MOVES.filter((m) => (mCat === 'all' || m.category === mCat) && (mType === 'all' || m.type === mType));
+    if (!effectiveShowAll && learnable) list = list.filter((m) => learnable.has(m.moveId));
+    return list;
+  }, [mCat, mType, effectiveShowAll, learnable]);
 
   // 技選択肢: タイプ/分類フィルタ＋タイプ一致(STAB)を上位＆★
+  // 選択中の技が絞り込みで外れても一覧には残す（共有URL・保存済み構築との整合を壊さないため）。
   const moveOptions = useMemo<Option[]>(() => {
     const atkTypes = atk?.types ?? [];
-    const sorted = [...filteredMoves].sort((a, b) => (atkTypes.includes(a.type) ? 0 : 1) - (atkTypes.includes(b.type) ? 0 : 1));
+    let list = filteredMoves;
+    if (atkBuild.moveId && !list.some((m) => m.moveId === atkBuild.moveId)) {
+      const cur = MOVES.find((m) => m.moveId === atkBuild.moveId);
+      if (cur) list = [...list, cur];
+    }
+    const sorted = [...list].sort((a, b) => (atkTypes.includes(a.type) ? 0 : 1) - (atkTypes.includes(b.type) ? 0 : 1));
     return sorted.map((m) => ({
       key: m.moveId,
       label: `${atkTypes.includes(m.type) ? '★' : ''}${m.name}（威力${m.power}）`,
       sub: <span className="badge" style={{ background: TYPE_COLOR[m.type] }}>{m.category === 'physical' ? '物理' : '特殊'}</span>,
     }));
-  }, [atk, filteredMoves]);
+  }, [atk, filteredMoves, atkBuild.moveId]);
 
   // 通常時・急所時 両方を計算
   const result = useMemo(() => {
@@ -398,7 +410,14 @@ export default function App() {
             <option value="all">全タイプ</option>
             {TYPE_LIST.map((t) => <option key={t} value={t}>{TYPE_JA[t]}</option>)}
           </select>
+          {learnable !== null && (
+            <div className="seg seg-sm">
+              <button className={!showAllMoves ? 'on' : ''} onClick={() => setShowAllMoves(false)}>覚える技のみ</button>
+              <button className={showAllMoves ? 'on' : ''} onClick={() => setShowAllMoves(true)}>全技</button>
+            </div>
+          )}
         </div>
+        {learnable === null && atk && <div className="fieldnote">このポケモンの習得技データは未収録（全技を表示中）</div>}
         <SearchSelect placeholder="技を選択（★=タイプ一致）" options={moveOptions} value={atkBuild.moveId}
           onChange={(k) => updateBuild(atkIdx, (b) => ({ ...b, moveId: k }))} />
         {move && (

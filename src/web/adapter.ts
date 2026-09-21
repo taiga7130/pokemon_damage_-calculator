@@ -4,6 +4,7 @@
 // ============================================================
 import pokemonData from '../../data/pokemon_data.json';
 import moveData from '../../data/move_data.json';
+import learnsetsData from '../../data/learnsets.json';
 import type {
   Species, PokemonState, Move, PokemonType, StatBlock, MoveCategory, AbilityId, ItemId,
 } from '../types';
@@ -161,6 +162,16 @@ export function effectivenessLabel(eff: number): string {
 /** 同一ポケモン(dexNo)の全フォルム（メガ/リージョン切替用）。 */
 export function siblingForms(form: FormEntry): FormEntry[] {
   return FORMS.filter((f) => f.dexNo === form.dexNo);
+}
+
+// ---- 習得技（フォルムごとに覚える技を絞り込む）----
+// data/learnsets.json: "dexNo:formName" -> moveId[] | null（null=データ未収録）
+const LEARNSETS = learnsetsData as Record<string, string[] | null>;
+
+/** フォルムが覚える技のmoveId集合。null = そのフォルムの習得技データが未収録（全技表示にフォールバック）。 */
+export function learnableMoveIds(formKey: string): Set<string> | null {
+  const ids = LEARNSETS[formKey];
+  return ids ? new Set(ids) : null;
 }
 
 // ---- タイプ表示（日本語ラベル）----
